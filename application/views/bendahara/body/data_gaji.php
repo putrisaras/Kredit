@@ -23,24 +23,13 @@
                     <div class="title_left">
                         <h3></h3>
                     </div>
-
-                    <div class="title_right">
-                        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search for...">
-                                <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div class="clearfix"></div>
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="x_panel">
                             <div class="x_title">
-                                <h2>Data Gaji Anggota Koperasi</h2>
+                                <h2 style="height: 25px;">Data Gaji Anggota Koperasi</h2>
                                 <ul class="nav navbar-right panel_toolbox">
                                 </ul>
                                 <div class="clearfix"></div>
@@ -62,12 +51,12 @@
                                     foreach ($sql1->result() as $pemohon_kredit) {
                                         ?>
                                         <tr>
-                                            <td><?php echo $pemohon_kredit->Id_anggota; ?></td>
-                                            <td><?php echo $pemohon_kredit->Nama_anggota; ?></td>
-                                            <td><?php echo $pemohon_kredit->Jlm_gaji; ?></td>
+                                            <td><?php echo $pemohon_kredit->id_anggota; ?></td>
+                                            <td><?php echo $pemohon_kredit->nama_anggota; ?></td>
+                                            <td><?php echo "Rp. ". number_format($pemohon_kredit->jml_gaji,0,".","."); ?></td>
                                             <td>
                                                 <button type="submit" class="btn btn-info btn-xs" data-toggle="modal"
-                                                        data-target="#editGaji<?php echo $pemohon_kredit->Id_anggota; ?>">
+                                                        data-target="#editGaji<?php echo $pemohon_kredit->id_anggota; ?>">
                                                     <i class="fa fa-pencil"> </i> Edit
                                                 </button>
                                             </td>
@@ -88,11 +77,11 @@
         <!-- /FORM EDIT GAJI-->
         <?php
         foreach ($sql1->result_array() as $item):
-            $Id_anggota = $item['Id_anggota'];
-            $Nama_anggota = $item['Nama_anggota'];
-            $Jlm_gaji = $item['Jlm_gaji'];
+            $id_anggota = $item['id_anggota'];
+            $nama_anggota = $item['nama_anggota'];
+            $jml_gaji = $item['jml_gaji'];
             ?>
-            <div class="modal fade" id="editGaji<?php echo $Id_anggota; ?>" tabindex="-1" role="dialog"
+            <div class="modal fade" id="editGaji<?php echo $id_anggota; ?>" tabindex="-1" role="dialog"
                  aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="x_panel">
@@ -108,20 +97,20 @@
                         <div class="x_content">
                             <br/>
                             <form class="form-horizontal form-label-left"
-                                  action="<?php echo base_url(); ?>/index.php/Bendahara/Data_gaji/edit_dataGaji/<?php echo $Id_anggota; ?>"
+                                  action="<?php echo base_url(); ?>/index.php/Bendahara/Data_gaji/edit_dataGaji/<?php echo $id_anggota; ?>"
                                   method="post">
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Nama Anggota</label>
                                     <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <input type="text" class="form-control" name="Nama_anggota"
-                                               value="<?php echo $Nama_anggota; ?>" placeholder="Nama Anggota">
+                                        <input type="text" class="form-control" name="nama_anggota"
+                                               value="<?php echo $nama_anggota; ?>" placeholder="Nama Anggota" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Jumlah Gaji</label>
                                     <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <input type="text" class="form-control" name="Jlm_gaji"
-                                               value="<?php echo $Jlm_gaji; ?>" placeholder="Jumlah Gaji">
+                                        <input type="text" class="form-control" name="jml_gaji"
+                                               value="<?php echo $jml_gaji; ?>" placeholder="Jumlah Gaji">
                                     </div>
                                 </div>
 

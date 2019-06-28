@@ -10,8 +10,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class MPengurus_koperasi extends CI_Model
 {
 
-    public function loginPengurus($Username_pengurus, $Password_pengurus)
+    public function loginPengurus($username_pengurus, $password_pengurus)
     {
-        return $this->db->get_where('pengurus_koperasi', array('Username_pengurus' => $Username_pengurus, 'Password_pengurus' => $Password_pengurus));
+        return $this->db->get_where('pengurus_koperasi', array('username_pengurus' => $username_pengurus, 'password_pengurus' => $password_pengurus));
     }
 }

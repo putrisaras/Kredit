@@ -1,5 +1,22 @@
- <!-- jQuery -->
- <script src="<?php echo base_url();?>assets/vendors/jquery/dist/jquery.min.js"></script>
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Anda yakin keluar?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Tekan "logout" jika anda ingin keluar dari halaman ini</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="<?= base_url();?>Login_pengurus/logout">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- jQuery -->
+    <script src="<?php echo base_url();?>assets/vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
     <script src="<?php echo base_url();?>assets/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- FastClick -->
@@ -35,12 +52,12 @@
     <!-- bootstrap-daterangepicker -->
     <script src="<?php echo base_url();?>assets/vendors/moment/min/moment.min.js"></script>
     <script src="<?php echo base_url();?>assets/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
-   <!-- bootstrap-wysiwyg -->
-   <script src="<?php echo base_url();?>assets/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
+    <!-- bootstrap-wysiwyg -->
+    <script src="<?php echo base_url();?>assets/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
     <script src="<?php echo base_url();?>assets/vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
     <script src="<?php echo base_url();?>assets/vendors/google-code-prettify/src/prettify.js"></script>
     <!-- Datatables -->
-   <script src="<?php echo base_url();?>assets/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="<?php echo base_url();?>assets/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="<?php echo base_url();?>assets/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
     <script src="<?php echo base_url();?>assets/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
     <script src="<?php echo base_url();?>assets/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
@@ -55,8 +72,8 @@
     <script src="<?php echo base_url();?>assets/vendors/jszip/dist/jszip.min.js"></script>
     <script src="<?php echo base_url();?>assets/vendors/pdfmake/build/pdfmake.min.js"></script>
     <script src="<?php echo base_url();?>assets/vendors/pdfmake/build/vfs_fonts.js"></script>
-   <!-- jQuery Tags Input -->
-   <script src="<?php echo base_url();?>assets/vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
+    <!-- jQuery Tags Input -->
+    <script src="<?php echo base_url();?>assets/vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
     <!-- Switchery -->
     <script src="<?php echo base_url();?>assets/vendors/switchery/dist/switchery.min.js"></script>
     <!-- Select2 -->
@@ -71,4 +88,3 @@
     <script src="<?php echo base_url();?>assets/vendors/starrr/dist/starrr.js"></script>
     <!-- Custom Theme Scripts -->
     <script src="<?php echo base_url();?>assets/build/js/custom.min.js"></script>
-	

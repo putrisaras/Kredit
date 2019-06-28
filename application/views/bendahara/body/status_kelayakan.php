@@ -23,17 +23,6 @@
                     <div class="title_left">
                         <h3></h3>
                     </div>
-
-                    <div class="title_right">
-                        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search for...">
-                                <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div class="clearfix"></div>
                 <div class="row">
@@ -63,13 +52,13 @@
                                     foreach ($sql1->result() as $status_kelayakan) {
                                         ?>
                                         <tr>
-                                            <td><?php echo $status_kelayakan->Id_kelayakan; ?></td>
-                                            <td><?php echo $status_kelayakan->Batas_atas; ?></td>
-                                            <td><?php echo $status_kelayakan->Batas_bawah; ?></td>
-                                            <td><?php echo $status_kelayakan->Keterangan; ?></td>
+                                            <td><?php echo $status_kelayakan->id_kelayakan; ?></td>
+                                            <td><?php echo $status_kelayakan->batas_atas; ?></td>
+                                            <td><?php echo $status_kelayakan->batas_bawah; ?></td>
+                                            <td><?php echo $status_kelayakan->keterangan; ?></td>
                                             <td>
                                                 <button type="submit" class="btn btn-info btn-xs" data-toggle="modal"
-                                                        data-target="#editKelayakan<?php echo $status_kelayakan->Id_kelayakan; ?>">
+                                                        data-target="#editKelayakan<?php echo $status_kelayakan->id_kelayakan; ?>">
                                                     <i class="fa fa-pencil"> </i> Edit
                                                 </button>
                                             </td>
@@ -88,12 +77,12 @@
         <!-- /FORM EDIT ANGGOTA-->
         <?php
         foreach ($sql1->result_array() as $item):
-            $Id_kelayakan = $item['Id_kelayakan'];
-            $Batas_atas = $item['Batas_atas'];
-            $Batas_bawah = $item['Batas_bawah'];
-            $Keterangan = $item['Keterangan'];
+            $id_kelayakan = $item['id_kelayakan'];
+            $batas_atas = $item['batas_atas'];
+            $batas_bawah = $item['batas_bawah'];
+            $keterangan = $item['keterangan'];
             ?>
-            <div class="modal fade" id="editKelayakan<?php echo $Id_kelayakan; ?>" tabindex="-1" role="dialog"
+            <div class="modal fade" id="editKelayakan<?php echo $id_kelayakan; ?>" tabindex="-1" role="dialog"
                  aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="x_panel">
@@ -109,35 +98,35 @@
                         <div class="x_content">
                             <br/>
                             <form class="form-horizontal form-label-left"
-                                  action="<?php echo base_url(); ?>/Bendahara/Status_kelayakan/edit_StatusKelayakan/<?php echo $Id_kelayakan; ?>"
+                                  action="<?php echo base_url(); ?>/Bendahara/Status_kelayakan/edit_StatusKelayakan/<?php echo $id_kelayakan; ?>"
                                   method="post">
 
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Id Kelayakan</label>
                                     <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <input type="text" class="form-control" name="Id_kelayakan"
-                                               value="<?php echo $Id_kelayakan; ?>" readonly>
+                                        <input type="text" class="form-control" name="id_kelayakan"
+                                               value="<?php echo $id_kelayakan; ?>" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Batas Atas</label>
                                     <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <input type="text" class="form-control" name="Batas_atas"
-                                               value="<?php echo $Batas_atas; ?>" placeholder="Batas_atas">
+                                        <input type="text" class="form-control" name="batas_atas"
+                                               value="<?php echo $batas_atas; ?>" placeholder="Batas_atas">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Batas Bawah</label>
                                     <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <input type="text" class="form-control" name="Batas_bawah"
-                                               value="<?php echo $Batas_bawah; ?>" placeholder="Batas_bawah">
+                                        <input type="text" class="form-control" name="batas_bawah"
+                                               value="<?php echo $batas_bawah; ?>" placeholder="Batas_bawah">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Keterangan</label>
                                     <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <input type="text" class="form-control" name="Keterangan"
-                                               value="<?php echo $Keterangan; ?>" placeholder="Keterangan">
+                                        <input type="text" class="form-control" name="keterangan"
+                                               value="<?php echo $keterangan; ?>" placeholder="Keterangan">
                                     </div>
                                 </div>
                                 <div class="ln_solid"></div>

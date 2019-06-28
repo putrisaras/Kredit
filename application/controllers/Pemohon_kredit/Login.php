@@ -19,23 +19,28 @@ class Login extends CI_Controller
 
     public function index()
     {
-        $this->load->view('pemohon_kredit/body/login_anggota');
+        if ($this->session->userdata('kondisi') == "Berhasil Login") {
+            redirect(base_url() . "pemohon_kredit/dashboard/index");
+        } else {
+            $data['halaman'] = "login";
+            $this->load->view('pemohon_kredit/body/login_anggota', $data);
+        }
     }
 
     public function login()
     {
-        $Username_anggota = $this->input->post('Username_anggota');
-        $Password_anggota = $this->input->post('Password_anggota');
+        $username_anggota = $this->input->post('username_anggota');
+        $password_anggota = $this->input->post('password_anggota');
 
-        $loginAnggota = $this->pemohon->loginAnggota($Username_anggota, $Password_anggota);
+        $loginAnggota = $this->pemohon->loginAnggota($username_anggota, $password_anggota);
         $result = $loginAnggota->num_rows();
 
         if ($result > 0) {
             $status = "Berhasil Login";
             foreach ($loginAnggota->result() as $data) {
                 $session_data = array(
-                    'Id_anggota' => $data->Id_anggota,
-                    'Nama_anggota' => $data->Nama_anggota,
+                    'id_anggota' => $data->id_anggota,
+                    'nama_anggota' => $data->nama_anggota,
                     'kondisi' => $status
                 );
                 $this->session->set_userdata($session_data);
@@ -50,7 +55,11 @@ class Login extends CI_Controller
 
     public function logout()
     {
-        $this->session->sess_destroy();
+        $session_data = array(
+            'id_anggota', 'nama_anggota', 'kondisi'
+        );
+
+        $this->session->unset_userdata($session_data);
         redirect(base_url() . 'Pemohon_kredit/login/index');
     }
 }

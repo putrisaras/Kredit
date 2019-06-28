@@ -1,59 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Meta, title, CSS, favicons, etc. -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/login/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/login/css/bootstrap-responsive.min.css"/>
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/login/css/matrix-login.css"/>
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/login/image/icon/"/>
+    <link href="<?php echo base_url(); ?>assets/login/font-awesome/css/font-awesome.css" rel="stylesheet"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="<?php echo base_url(); ?>assets/production/images/koperasi.png" type="image/ico"/>
 
-    <title>Gentelella Alela! | </title>
-
-    <!-- Bootstrap -->
-    <link href="<?php echo base_url(); ?>assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="<?php echo base_url(); ?>assets/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- NProgress -->
-    <link href="<?php echo base_url(); ?>assets/vendors/nprogress/nprogress.css" rel="stylesheet">
-    <!-- Animate.css -->
-    <link href="<?php echo base_url(); ?>assets/vendors/animate.css/animate.min.css" rel="stylesheet">
-
-    <!-- Custom Theme Style -->
-    <link href="<?php echo base_url(); ?>assets/build/css/custom.min.css" rel="stylesheet">
+    <title>Koperasi Jnana Partha</title>
 </head>
 
 <body class="login">
-<div>
-    <a class="hiddenanchor" id="signup"></a>
-    <a class="hiddenanchor" id="signin"></a>
+<div id="loginbox">
+    <a><img src="<?php echo base_url(); ?>assets/production/images/koperasi.png"
+            style="width: 150px; padding-left: 140px"></a>
+    <div class="control-group normal_text"><h3>Koperasi Jnana Partha</h3></div>
+    <form id="loginform" class="form-vertical" method="post" action="<?= base_url(); ?>Pemohon_kredit/Login/login">
 
-    <div class="login_wrapper">
-        <div class="animate form login_form">
-            <section class="login_content">
-                <form method="post" action="<?= base_url(); ?>Pemohon_kredit/Login/login">
-                    <h1>Login Form</h1>
-                    <div>
-                        <input type="text" class="form-control" name="Username_pengurus" placeholder="Username"
-                               required=""/>
-                    </div>
-                    <div>
-                        <input type="password" class="form-control" name="Password_pengurus" placeholder="Password"
-                               required=""/>
-                    </div>
-                    <div>
-                        <button class="btn btn-default submit" type="submit">Log in</button>
-                    </div>
-                    <div class="text-center">
-                        <?php echo $this->session->flashdata("error"); ?>
-                    </div>
-                    <div class="clearfix"></div>
 
-                    <div class="separator">
-                    </div>
-                </form>
-            </section>
+        <div class="control-group">
+            <div class="controls">
+                <div class="main_input_box">
+                    <span class="add-on bg_lg"><i class="icon-user"> </i></span>
+                    <input type="text" class="form-control" name="username_anggota" placeholder="Username"
+                           required=""/>
+                </div>
+            </div>
         </div>
-    </div>
+        <div class="control-group">
+            <div class="controls">
+                <div class="main_input_box">
+                    <span class="add-on bg_lg"><i class="icon-lock"> </i></span>
+                    <input type="password" class="form-control" placeholder="Password" name="password_anggota"
+                           required=""/>
+                </div>
+            </div>
+        </div>
+        <div>
+           <button class="btn btn-success" type="submit" style="margin-left: 160px">Log in</button>
+        </div>
+        <div class="form-actions">
+        </div>
+        <div class="text-center">
+            <?php echo $this->session->flashdata("error"); ?>
+        </div>
+        <div class="clearfix"></div>
+    </form>
 </div>
+<script src="<?php echo base_url(); ?>assets/login/js/excanvas.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/login/js/jquery.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/login/js/jquery.ui.custom.js"></script>
+<script src="<?php echo base_url(); ?>assets/login/js/bootstrap.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/login/js/jquery.flot.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/login/js/jquery.flot.resize.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/login/js/jquery.peity.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/login/js/fullcalendar.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/login/js/matrix.js"></script>
+<script src="<?php echo base_url(); ?>assets/login/js/matrix.dashboard.js"></script>
+<script src="<?php echo base_url(); ?>assets/login/js/jquery.gritter.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/login/js/matrix.interface.js"></script>
+<script src="<?php echo base_url(); ?>assets/login/js/matrix.chat.js"></script>
+<script src="<?php echo base_url(); ?>assets/login/js/jquery.validate.js"></script>
+<script src="<?php echo base_url(); ?>assets/login/js/matrix.form_validation.js"></script>
+<script src="<?php echo base_url(); ?>assets/login/js/jquery.wizard.js"></script>
+<script src="<?php echo base_url(); ?>assets/login/js/jquery.uniform.js"></script>
+<script src="<?php echo base_url(); ?>assets/login/js/select2.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/login/js/matrix.popover.js"></script>
+<script src="<?php echo base_url(); ?>assets/login/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/login/js/matrix.tables.js"></script>
 </body>
 </html>

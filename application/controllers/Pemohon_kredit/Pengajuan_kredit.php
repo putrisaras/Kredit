@@ -13,12 +13,43 @@ class Pengajuan_kredit extends CI_Controller{
     public function __construct()
     {
         parent::__construct();
-        $this->load->model("MPengajuan_kredit");
+        $this->load->model('MPemohon_kredit', 'anggota');
+        $this->load->model('MPengajuan_kredit', 'pengajuan');
     }
+    public function index()
+    {
+        if ($this->session->userdata('kondisi') == 'Berhasil Login') {
+            $data['halaman'] = "pengajuan_kredit";
+            $data['pengajuan_kredit'] = $this->pengajuan->getPengajuanById($this->session->userdata('id_anggota'));
+            $this->load->view('pemohon_kredit/body/pengajuan_kredit', $data);
+        } else {
+            redirect(base_url() . 'pemohon_kredit/Login/index');
+        }
+    }
+    public function tambah_Pengajuan()
+    {
+        $id_anggota = $this->input->post('nama_anggota');
+        $tgl_pengajuan= $this->input->post('tgl_pengajuan');
+        $jml_kredit= $this->input->post('jml_kredit');
+        $lama_angsuran= $this->input->post('lama_angsuran');
+        $sisa_utang_di_tempat_lain= $this->input->post('sisa_utang_di_tempat_lain');
+        $data = array(
+            'tgl_pengajuan' => date('y-m-d'),
+            'jml_kredit' => $jml_kredit,
+            'id_anggota' =>$id_anggota,
+            'lama_angsuran' =>$lama_angsuran,
+            'sisa_utang_di_tempat_lain' =>$sisa_utang_di_tempat_lain,
+            'id_kelayakan' =>"1",
+            'id_pengurus' => "2"
+        );
+        $insert = $this->pengajuan->tambahPengajuan($data);
+        if ($insert > 0){
+            echo "Berhasil";
+            redirect(base_url() . "Pemohon_kredit/Pengajuan_kredit/index");
+        } else {
+            echo "Gagal";
+        }
 
-    public function index(){
-        $pengajuan_kredit['sql1'] = $this->MPengajuan_kredit->read_dataPengajuan_kredit();
-        $this->load->view('pemohon_kredit/body/pengajuan_kredit', $pengajuan_kredit);
     }
 }
 

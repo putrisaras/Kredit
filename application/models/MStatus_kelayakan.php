@@ -16,9 +16,9 @@ class MStatus_kelayakan extends CI_Model
         $sql = $this->db->query("SELECT * FROM status_kelayakan");
         return $sql;
     }
-    public function update_StatusKelayakan($Id_kelayakan, $data)
+    public function update_StatusKelayakan($id_kelayakan, $data)
     {
-        $this->db->where('Id_kelayakan', $Id_kelayakan);
+        $this->db->where('id_kelayakan', $id_kelayakan);
         $this->db->update('status_kelayakan', $data);
         return $this->db->affected_rows();
     }

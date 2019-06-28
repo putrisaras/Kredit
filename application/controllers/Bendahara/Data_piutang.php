@@ -20,17 +20,17 @@ class Data_piutang extends CI_Controller{
         $pemohon_kredit['sql1'] = $this->MPemohon_kredit->read_dataPemohon_kredit();
         $this->load->view('bendahara/body/data_piutang', $pemohon_kredit);
     }
-    public function edit_dataPiutang($Id_anggota)
+    public function edit_dataPiutang($id_anggota)
     {
-        $Nama_anggota = $this->input->post('Nama_anggota');
-        $Sisa_utang_di_koperasi = $this->input->post('Sisa_utang_di_koperasi');
+        $nama_anggota = $this->input->post('nama_anggota');
+        $sisa_utang_di_koperasi = $this->input->post('sisa_utang_di_koperasi');
 
         $data = array(
-            'Nama_anggota'=> $Nama_anggota,
-            'Sisa_utang_di_koperasi'  => $Sisa_utang_di_koperasi
+            'nama_anggota'=> $nama_anggota,
+            'sisa_utang_di_koperasi'  => $sisa_utang_di_koperasi
         );
 
-        $update = $this->MPemohon_kredit->update_dataPiutang( $Id_anggota, $data);
+        $update = $this->MPemohon_kredit->update_dataPiutang( $id_anggota, $data);
         if ($update > 0){
             redirect('Bendahara/Data_piutang');
         }

@@ -20,17 +20,17 @@ class Data_gaji extends CI_Controller{
         $pemohon_kredit['sql1'] = $this->MPemohon_kredit->read_dataPemohon_kredit();
         $this->load->view('bendahara/body/data_gaji', $pemohon_kredit);
     }
-    public function edit_dataGaji($Id_anggota)
+    public function edit_dataGaji($id_anggota)
     {
-        $Nama_anggota = $this->input->post('Nama_anggota');
-        $Jlm_gaji = $this->input->post('Jlm_gaji');
+        $nama_anggota = $this->input->post('nama_anggota');
+        $jml_gaji = $this->input->post('jml_gaji');
 
         $data = array(
-            'Nama_anggota'=> $Nama_anggota,
-            'Jlm_gaji'  => $Jlm_gaji
+            'nama_anggota'=> $nama_anggota,
+            'jml_gaji'  => $jml_gaji
         );
 
-        $update = $this->MPemohon_kredit->update_dataGaji( $Id_anggota, $data);
+        $update = $this->MPemohon_kredit->update_dataGaji( $id_anggota, $data);
         if ($update > 0){
             redirect('Bendahara/Data_gaji');
         }

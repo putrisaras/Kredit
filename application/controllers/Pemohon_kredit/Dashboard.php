@@ -16,8 +16,14 @@ class Dashboard extends CI_Controller{
     }
 
     public function index(){
-        $this->load->view('pemohon_kredit/body/dashboard');
+        if ($this->session->userdata('kondisi') == 'Berhasil Login')
+        {
+            $data['halaman'] = "dashboard";
+            $this->load->view('pemohon_kredit/body/dashboard');
+        }
+        else {
+            redirect(base_url() . 'pemohon_kredit/Login/index');
+        }
     }
 }
-
 ?>
