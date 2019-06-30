@@ -19,7 +19,10 @@ class MPemohon_kredit extends CI_Model
         $sql = $this->db->query("SELECT * FROM pemohon_kredit");
         return $sql;
     }
-
+    //View My Profil
+    public function getProfilById($id_anggota){
+        return $this->db->get_where('pemohon_kredit', array('id_anggota' => $id_anggota));
+    }
     public function create_dataAnggota($data)
     {
         $this->db->insert('pemohon_kredit', $data);
@@ -27,6 +30,12 @@ class MPemohon_kredit extends CI_Model
     }
 
     public function update_dataAnggota($id_anggota, $data)
+    {
+        $this->db->where('id_anggota', $id_anggota);
+        $this->db->update('pemohon_kredit', $data);
+        return $this->db->affected_rows();
+    }
+    public function update_Profil($id_anggota, $data)
     {
         $this->db->where('id_anggota', $id_anggota);
         $this->db->update('pemohon_kredit', $data);

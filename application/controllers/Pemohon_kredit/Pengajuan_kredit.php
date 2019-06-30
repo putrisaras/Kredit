@@ -28,7 +28,7 @@ class Pengajuan_kredit extends CI_Controller{
     }
     public function tambah_Pengajuan()
     {
-        $id_anggota = $this->input->post('nama_anggota');
+        $id_anggota = $this->session->userdata('id_anggota');
         $tgl_pengajuan= $this->input->post('tgl_pengajuan');
         $jml_kredit= $this->input->post('jml_kredit');
         $lama_angsuran= $this->input->post('lama_angsuran');
@@ -50,6 +50,28 @@ class Pengajuan_kredit extends CI_Controller{
             echo "Gagal";
         }
 
+    }
+    public function edit_Pengajuan($id_pengajuan)
+    {
+        $jml_kredit = $this->input->post('jml_kredit');
+        $lama_angsuran = $this->input->post('lama_angsuran');
+        $sisa_utang_di_tempat_lain = $this->input->post('sisa_utang_di_tempat_lain');
+
+        $data = array(
+            'jml_kredit'=> $jml_kredit,
+            'lama_angsuran'  => $lama_angsuran,
+            'sisa_utang_di_tempat_lain'=> $sisa_utang_di_tempat_lain
+        );
+
+        $update = $this->pengajuan->update_dataPengajuan( $id_pengajuan, $data);
+        if ($update > 0){
+            redirect('Pemohon_kredit/Pengajuan_kredit');
+        }
+    }
+    public function hapus_Pengajuan($id_pengajuan)
+    {
+        $this->pengajuan->delete_dataPengajuan($id_pengajuan);
+        redirect('Pemohon_kredit/Pengajuan_kredit');
     }
 }
 

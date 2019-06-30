@@ -66,7 +66,7 @@
                                                         data-target="#editPengajuan<?php echo $data['id_pengajuan']; ?>">
                                                     <i class="fa fa-pencil"> </i> Edit
                                                 </button>
-                                                <a href="javascript:if(confirm('Hapus Data?')){document.location='<?php echo base_url(); ?>/Bendahara/Data_pengajuan/hapus_dataPengajuan/<?php echo $data['id_anggota']; ?>'}"
+                                                <a href="javascript:if(confirm('Hapus Data?')){document.location='<?php echo base_url(); ?>/Pemohon_kredit/Pengajuan_kredit/hapus_Pengajuan/<?php echo $data['id_pengajuan']; ?>'}"
                                                    class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i>
                                                     Delete </a>
                                             </td>
@@ -81,7 +81,7 @@
                     </div>
                 </div>
             </div>
-            //FORM TAMBAH
+            <!-- FORM TAMBAH-->
             <div class="modal fade" id="tambahPengajuan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                  aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -134,6 +134,66 @@
                     </div>
                 </div>
             </div>
+            <!-- /FORM EDIT ANGGOTA-->
+            <?php
+            foreach ($pengajuan_kredit->result_array() as $item):
+                $id_pengajuan = $item['id_pengajuan'];
+                $jml_kredit = $item['jml_kredit'];
+                $lama_angsuran = $item['lama_angsuran'];
+                $sisa_utang_di_tempat_lain = $item['sisa_utang_di_tempat_lain'];
+                ?>
+                <div class="modal fade" id="editPengajuan<?php echo $id_pengajuan; ?>" tabindex="-1" role="dialog"
+                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>Form Edit Data Anggota</h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <button class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <br/>
+                                <form class="form-horizontal form-label-left"
+                                      action="<?php echo base_url(); ?>/Pemohon_kredit/Pengajuan_kredit/edit_Pengajuan/<?php echo $id_pengajuan; ?>"
+                                      method="post">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Jumlah Kredit</label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <input type="text" class="form-control" name="jml_kredit"
+                                                   value="<?php echo $jml_kredit ; ?>" placeholder="Jumlah kredit">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Lama Angsuran</label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <input type="text" class="form-control" name="lama_angsuran"
+                                                   value="<?php echo $lama_angsuran ; ?>" placeholder="Lama Angsuran">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Sisa Utang Di Tempat Lain</label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <input type="text" class="form-control" name="sisa_utang_di_tempat_lain"
+                                                   value="<?php echo $sisa_utang_di_tempat_lain; ?>" placeholder="Sisa Utang Di Tempat Lain">
+                                        </div>
+                                    </div>
+                                    <div class="ln_solid"></div>
+                                    <div class="form-group">
+                                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                            <button class="btn btn-primary" data-dismiss="modal">Batal</button>
+                                            <button type="submit" class="btn btn-success">Simpan</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
             <!-- /top tiles -->
         </div>
 

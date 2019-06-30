@@ -1,0 +1,54 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: User
+ * Date: 12/9/2018
+ * Time: 11:20 PM
+ */
+
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class My_profil extends CI_Controller{
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model("MPemohon_kredit", 'anggota');
+    }
+
+    public function index()
+    {
+        if ($this->session->userdata('kondisi') == 'Berhasil Login') {
+            $data['halaman'] = "my_profil";
+            $data['pemohon_kredit'] = $this->anggota->getProfilById($this->session->userdata('id_anggota'));
+            $this->load->view('pemohon_kredit/body/my_profil', $data);
+        } else {
+            redirect(base_url() . 'pemohon_kredit/Login/index');
+        }
+    }
+    public function edit_Profil($id_anggota)
+    {
+        $nama_anggota = $this->input->post('nama_anggota');
+        $username_anggota = $this->input->post('username_anggota');
+        $password_anggota = $this->input->post('password_anggota');
+        $alamat = $this->input->post('alamat');
+        $no_telp = $this->input->post('no_telp');
+        $jenis_kelamin = $this->input->post('jenis_kelamin');
+
+        $data = array(
+            'nama_anggota'=> $nama_anggota,
+            'username_anggota'  => $username_anggota,
+            'password_anggota'=> $password_anggota,
+            'alamat'  => $alamat,
+            'no_telp'=> $no_telp,
+            'jenis_kelamin'  => $jenis_kelamin
+        );
+
+        $update = $this->anggota->update_Profil( $id_anggota, $data);
+        if ($update > 0){
+            redirect('Pemohon_kredit/My_profil');
+        }
+
+    }
+}
+?>

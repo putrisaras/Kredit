@@ -30,6 +30,8 @@
                                 <div class="x_title">
                                     <h2 style="height: 25px;">Data Pengajuan Kredit</h2>
                                     <ul class="nav navbar-right panel_toolbox">
+
+
                                     </ul>
                                     <div class="clearfix"></div>
                                 </div>
@@ -40,6 +42,9 @@
                                             data-target="#tambahPengajuan"><i class="fa fa-plus-square"> Tambah
                                             Pengajuan</i>
                                     </button>
+                                    <a href="<?php echo base_url(); ?>/Bendahara/Data_pengajuan/hitungSPK"><button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+                                                                                                             data-target="#" ><i class="fa fa-calculator"> Ranking data</i>
+                                        </button></a>
                                     <table id="datatable" class="table table-striped table-bordered">
                                         <thead>
                                         <tr>

@@ -43,6 +43,7 @@
                                         <th>Id Anggota</th>
                                         <th>Nama</th>
                                         <th>Sisa Utang di koperasi</th>
+                                        <th>Lama Angsuran</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -54,6 +55,7 @@
                                             <td><?php echo $pemohon_kredit->id_anggota; ?></td>
                                             <td><?php echo $pemohon_kredit->nama_anggota; ?></td>
                                             <td><?php echo "Rp. ". number_format($pemohon_kredit->sisa_utang_di_koperasi,0,".","."); ?></td>
+                                            <td><?php echo $pemohon_kredit->total_lama_angsuran; ?></td>
                                             <td>
                                                 <button type="submit" class="btn btn-info btn-xs" data-toggle="modal"
                                                         data-target="#editPiutang<?php echo $pemohon_kredit->id_anggota; ?>">
@@ -79,6 +81,7 @@
             $id_anggota = $item['id_anggota'];
             $nama_anggota = $item['nama_anggota'];
             $sisa_utang_di_koperasi = $item['sisa_utang_di_koperasi'];
+            $total_lama_angsuran= $item['total_lama_angsuran'];
             ?>
             <div class="modal fade" id="editPiutang<?php echo $id_anggota; ?>" tabindex="-1" role="dialog"
                  aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -111,6 +114,14 @@
                                         <input type="text" class="form-control" name="sisa_utang_di_koperasi"
                                                value="<?php echo $sisa_utang_di_koperasi; ?>"
                                                placeholder="Sisa Utang di Koperasi">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Lama Angsuran</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <input type="text" class="form-control" name="total_lama_angsuran"
+                                               value="<?php echo $total_lama_angsuran; ?>"
+                                               placeholder="Lama Angsuran">
                                     </div>
                                 </div>
 

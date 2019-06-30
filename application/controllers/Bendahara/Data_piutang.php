@@ -24,10 +24,11 @@ class Data_piutang extends CI_Controller{
     {
         $nama_anggota = $this->input->post('nama_anggota');
         $sisa_utang_di_koperasi = $this->input->post('sisa_utang_di_koperasi');
-
+        $total_lama_angsuran = $this->input->post('total_lama_angsuran');
         $data = array(
             'nama_anggota'=> $nama_anggota,
-            'sisa_utang_di_koperasi'  => $sisa_utang_di_koperasi
+            'sisa_utang_di_koperasi'  => $sisa_utang_di_koperasi,
+            'total_lama_angsuran'=> $total_lama_angsuran
         );
 
         $update = $this->MPemohon_kredit->update_dataPiutang( $id_anggota, $data);
