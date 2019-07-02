@@ -177,6 +177,7 @@
                                 </ul>
                                 <div class="clearfix"></div>
                             </div>
+
                             <div class="x_content">
                                 <br/>
                                 <form class="form-horizontal form-label-left"

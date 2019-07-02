@@ -28,7 +28,7 @@
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2 style="height: 25px;">Data Ranking</h2>
+                                    <h2 style="height: 25px;">Data Pengambilan Keputusan</h2>
                                     <ul class="nav navbar-right panel_toolbox">
                                     </ul>
                                     <div class="clearfix"></div>
@@ -39,39 +39,25 @@
                                     <table id="datatable" class="table table-striped table-bordered">
                                         <thead>
                                         <tr>
-                                            <th>Id Pengajuan</th>
-                                            <th>Tgl Pengajuan</th>
-                                            <th>Nama Anggota</th>
-                                            <th>Jumlah Kredit</th>
-                                            <th>Lama Angsuran</th>
-                                            <th>Sisa utang di tempat lain</th>
-                                            <th>Nilai Preferensi</th>
-                                            <th>Status Kelayakan</th>
+                                            <th>No.</th>
+                                            <th>Id SPK</th>
+                                            <th>Tanggal SPK</th>
                                             <th>Action</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <?php
-                                        foreach ($pengajuan_kredit->result_array() as $data) {
+                                        $no =1;
+                                        foreach ($sql1->result_array() as $data) {
                                             ?>
                                             <tr>
-                                                <td><?php echo $data['id_pengajuan']; ?></td>
-                                                <td><?php echo $data['tgl_pengajuan']; ?></td>
-                                                <td><?php echo $data['nama_anggota']; ?></td>
-                                                <td><?php echo "Rp. " . number_format($data['jml_kredit'], 0, ".", "."); ?></td>
-                                                <td><?php echo $data['lama_angsuran']; ?></td>
-                                                <td><?php echo "Rp. " . number_format($data['sisa_utang_di_tempat_lain'], 0, ".", "."); ?></td>
-                                                <td><?php echo $data['nilai_preferensi']; ?></td>
-                                                <td><?php echo $data['keterangan']; ?></td>
+                                                <td><?php echo $no++ ?></td>
+                                                <td><?php echo $data['id_spk']; ?></td>
+                                                <td><?php echo $data['keterangan_spk']; ?></td>
                                                 <td>
-                                                    <button type="submit" class="btn btn-info btn-xs"
-                                                            data-toggle="modal"
-                                                            data-target="#editPengajuan<?php echo $data['id_pengajuan']; ?>">
-                                                        <i class="fa fa-pencil"> </i> Edit
-                                                    </button>
-                                                    <a href="javascript:if(confirm('Hapus Data?')){document.location='<?php echo base_url(); ?>/Bendahara/Data_pengajuan/hapus_dataPengajuan/<?php echo $data['id_pengajuan']; ?>'}"
-                                                       class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i>
-                                                        Delete </a>
+                                                    <a href="<?php echo base_url(); ?>/Bendahara/Data_ranking/index/<?= $data['id_spk']; ?>"><button type="button" class="btn btn-round btn-primary" data-toggle="modal"
+                                                                                                                                   data-target="#" ><i class="fa fa-file-text-o">    Detail</i>
+                                                        </button></a>
                                                 </td>
                                             </tr>
                                             <?php
@@ -85,7 +71,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- /top tiles -->
             <div class="row"></div>
         </div>

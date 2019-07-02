@@ -22,5 +22,9 @@ class MStatus_kelayakan extends CI_Model
         $this->db->update('status_kelayakan', $data);
         return $this->db->affected_rows();
     }
+    public function getKelayakan($preferensi){
+        $query = $this->db->query("SELECT * FROM status_kelayakan WHERE $preferensi BETWEEN batas_atas AND batas_bawah");
+        return $query;
+    }
 
 }

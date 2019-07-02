@@ -16,18 +16,20 @@ class Data_pengajuan extends CI_Controller
         parent::__construct();
         $this->load->model('MPemohon_kredit', 'anggota');
         $this->load->model('MPengajuan_kredit', 'pengajuan');
-        $this->load->model('spk');
+        $this->load->model('MSpk');
+        $this->load->model('MStatus_kelayakan', 'status_kelayakan');
     }
 
     public function index()
     {
-        $data['pengajuan_kredit'] = $this->pengajuan->getAllPengajuan();
+        $data['pengajuan_kredit'] = $this->pengajuan->getPengajuan();
         $data['pemohon_kredit'] = $this->anggota->read_dataPemohon_kredit();
         $this->load->view('bendahara/body/data_pengajuan', $data);
     }
 
     public function tambah_dataPengajuan()
     {
+        $id_pengurus = $this->session->userdata('id_pengurus');
         $id_anggota = $this->input->post('nama_anggota');
         $tgl_pengajuan = $this->input->post('tgl_pengajuan');
         $jml_kredit = $this->input->post('jml_kredit');
@@ -40,9 +42,9 @@ class Data_pengajuan extends CI_Controller
             'lama_angsuran' => $lama_angsuran,
             'sisa_utang_di_tempat_lain' => $sisa_utang_di_tempat_lain,
             'id_kelayakan' => "1",
-            'id_pengurus' => "2"
+            'id_pengurus' => $id_pengurus
         );
-        $insert = $this->pengajuan->tambahPengajuan($data);
+        $insert = $this->pengajuan->tambah_dataPengajuan($data);
         if ($insert > 0) {
             echo "Berhasil";
             redirect(base_url() . "Bendahara/Data_pengajuan/index");
@@ -81,8 +83,8 @@ class Data_pengajuan extends CI_Controller
     {
         $pengajuanKredit = $this->pengajuan->getAllPengajuan();
         $nilaiMaxMin = $this->pengajuan->getPengajuanKredit();
-        $insertId = md5("Y-m-d");
-        $insert = $this->spk->insertDataSPK($insertId);
+        $insertId =date("YmdHis");
+        $insert = $this->MSpk->insertDataSPK($insertId);
         if ($insert > 0) {
             foreach ($pengajuanKredit->result() as $item) {
                 foreach ($nilaiMaxMin->result() as $data) {
@@ -99,7 +101,14 @@ class Data_pengajuan extends CI_Controller
                 $normalisasiJumlahGaji = $item->jml_gaji / $jml_gaji;
                 $normalisasiSisaUtangKoperasi = $sisaUtangKoprasi / $item->sisa_utang_di_koperasi;
                 $normalisasiSisaUtangDiTempatLain = $sisaUtangDiTempatLain / $item->sisa_utang_di_tempat_lain;
+                $preferensi=($normalisasiModal*0.25)+($normalsasiKredit*0.20)+($normalisasiAngsuran*0.10)+($normalisasiJumlahGaji*0.15)+($normalisasiSisaUtangKoperasi*0.15)+($normalisasiSisaUtangDiTempatLain*0.15);
 
+                $status_kelayakan = $this->status_kelayakan->getKelayakan($preferensi);
+                foreach ($status_kelayakan->result()as $value){
+                    $status_kelayakan_kredit = $value->id_kelayakan;
+
+
+                }
                 $data = array(
                     'n_modal' => round($normalisasiModal, 2),
                     'n_kredit' => round($normalsasiKredit, 2),
@@ -107,6 +116,8 @@ class Data_pengajuan extends CI_Controller
                     'n_gaji' => round($normalisasiJumlahGaji, 2),
                     'n_utang_koperasi' => round($normalisasiSisaUtangKoperasi, 2),
                     'n_utang_lain' => round($normalisasiSisaUtangDiTempatLain, 2),
+                    'nilai_preferensi' => round($preferensi, 2),
+                    'id_kelayakan' => $status_kelayakan_kredit,
                     'id_spk' => $insertId
                 );
 
@@ -114,9 +125,9 @@ class Data_pengajuan extends CI_Controller
 
             }
             if ($update > 0) {
-                echo "Berhasil";
+                redirect(base_url() . "Bendahara/Data_spk/index");
             } else {
-                redirect(base_url() . "Bendahara/Data_Pengajuan/index");
+
             }
         } else {
             redirect(base_url() . "Bendahara/Data_Pengajuan/index");

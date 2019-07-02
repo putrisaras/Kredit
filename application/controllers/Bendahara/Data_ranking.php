@@ -17,9 +17,9 @@ class Data_ranking extends CI_Controller{
         $this->load->model('MPengajuan_kredit', 'pengajuan');
     }
 
-    public function index()
+    public function index($id_spk)
     {
-        $data['pengajuan_kredit'] = $this->pengajuan->getAllPengajuan();
+        $data['pengajuan_kredit'] = $this->pengajuan->getAllPengajuan($id_spk);
         $data['pemohon_kredit'] = $this->anggota->read_dataPemohon_kredit();
         $this->load->view('bendahara/body/data_ranking', $data);
     }
