@@ -51,6 +51,9 @@
                     <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
                 </div>
             </div>
+            <br><br>
+            <h1 align="center" style="font-family: sans-serif;"><img src="<?php echo base_url();?>assets/production/images/logo.png" ></h1>
+
             <!-- /top tiles -->
 
             <div class="row">

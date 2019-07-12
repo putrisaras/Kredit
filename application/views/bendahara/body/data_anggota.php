@@ -53,21 +53,21 @@
                                     </thead>
                                     <tbody>
                                     <?php
-                                    foreach ($sql1->result() as $pemohon_kredit) {
+                                    foreach ($sql1->result() as $anggota) {
                                         ?>
                                         <tr>
-                                            <td><?php echo $pemohon_kredit->id_anggota; ?></td>
-                                            <td><?php echo $pemohon_kredit->nama_anggota; ?></td>
-                                            <td><?php echo $pemohon_kredit->username_anggota; ?></td>
-                                            <td><?php echo $pemohon_kredit->alamat; ?></td>
-                                            <td><?php echo $pemohon_kredit->no_telp; ?></td>
-                                            <td><?php echo $pemohon_kredit->jenis_kelamin; ?></td>
+                                            <td><?php echo $anggota->id_anggota; ?></td>
+                                            <td><?php echo $anggota->nama_anggota; ?></td>
+                                            <td><?php echo $anggota->username_anggota; ?></td>
+                                            <td><?php echo $anggota->alamat; ?></td>
+                                            <td><?php echo $anggota->no_telp; ?></td>
+                                            <td><?php echo $anggota->jenis_kelamin; ?></td>
                                             <td>
                                                 <button type="submit" class="btn btn-info btn-xs" data-toggle="modal"
-                                                        data-target="#editAnggota<?php echo $pemohon_kredit->id_anggota; ?>">
+                                                        data-target="#editAnggota<?php echo $anggota->id_anggota; ?>">
                                                     <i class="fa fa-pencil"> </i> Edit
                                                 </button>
-                                                <a href="javascript:if(confirm('Hapus Data?')){document.location='<?php echo base_url(); ?>/Bendahara/Data_anggota/hapus_dataAnggota/<?php echo $pemohon_kredit->id_anggota; ?>'}"
+                                                <a href="javascript:if(confirm('Hapus Data?')){document.location='<?php echo base_url(); ?>/Bendahara/Data_anggota/hapus_dataAnggota/<?php echo $anggota->id_anggota; ?>'}"
                                                    class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i>
                                                     Delete </a>
                                             </td>

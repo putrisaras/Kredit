@@ -49,16 +49,16 @@
                                     </thead>
                                     <tbody>
                                     <?php
-                                    foreach ($sql1->result() as $pemohon_kredit) {
+                                    foreach ($sql1->result() as $anggota) {
                                         ?>
                                         <tr>
-                                            <td><?php echo $pemohon_kredit->id_anggota; ?></td>
-                                            <td><?php echo $pemohon_kredit->nama_anggota; ?></td>
-                                            <td><?php echo "Rp. ". number_format($pemohon_kredit->sisa_utang_di_koperasi,0,".","."); ?></td>
-                                            <td><?php echo $pemohon_kredit->total_lama_angsuran; ?></td>
+                                            <td><?php echo $anggota->id_anggota; ?></td>
+                                            <td><?php echo $anggota->nama_anggota; ?></td>
+                                            <td><?php echo "Rp. ". number_format($anggota->sisa_utang_di_koperasi,0,".","."); ?></td>
+                                            <td><?php echo $anggota->total_lama_angsuran; ?></td>
                                             <td>
                                                 <button type="submit" class="btn btn-info btn-xs" data-toggle="modal"
-                                                        data-target="#editPiutang<?php echo $pemohon_kredit->id_anggota; ?>">
+                                                        data-target="#editPiutang<?php echo $anggota->id_anggota; ?>">
                                                     <i class="fa fa-pencil"> </i> Edit
                                                 </button>
                                             </td>

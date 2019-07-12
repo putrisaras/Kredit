@@ -13,12 +13,12 @@ class Data_anggota extends CI_Controller{
     public function __construct()
     {
         parent::__construct();
-        $this->load->model("MPemohon_kredit");
+        $this->load->model("MAnggota");
     }
 
     public function index(){
-        $pemohon_kredit['sql1'] = $this->MPemohon_kredit->read_dataPemohon_kredit();
-        $this->load->view('bendahara/body/data_anggota', $pemohon_kredit);
+        $anggota['sql1'] = $this->MAnggota->read_dataAnggota();
+        $this->load->view('bendahara/body/data_anggota', $anggota);
     }
     public function tambah_dataAnggota()
     {
@@ -34,7 +34,7 @@ class Data_anggota extends CI_Controller{
             'jenis_kelamin'  => $this->input->post('jenis_kelamin')
         );
 
-        $this->MPemohon_kredit->create_dataAnggota($data);
+        $this->MAnggota->create_dataAnggota($data);
         redirect('Bendahara/Data_anggota');
     }
     public function edit_dataAnggota($id_anggota)
@@ -55,7 +55,7 @@ class Data_anggota extends CI_Controller{
             'jenis_kelamin'  => $jenis_kelamin
         );
 
-        $update = $this->MPemohon_kredit->update_dataAnggota( $id_anggota, $data);
+        $update = $this->MAnggota->update_dataAnggota( $id_anggota, $data);
         if ($update > 0){
             redirect('Bendahara/Data_anggota');
         }
@@ -63,7 +63,7 @@ class Data_anggota extends CI_Controller{
     }
     public function hapus_dataAnggota($id_anggota)
     {
-        $this->MPemohon_kredit->delete_dataAnggota($id_anggota);
+        $this->MAnggota->delete_dataAnggota($id_anggota);
         redirect('Bendahara/Data_anggota');
     }
 }

@@ -113,7 +113,7 @@
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Nama Anggota</label>
                                     <div class="col-md-9 col-sm-9 col-xs-12">
                                         <select class="form-control" id="nama_anggota" name="nama_anggota">
-                                            <?php foreach ($pemohon_kredit->result() as $data) { ?>
+                                            <?php foreach ($anggota->result() as $data) { ?>
                                                 <option value="<?php echo $data->id_anggota; ?>"><?php echo $data->nama_anggota; ?></option>
                                             <?php } ?>
                                         </select>
@@ -188,7 +188,7 @@
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Nama Anggota</label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
                                             <input type="text" class="form-control" name="nama_anggota"
-                                                   value="<?php echo $nama_anggota; ?>" placeholder="Nama Anggota">
+                                                   value="<?php echo $nama_anggota; ?>" placeholder="Nama Anggota" readonly>
                                         </div>
                                     </div>
                                     <div class="form-group">

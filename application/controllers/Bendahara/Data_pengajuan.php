@@ -14,7 +14,7 @@ class Data_pengajuan extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('MPemohon_kredit', 'anggota');
+        $this->load->model('MAnggota', 'anggota');
         $this->load->model('MPengajuan_kredit', 'pengajuan');
         $this->load->model('MSpk');
         $this->load->model('MStatus_kelayakan', 'status_kelayakan');
@@ -23,7 +23,7 @@ class Data_pengajuan extends CI_Controller
     public function index()
     {
         $data['pengajuan_kredit'] = $this->pengajuan->getPengajuan();
-        $data['pemohon_kredit'] = $this->anggota->read_dataPemohon_kredit();
+        $data['anggota'] = $this->anggota->read_dataAnggota();
         $this->load->view('bendahara/body/data_pengajuan', $data);
     }
 

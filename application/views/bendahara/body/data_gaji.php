@@ -48,15 +48,15 @@
                                     </thead>
                                     <tbody>
                                     <?php
-                                    foreach ($sql1->result() as $pemohon_kredit) {
+                                    foreach ($sql1->result() as $anggota) {
                                         ?>
                                         <tr>
-                                            <td><?php echo $pemohon_kredit->id_anggota; ?></td>
-                                            <td><?php echo $pemohon_kredit->nama_anggota; ?></td>
-                                            <td><?php echo "Rp. ". number_format($pemohon_kredit->jml_gaji,0,".","."); ?></td>
+                                            <td><?php echo $anggota->id_anggota; ?></td>
+                                            <td><?php echo $anggota->nama_anggota; ?></td>
+                                            <td><?php echo "Rp. ". number_format($anggota->jml_gaji,0,".","."); ?></td>
                                             <td>
                                                 <button type="submit" class="btn btn-info btn-xs" data-toggle="modal"
-                                                        data-target="#editGaji<?php echo $pemohon_kredit->id_anggota; ?>">
+                                                        data-target="#editGaji<?php echo $anggota->id_anggota; ?>">
                                                     <i class="fa fa-pencil"> </i> Edit
                                                 </button>
                                             </td>

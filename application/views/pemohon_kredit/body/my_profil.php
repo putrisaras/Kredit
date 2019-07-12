@@ -36,7 +36,7 @@
                         </thead>
                         <tbody>
                         <?php
-                        foreach ($pemohon_kredit->result_array() as $data) {
+                        foreach ($anggota->result_array() as $data) {
                             ?>
                             <tr>
                                 <th>Id Anggota</th>
@@ -91,7 +91,7 @@
             </div>
             <!-- /FORM EDIT ANGGOTA-->
             <?php
-            foreach ($pemohon_kredit->result_array() as $item):
+            foreach ($anggota->result_array() as $item):
                 $id_anggota = $item['id_anggota'];
                 $nama_anggota = $item['nama_anggota'];
                 $username_anggota = $item['username_anggota'];

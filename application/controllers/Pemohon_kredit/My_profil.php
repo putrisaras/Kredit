@@ -13,14 +13,14 @@ class My_profil extends CI_Controller{
     public function __construct()
     {
         parent::__construct();
-        $this->load->model("MPemohon_kredit", 'anggota');
+        $this->load->model("MAnggota", 'anggota');
     }
 
     public function index()
     {
         if ($this->session->userdata('kondisi') == 'Berhasil Login') {
             $data['halaman'] = "my_profil";
-            $data['pemohon_kredit'] = $this->anggota->getProfilById($this->session->userdata('id_anggota'));
+            $data['anggota'] = $this->anggota->getProfilById($this->session->userdata('id_anggota'));
             $this->load->view('pemohon_kredit/body/my_profil', $data);
         } else {
             redirect(base_url() . 'pemohon_kredit/Login/index');

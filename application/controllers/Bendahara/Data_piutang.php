@@ -13,12 +13,12 @@ class Data_piutang extends CI_Controller{
     public function __construct()
     {
         parent::__construct();
-        $this->load->model("MPemohon_kredit");
+        $this->load->model("MAnggota");
     }
 
     public function index(){
-        $pemohon_kredit['sql1'] = $this->MPemohon_kredit->read_dataPemohon_kredit();
-        $this->load->view('bendahara/body/data_piutang', $pemohon_kredit);
+        $anggota['sql1'] = $this->MAnggota->read_dataAnggota();
+        $this->load->view('bendahara/body/data_piutang', $anggota);
     }
     public function edit_dataPiutang($id_anggota)
     {
@@ -31,7 +31,7 @@ class Data_piutang extends CI_Controller{
             'total_lama_angsuran'=> $total_lama_angsuran
         );
 
-        $update = $this->MPemohon_kredit->update_dataPiutang( $id_anggota, $data);
+        $update = $this->MAnggota->update_dataPiutang( $id_anggota, $data);
         if ($update > 0){
             redirect('Bendahara/Data_piutang');
         }

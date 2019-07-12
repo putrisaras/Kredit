@@ -14,7 +14,7 @@ class Login extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('MPemohon_kredit', 'pemohon');
+        $this->load->model('MAnggota', 'anggota');
     }
 
     public function index()
@@ -32,7 +32,7 @@ class Login extends CI_Controller
         $username_anggota = $this->input->post('username_anggota');
         $password_anggota = $this->input->post('password_anggota');
 
-        $loginAnggota = $this->pemohon->loginAnggota($username_anggota, $password_anggota);
+        $loginAnggota = $this->anggota->loginAnggota($username_anggota, $password_anggota);
         $result = $loginAnggota->num_rows();
 
         if ($result > 0) {

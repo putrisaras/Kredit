@@ -10,18 +10,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class MStatus_kelayakan extends CI_Model
 {
-
+    //read kelayakan di bendahara
     public function read_dataStatus_kelayakan()
     {
         $sql = $this->db->query("SELECT * FROM status_kelayakan");
         return $sql;
     }
+    //update kelayakan di bendahara
     public function update_StatusKelayakan($id_kelayakan, $data)
     {
         $this->db->where('id_kelayakan', $id_kelayakan);
         $this->db->update('status_kelayakan', $data);
         return $this->db->affected_rows();
     }
+    //get data pengajuan di bendahara
     public function getKelayakan($preferensi){
         $query = $this->db->query("SELECT * FROM status_kelayakan WHERE $preferensi BETWEEN batas_atas AND batas_bawah");
         return $query;

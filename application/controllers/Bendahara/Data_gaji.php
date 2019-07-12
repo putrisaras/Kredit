@@ -13,12 +13,12 @@ class Data_gaji extends CI_Controller{
     public function __construct()
     {
         parent::__construct();
-        $this->load->model("MPemohon_kredit");
+        $this->load->model("MAnggota");
     }
 
     public function index(){
-        $pemohon_kredit['sql1'] = $this->MPemohon_kredit->read_dataPemohon_kredit();
-        $this->load->view('bendahara/body/data_gaji', $pemohon_kredit);
+        $anggota ['sql1'] = $this->MAnggota->read_dataAnggota();
+        $this->load->view('bendahara/body/data_gaji', $anggota);
     }
     public function edit_dataGaji($id_anggota)
     {
@@ -30,7 +30,7 @@ class Data_gaji extends CI_Controller{
             'jml_gaji'  => $jml_gaji
         );
 
-        $update = $this->MPemohon_kredit->update_dataGaji( $id_anggota, $data);
+        $update = $this->MAnggota->update_dataGaji( $id_anggota, $data);
         if ($update > 0){
             redirect('Bendahara/Data_gaji');
         }

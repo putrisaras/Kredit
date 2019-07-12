@@ -13,7 +13,7 @@ class Pengajuan_kredit extends CI_Controller{
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('MPemohon_kredit', 'anggota');
+        $this->load->model('MAnggota', 'anggota');
         $this->load->model('MPengajuan_kredit', 'pengajuan');
     }
     public function index()
