@@ -35,6 +35,7 @@
                                     </ul>
                                     <div class="clearfix"></div>
                                 </div>
+                                <div class="flash-data" data-flashdata="<?php echo $this->session->flashdata('pesan'); ?>"></div>
                                 <div class="x_content">
                                     <p class="text-muted font-13 m-b-30">
                                     </p>
@@ -42,8 +43,9 @@
                                             data-target="#tambahPengajuan"><i class="fa fa-plus-square"> Tambah
                                             Pengajuan</i>
                                     </button>
-                                    <a href="<?php echo base_url(); ?>/Bendahara/Data_pengajuan/hitungSPK"><button type="button" class="btn btn-info btn-lg" data-toggle="modal"
-                                                                                                             data-target="#" ><i class="fa fa-calculator"> Ranking data</i>
+                                    <a href="<?php echo base_url(); ?>/Bendahara/Data_pengajuan/hitungSPK">
+                                        <button type="button" class="btn btn-info btn-lg <?php echo ($pengajuan_kredit->num_rows() > 0)? '' : 'hidden' ?>" data-toggle="modal"
+                                                data-target="#"><i class="fa fa-calculator"> Ranking data</i>
                                         </button></a>
                                     <table id="datatable" class="table table-striped table-bordered">
                                         <thead>
@@ -74,7 +76,7 @@
                                                             data-target="#editPengajuan<?php echo $data['id_pengajuan']; ?>">
                                                         <i class="fa fa-pencil"> </i> Edit
                                                     </button>
-                                                    <a href="javascript:if(confirm('Hapus Data?')){document.location='<?php echo base_url(); ?>/Bendahara/Data_pengajuan/hapus_dataPengajuan/<?php echo $data['id_pengajuan']; ?>'}"
+                                                    <a id="deletePengajuan" data-id="<?php echo $data['id_pengajuan']; ?>"
                                                        class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i>
                                                         Delete </a>
                                                 </td>

@@ -17,8 +17,12 @@ class Data_gaji extends CI_Controller{
     }
 
     public function index(){
+        if ($this->session->userdata('kondisi') == 'Berhasil Login') {
         $anggota ['sql1'] = $this->MAnggota->read_dataAnggota();
         $this->load->view('bendahara/body/data_gaji', $anggota);
+        } else {
+            redirect(base_url() . 'Login_pengurus/index');
+        }
     }
     public function edit_dataGaji($id_anggota)
     {
@@ -32,9 +36,13 @@ class Data_gaji extends CI_Controller{
 
         $update = $this->MAnggota->update_dataGaji( $id_anggota, $data);
         if ($update > 0){
+            $this->session->set_flashdata('pesan', 'updated');
             redirect('Bendahara/Data_gaji');
         }
-
+        else {
+            $this->session->set_flashdata('pesan', 'failure');
+            redirect('Bendahara/Data_gaji');
+        }
     }
 }
 

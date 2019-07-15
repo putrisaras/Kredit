@@ -9,7 +9,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class MSpk extends CI_Model{
-    //read data spk di bendahara
+    //read history spk di bendahara
     public function read_dataSpk()
     {
         $sql = $this->db->query("SELECT * FROM spk");

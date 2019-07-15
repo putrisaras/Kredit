@@ -16,8 +16,12 @@ class Data_spk extends CI_Controller{
         $this->load->model('MSpk');
     }
     public function index(){
+        if ($this->session->userdata('kondisi') == 'Berhasil Login') {
         $spk['sql1'] = $this->MSpk->read_dataSpk();
         $this->load->view('bendahara/body/data_spk', $spk);
+        } else {
+            redirect(base_url() . 'Login_pengurus/index');
+        }
     }
 }
 

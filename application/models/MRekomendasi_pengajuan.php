@@ -9,8 +9,14 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class MRekomendasi_pengajuan extends CI_Model{
-
+    //bendahara
     public function read_dataRekomendasi()
+    {
+        $sql = $this->db->query("SELECT * FROM rekomendasi_pengaju_kredit");
+        return $sql;
+    }
+    //ketua
+    public function read_Rekomendasi()
     {
         $sql = $this->db->query("SELECT * FROM rekomendasi_pengaju_kredit");
         return $sql;

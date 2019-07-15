@@ -22,9 +22,13 @@ class Data_pengajuan extends CI_Controller
 
     public function index()
     {
+        if ($this->session->userdata('kondisi') == 'Berhasil Login') {
         $data['pengajuan_kredit'] = $this->pengajuan->getPengajuan();
         $data['anggota'] = $this->anggota->read_dataAnggota();
         $this->load->view('bendahara/body/data_pengajuan', $data);
+        } else {
+            redirect(base_url() . 'Login_pengurus/index');
+        }
     }
 
     public function tambah_dataPengajuan()
@@ -46,10 +50,11 @@ class Data_pengajuan extends CI_Controller
         );
         $insert = $this->pengajuan->tambah_dataPengajuan($data);
         if ($insert > 0) {
-            echo "Berhasil";
+            $this->session->set_flashdata('pesan', 'berhasil');
             redirect(base_url() . "Bendahara/Data_pengajuan/index");
         } else {
-            echo "Gagal";
+            $this->session->set_flashdata('pesan', 'gagal');
+            redirect(base_url() . "Bendahara/Data_pengajuan/index");
         }
 
     }
@@ -68,13 +73,19 @@ class Data_pengajuan extends CI_Controller
 
         $update = $this->pengajuan->update_dataPengajuan($id_pengajuan, $data);
         if ($update > 0) {
+            $this->session->set_flashdata('pesan', 'updated');
+            redirect('Bendahara/Data_pengajuan');
+        }
+        else {
+            $this->session->set_flashdata('pesan', 'failure');
             redirect('Bendahara/Data_pengajuan');
         }
 
     }
 
-    public function hapus_dataPengajuan($id_pengajuan)
+    public function hapus_dataPengajuan()
     {
+        $id_pengajuan = $this->input->post('id_pengajuan');
         $this->pengajuan->delete_dataPengajuan($id_pengajuan);
         redirect('Bendahara/Data_pengajuan');
     }
@@ -104,9 +115,13 @@ class Data_pengajuan extends CI_Controller
                 $preferensi=($normalisasiModal*0.25)+($normalsasiKredit*0.20)+($normalisasiAngsuran*0.10)+($normalisasiJumlahGaji*0.15)+($normalisasiSisaUtangKoperasi*0.15)+($normalisasiSisaUtangDiTempatLain*0.15);
 
                 $status_kelayakan = $this->status_kelayakan->getKelayakan($preferensi);
+
+                $id_persetujuan = "0";
                 foreach ($status_kelayakan->result()as $value){
                     $status_kelayakan_kredit = $value->id_kelayakan;
-
+                    if ($status_kelayakan_kredit == 1){
+                        $id_persetujuan = "3";
+                    }
 
                 }
                 $data = array(
@@ -118,6 +133,7 @@ class Data_pengajuan extends CI_Controller
                     'n_utang_lain' => round($normalisasiSisaUtangDiTempatLain, 2),
                     'nilai_preferensi' => round($preferensi, 2),
                     'id_kelayakan' => $status_kelayakan_kredit,
+                    'id_persetujuan' => $id_persetujuan,
                     'id_spk' => $insertId
                 );
 

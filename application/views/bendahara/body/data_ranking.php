@@ -36,30 +36,16 @@
                                 <div class="x_content">
                                     <p class="text-muted font-13 m-b-30">
                                     </p>
-                                    <form action="<?php echo base_url(); ?>/Bendahara/Data_ranking/rekomendasi" method="post">
-                                        <!--
-                                        $input = input-rekomendasi;
-                                        $ids = explode(',', $input);
-
-                                        //buat id rekomedasi
-
-                                        foreach ($ids as $id) {
-                                            update
-                                                id_rekomendasi brdasar yang sudah dibuat
-                                                status_persetujuan = disetujui
-                                        }
-
-                                        //
-                                        -->
+                                    <form action="<?php echo base_url(); ?>/Bendahara/Data_ranking/updateRekomendasi" method="post">
                                         <input type="hidden" name="ids" id="input-rekomendasi">
-                                        <button type="submit" id="btn-rekomendasi" class="btn btn-success btn-lg hidden"><i class="fa fa-plus-square">  Buat Rekomendasi</i>
-                                            </button>
+                                        <button type="submit" id="btn-rekomendasi" class="btn btn-success btn-lg hidden"><i class="fa fa-plus-square">  Buat Rekomendasi</i></button>
                                     </form>
 
-                                    <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">
+                                    <table class="table table-striped table-bordered bulk_action">
                                         <thead>
                                         <tr>
                                             <th>Pilih data rekomendasi</th>
+                                            <th>Ranking</th>
                                             <th>Id Pengajuan</th>
                                             <th>Tgl Pengajuan</th>
                                             <th>Nama Anggota</th>
@@ -68,18 +54,23 @@
                                             <th>Sisa utang di tempat lain</th>
                                             <th>Nilai Preferensi</th>
                                             <th>Status Kelayakan</th>
-                                            <th>Action</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <?php
+                                        $ranking = 1;
                                         foreach ($pengajuan_kredit->result_array() as $data) {
                                             ?>
                                             <tr>
                                                 <td>
-                                                <input type="checkbox" class="checkbox-rekomendasi" name="rekomendasi[]" value="<?php echo $data['id_pengajuan'] ?>">
+                                                <input type="checkbox" class="icheckbox_flat-green checkbox-rekomendasi <?php echo ($data['id_persetujuan'] != 3)? '' : 'hidden' ?>" name="rekomendasi[]" value="<?php echo $data['id_pengajuan']; ?>" data-nomor="<?= $ranking; ?>">
                                                 </td>
-                                                <td><?php echo $data['id_pengajuan']; ?></td>
+                                                <td id="ranking-<?php echo $data['id_pengajuan'] ?>" data-rank="<?php echo $ranking ?>">
+                                                    <?= $ranking++; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $data['id_pengajuan']; ?>
+                                                </td>
                                                 <td><?php echo $data['tgl_pengajuan']; ?></td>
                                                 <td><?php echo $data['nama_anggota']; ?></td>
                                                 <td><?php echo "Rp. " . number_format($data['jml_kredit'], 0, ".", "."); ?></td>
@@ -87,16 +78,6 @@
                                                 <td><?php echo "Rp. " . number_format($data['sisa_utang_di_tempat_lain'], 0, ".", "."); ?></td>
                                                 <td><?php echo $data['nilai_preferensi']; ?></td>
                                                 <td><?php echo $data['keterangan']; ?></td>
-                                                <td>
-                                                    <button type="submit" class="btn btn-info btn-xs"
-                                                            data-toggle="modal"
-                                                            data-target="#editPengajuan<?php echo $data['id_pengajuan']; ?>">
-                                                        <i class="fa fa-pencil"> </i> Edit
-                                                    </button>
-                                                    <a href="javascript:if(confirm('Hapus Data?')){document.location='<?php echo base_url(); ?>/Bendahara/Data_pengajuan/hapus_dataPengajuan/<?php echo $data['id_pengajuan']; ?>'}"
-                                                       class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i>
-                                                        Delete </a>
-                                                </td>
                                             </tr>
                                             <?php
                                         }
@@ -126,17 +107,22 @@
                 var checked    = [];
 
                 for (var i = 0; i < length; i++) {
-                    checked[i] = checkboxes[i].value;
-
-                    // console.log(checkboxes[i].value);
+                    checked[i] = {
+                        id: checkboxes[i].value,
+                        rank: $('#ranking-' + checkboxes[i].value).data('rank')
+                    };
                 }
+                console.log(JSON.stringify(checked));
 
-                $('#input-rekomendasi').val(checked.join());
+                $('#input-rekomendasi').val(JSON.stringify(checked));
+
                 if (checked.length > 0) {
                     $('#btn-rekomendasi').removeClass('hidden');
+                } else  {
+                    $('#btn-rekomendasi').addClass('hidden')
                 }
 
-                console.log(checked);
+                // console.log(checked);
             });
 
         </script>

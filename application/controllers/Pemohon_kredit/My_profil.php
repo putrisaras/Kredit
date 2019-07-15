@@ -46,9 +46,13 @@ class My_profil extends CI_Controller{
 
         $update = $this->anggota->update_Profil( $id_anggota, $data);
         if ($update > 0){
+            $this->session->set_flashdata('pesan', 'updated');
             redirect('Pemohon_kredit/My_profil');
         }
-
+        else {
+            $this->session->set_flashdata('pesan', 'failure');
+            redirect('Pemohon_kredit/My_profil');
+        }
     }
 }
 ?>

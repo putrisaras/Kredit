@@ -33,6 +33,7 @@
                                 </ul>
                                 <div class="clearfix"></div>
                             </div>
+                            <div class="flash-data" data-flashdata="<?php echo $this->session->flashdata('pesan'); ?>"></div>
                             <div class="x_content">
                                 <p class="text-muted font-13 m-b-30">
                                 </p>
@@ -67,7 +68,7 @@
                                                         data-target="#editAnggota<?php echo $anggota->id_anggota; ?>">
                                                     <i class="fa fa-pencil"> </i> Edit
                                                 </button>
-                                                <a href="javascript:if(confirm('Hapus Data?')){document.location='<?php echo base_url(); ?>/Bendahara/Data_anggota/hapus_dataAnggota/<?php echo $anggota->id_anggota; ?>'}"
+                                                <a id="deleteAnggota" data-id="<?php echo $anggota->id_anggota; ?>"
                                                    class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i>
                                                     Delete </a>
                                             </td>

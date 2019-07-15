@@ -26,7 +26,8 @@
             </div>
 
             <div class="clearfix"></div>
-
+          <div class="flash-data" data-flashdata="<?php echo $this->session->flashdata('pesan'); ?>"></div>
+          <div class="x_content">
             <div class="row">
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
@@ -63,8 +64,10 @@
                           </thead>
                           <tbody>
                           <?php
+                          $total_modal = 0;
                           foreach ($sql1->result() as $anggota) {
-                              ?>
+                              $total_modal += $anggota->jml_modal;?>
+
                               <tr>
                                   <td><?php echo $anggota->id_anggota; ?></td>
                                   <td><?php echo $anggota->nama_anggota; ?></td>
@@ -80,6 +83,16 @@
                           }
                           ?>
                           </tbody>
+                          <tfoot>
+                          <tr>
+                              <td colspan="2" class="text-center">
+                                  Total Modal
+                              </td>
+                              <td colspan="2">
+                                  <?= "Rp. ". number_format($total_modal,0,".","."); ?>
+                              </td>
+                          </tr>
+                          </tfoot>
                       </table>
                   </div>
                 </div>

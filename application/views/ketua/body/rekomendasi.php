@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php $this->load->view('bendahara/header/header') ?>
+    <?php $this->load->view('ketua/header/header') ?>
 </head>
 
 <body class="nav-md">
@@ -9,11 +9,11 @@
     <div class="main_container">
 
         <!-- Side Bar -->
-        <?php $this->load->view('bendahara/header/sidebar') ?>
+        <?php $this->load->view('ketua/header/sidebar') ?>
         <!-- /Side Bar -->
 
         <!-- top navigation -->
-        <?php $this->load->view('bendahara/header/navbar') ?>
+        <?php $this->load->view('ketua/header/navbar') ?>
         <!-- /top navigation -->
 
         <!-- page content -->
@@ -28,7 +28,7 @@
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2 style="height: 25px;">Detail Rekomendasi</h2>
+                                    <h2 style="height: 25px;">Data Rekomendasi</h2>
                                     <ul class="nav navbar-right panel_toolbox">
                                     </ul>
                                     <div class="clearfix"></div>
@@ -36,34 +36,29 @@
                                 <div class="x_content">
                                     <p class="text-muted font-13 m-b-30">
                                     </p>
-                                    <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">
+                                    <table id="datatable" class="table table-striped table-bordered">
                                         <thead>
                                         <tr>
-                                            <th>Ranking</th>
-                                            <th>Id Pengajuan</th>
-                                            <th>Tgl Pengajuan</th>
-                                            <th>Nama Anggota</th>
-                                            <th>Jumlah Kredit</th>
-                                            <th>Lama Angsuran</th>
-                                            <th>Sisa utang di tempat lain</th>
-                                            <th>Nilai Preferensi</th>
-                                            <th>Status Kelayakan</th>
+                                            <th>No.</th>
+                                            <th>Id Rekomendasi</th>
+                                            <th>Tanggal Rekomendasi</th>
+                                            <th>Action</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <?php
-                                        foreach ($pengajuan_kredit->result_array() as $data) {
+                                        $no =1;
+                                        foreach ($sql1->result_array() as $data) {
                                             ?>
                                             <tr>
-                                                <td><?php echo $data['ranking'] ?></td>
-                                                <td><?php echo $data['id_pengajuan']; ?></td>
-                                                <td><?php echo $data['tgl_pengajuan']; ?></td>
-                                                <td><?php echo $data['nama_anggota']; ?></td>
-                                                <td><?php echo "Rp. " . number_format($data['jml_kredit'], 0, ".", "."); ?></td>
-                                                <td><?php echo $data['lama_angsuran']; ?></td>
-                                                <td><?php echo "Rp. " . number_format($data['sisa_utang_di_tempat_lain'], 0, ".", "."); ?></td>
-                                                <td><?php echo $data['nilai_preferensi']; ?></td>
-                                                <td><?php echo $data['keterangan']; ?></td>
+                                                <td><?php echo $no++ ?></td>
+                                                <td><?php echo $data['id_rekomendasi']; ?></td>
+                                                <td><?php echo $data['keterangan_rekomen']; ?></td>
+                                                <td>
+                                                    <a href="<?php echo base_url(); ?>/Ketua/Data_persetujuan/index/<?= $data['id_rekomendasi']; ?>"><button type="button" class="btn btn-round btn-primary" data-toggle="modal"
+                                                                                                                                                                   data-target="#" ><i class="fa fa-file-text-o">    Detail</i>
+                                                        </button></a>
+                                                </td>
                                             </tr>
                                             <?php
                                         }
@@ -76,12 +71,11 @@
                     </div>
                 </div>
             </div>
-
             <!-- /top tiles -->
             <div class="row"></div>
         </div>
 
-        <?php $this->load->view('bendahara/footer/footer') ?>
+        <?php $this->load->view('ketua/footer/footer') ?>
 
 </body>
 </html>

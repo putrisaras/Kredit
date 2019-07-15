@@ -28,7 +28,7 @@
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2 style="height: 25px;">Detail Rekomendasi</h2>
+                                    <h2 style="height: 25px;">History Data Ranking</h2>
                                     <ul class="nav navbar-right panel_toolbox">
                                     </ul>
                                     <div class="clearfix"></div>
@@ -36,7 +36,7 @@
                                 <div class="x_content">
                                     <p class="text-muted font-13 m-b-30">
                                     </p>
-                                    <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">
+                                    <table class="table table-striped table-bordered bulk_action">
                                         <thead>
                                         <tr>
                                             <th>Ranking</th>
@@ -52,11 +52,16 @@
                                         </thead>
                                         <tbody>
                                         <?php
+                                        $ranking = 1;
                                         foreach ($pengajuan_kredit->result_array() as $data) {
                                             ?>
                                             <tr>
-                                                <td><?php echo $data['ranking'] ?></td>
-                                                <td><?php echo $data['id_pengajuan']; ?></td>
+                                                <td id="ranking-<?php echo $data['id_pengajuan'] ?>" data-rank="<?php echo $ranking ?>">
+                                                    <?= $ranking++; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $data['id_pengajuan']; ?>
+                                                </td>
                                                 <td><?php echo $data['tgl_pengajuan']; ?></td>
                                                 <td><?php echo $data['nama_anggota']; ?></td>
                                                 <td><?php echo "Rp. " . number_format($data['jml_kredit'], 0, ".", "."); ?></td>

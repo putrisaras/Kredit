@@ -87,4 +87,74 @@
 <!-- starrr -->
 <script src="<?php echo base_url();?>assets/vendors/starrr/dist/starrr.js"></script>
 <!-- Custom Theme Scripts -->
+<script src="<?php echo base_url(); ?>assets/sweetalert/sweetalert2.all.min.js"></script>
 <script src="<?php echo base_url();?>assets/build/js/custom.min.js"></script>
+
+<script type="text/javascript">
+    var flashdata = $('.flash-data').data('flashdata');
+    if (flashdata === "berhasil"){
+        Swal.fire({
+            title: 'Success',
+            text: 'Data Berhasil Di Tambahkan',
+            fontSize : '5000px',
+            type: 'success'
+        });
+    } else if (flashdata === "updated"){
+        Swal.fire({
+            title: 'Success',
+            text: 'Data Berhasil Di Edit',
+            fontSize : '5000px',
+            type: 'success'
+        });
+    } else if (flashdata === "failure"){
+        Swal.fire({
+            title: 'Failure',
+            text: 'Data Gagal Di Update',
+            fontSize : '5000px',
+            type: 'error'
+        });
+    } else if (flashdata === "gagal"){
+        Swal.fire({
+            title: 'Gagal',
+            text: 'Data Gagal Di Tambah',
+            fontSize : '5000px',
+            type: 'error'
+        });
+    }
+    $(document).on("click", "#deletePengajuanAnggota", function () {
+        var id_pengajuan = $(this).data('id');
+        console.log(id_pengajuan);
+        Swal.fire({
+            title: 'Are Anda yakin?',
+            text: "Apakah anda ingin menghapus data ini?",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    type: 'POST',
+                    url: "<?php echo base_url();?>Pemohon_kredit/Pengajuan_kredit/hapus_Pengajuan/",
+                    data: {'id_pengajuan':id_pengajuan},
+                    success: function () {
+                        Swal.fire('Deleted!',
+                            'Your file has been deleted.',
+                            'success').then((willDelete) => {
+                            if (willDelete) {
+                                window.location.href = '<?= base_url(); ?>Pemohon_kredit/Pengajuan_kredit/index';
+                            }
+                        });
+                    }
+                });
+            } else {
+                swalWithBootstrapButtons.fire(
+                    'Cancelled',
+                    'Your imaginary file is safe :)',
+                    'error'
+                )
+            }
+        });
+    });
+</script>

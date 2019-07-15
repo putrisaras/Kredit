@@ -25,6 +25,7 @@
                     </div>
                 </div>
                 <div class="clearfix"></div>
+                <div class="flash-data" data-flashdata="<?php echo $this->session->flashdata('pesan'); ?>"></div>
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="x_panel">
@@ -66,7 +67,7 @@
                                                         data-target="#editPengajuan<?php echo $data['id_pengajuan']; ?>">
                                                     <i class="fa fa-pencil"> </i> Edit
                                                 </button>
-                                                <a href="javascript:if(confirm('Hapus Data?')){document.location='<?php echo base_url(); ?>/Pemohon_kredit/Pengajuan_kredit/hapus_Pengajuan/<?php echo $data['id_pengajuan']; ?>'}"
+                                                <a id="deletePengajuanAnggota" data-id="<?php echo $data['id_pengajuan']; ?>"
                                                    class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i>
                                                     Delete </a>
                                             </td>

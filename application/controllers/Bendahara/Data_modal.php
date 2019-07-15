@@ -17,8 +17,12 @@ class Data_modal extends CI_Controller{
     }
 
     public function index(){
+        if ($this->session->userdata('kondisi') == 'Berhasil Login') {
         $anggota['sql1'] = $this->MAnggota->read_dataAnggota();
         $this->load->view('bendahara/body/data_modal', $anggota);
+        } else {
+            redirect(base_url() . 'Login_pengurus/index');
+        }
     }
     public function edit_dataModal($id_anggota)
     {
@@ -32,6 +36,11 @@ class Data_modal extends CI_Controller{
 
         $update = $this->MAnggota->update_dataModal( $id_anggota, $data);
         if ($update > 0){
+            $this->session->set_flashdata('pesan', 'updated');
+            redirect('Bendahara/Data_modal');
+        }
+        else {
+            $this->session->set_flashdata('pesan', 'failure');
             redirect('Bendahara/Data_modal');
         }
 

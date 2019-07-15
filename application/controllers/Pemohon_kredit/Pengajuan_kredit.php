@@ -44,10 +44,11 @@ class Pengajuan_kredit extends CI_Controller{
         );
         $insert = $this->pengajuan->tambahPengajuan($data);
         if ($insert > 0){
-            echo "Berhasil";
+            $this->session->set_flashdata('pesan', 'berhasil');
             redirect(base_url() . "Pemohon_kredit/Pengajuan_kredit/index");
         } else {
-            echo "Gagal";
+            $this->session->set_flashdata('pesan', 'gagal');
+            redirect(base_url() . "Pemohon_kredit/Pengajuan_kredit/index");
         }
 
     }
@@ -65,11 +66,17 @@ class Pengajuan_kredit extends CI_Controller{
 
         $update = $this->pengajuan->update_dataPengajuan( $id_pengajuan, $data);
         if ($update > 0){
+            $this->session->set_flashdata('pesan', 'updated');
             redirect('Pemohon_kredit/Pengajuan_kredit');
         }
+        else {
+            $this->session->set_flashdata('pesan', 'failure');
+            redirect('Bendahara/Data_anggota');
+        }
     }
-    public function hapus_Pengajuan($id_pengajuan)
+    public function hapus_Pengajuan()
     {
+        $id_pengajuan = $this->input->post('id_pengajuan');
         $this->pengajuan->delete_dataPengajuan($id_pengajuan);
         redirect('Pemohon_kredit/Pengajuan_kredit');
     }

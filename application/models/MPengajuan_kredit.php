@@ -35,25 +35,45 @@ class MPengajuan_kredit extends CI_Model
         $this->db->join('anggota', 'anggota.Id_anggota = pengajuan_kredit.id_anggota');
         $this->db->join('status_kelayakan', 'status_kelayakan.Id_kelayakan = pengajuan_kredit.id_kelayakan');
         if ($id_spk != null){
+            $this->db->order_by('nilai_preferensi', 'DESC');
             $this->db->where('id_spk', $id_spk);
         } else {
+            $this->db->order_by('nilai_preferensi', 'DESC');
             $this->db->where('id_spk', '');
         }
-        $this->db->order_by('pengajuan_kredit.id_anggota');
         return $this->db->get();
     }
-
-    public function getAllPengajuanRekomendasi($id_rekomendasi)
+    //BENDAHARA
+    public function getAllRekomendasi($id_rekomendasi)
     {
-        $this->db->select('pengajuan_kredit.*, rekomendasi_pengaju_kredit.*');
+        $this->db->select('pengajuan_kredit.*,  anggota.*, status_kelayakan.*, rekomendasi_pengaju_kredit.*');
         $this->db->from('pengajuan_kredit');
-        $this->db->join('rekomendasi_pengaju_kredit', 'rekomendasi_pengaju_kredit.Id_rekomendasi = pengajuan_kredit.id_rekomendasi');
+        $this->db->join('rekomendasi_pengaju_kredit', 'rekomendasi_pengaju_kredit.id_rekomendasi = pengajuan_kredit.id_rekomendasi');
+        $this->db->join('anggota', 'anggota.Id_anggota = pengajuan_kredit.id_anggota');
+        $this->db->join('status_kelayakan', 'status_kelayakan.Id_kelayakan = pengajuan_kredit.id_kelayakan');
         if ($id_rekomendasi != null){
-            $this->db->where('id_rekomendasi', $id_rekomendasi);
+            $this->db->where('pengajuan_kredit.id_rekomendasi', $id_rekomendasi);
         } else {
-            $this->db->where('id_rekomendasi', '');
+            $this->db->where('pengajuan_kredit.id_rekomendasi', '');
         }
         return $this->db->get();
+
+    }
+    //KETUA
+    public function getAllPersetujuan($id_rekomendasi)
+    {
+        $this->db->select('pengajuan_kredit.*,  anggota.*, status_kelayakan.*, rekomendasi_pengaju_kredit.*');
+        $this->db->from('pengajuan_kredit');
+        $this->db->join('rekomendasi_pengaju_kredit', 'rekomendasi_pengaju_kredit.id_rekomendasi = pengajuan_kredit.id_rekomendasi');
+        $this->db->join('anggota', 'anggota.Id_anggota = pengajuan_kredit.id_anggota');
+        $this->db->join('status_kelayakan', 'status_kelayakan.Id_kelayakan = pengajuan_kredit.id_kelayakan');
+        if ($id_rekomendasi != null){
+            $this->db->where('pengajuan_kredit.id_rekomendasi', $id_rekomendasi);
+        } else {
+            $this->db->where('pengajuan_kredit.id_rekomendasi', '');
+        }
+        return $this->db->get();
+
     }
     //get data pengajuan di bendahara
     public function getPengajuanKredit()

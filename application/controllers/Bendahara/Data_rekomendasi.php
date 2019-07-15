@@ -16,8 +16,12 @@ class Data_rekomendasi extends CI_Controller{
         $this->load->model('MRekomendasi_pengajuan');
     }
     public function index(){
+        if ($this->session->userdata('kondisi') == 'Berhasil Login') {
         $rekomendasi_pengaju_kredit['sql1'] = $this->MRekomendasi_pengajuan->read_dataRekomendasi();
         $this->load->view('bendahara/body/data_rekomendasi',$rekomendasi_pengaju_kredit);
+        } else {
+            redirect(base_url() . 'Login_pengurus/index');
+        }
     }
 }
 

@@ -19,6 +19,7 @@
         <!-- page content -->
         <div class="right_col" role="main">
             <!-- top tiles -->
+            <div class="flash-data" data-flashdata="<?php echo $this->session->flashdata('pesan'); ?>"></div>
             <div class="col-md-12">
                 <div class="panel panel-body">
                     <div class="x_title">
@@ -68,15 +69,15 @@
                             </tr>
                             <tr>
                                 <th>Jumlah Gaji</th>
-                                <td>:  <?php echo $data['jml_gaji']; ?></td>
+                                <td>:  <?php echo "Rp. ". number_format($data['jml_gaji'] ,0,".","."); ?></td>
                             </tr>
                             <tr>
                                 <th>Jumlah Modal</th>
-                                <td>:  <?php echo $data['jml_modal']; ?></td>
+                                <td>:  <?php echo "Rp. ". number_format($data['jml_modal'],0,".","."); ?></td>
                             </tr>
                             <tr>
                                 <th>Jumlah Utang di Koperasi</th>
-                                <td>:  <?php echo $data['sisa_utang_di_koperasi']; ?></td>
+                                <td>:  <?php echo "Rp. ". number_format($data['sisa_utang_di_koperasi'],0,".","."); ?></td>
                             </tr>
                             <tr>
                                 <th>Total Lama Angsuran</th>

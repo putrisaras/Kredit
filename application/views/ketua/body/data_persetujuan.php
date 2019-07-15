@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php $this->load->view('bendahara/header/header') ?>
+    <?php $this->load->view('ketua/header/header') ?>
 </head>
 
 <body class="nav-md">
@@ -9,11 +9,11 @@
     <div class="main_container">
 
         <!-- Side Bar -->
-        <?php $this->load->view('bendahara/header/sidebar') ?>
+        <?php $this->load->view('ketua/header/sidebar') ?>
         <!-- /Side Bar -->
 
         <!-- top navigation -->
-        <?php $this->load->view('bendahara/header/navbar') ?>
+        <?php $this->load->view('ketua/header/navbar') ?>
         <!-- /top navigation -->
 
         <!-- page content -->
@@ -81,7 +81,7 @@
             <div class="row"></div>
         </div>
 
-        <?php $this->load->view('bendahara/footer/footer') ?>
+        <?php $this->load->view('ketua/footer/footer') ?>
 
 </body>
 </html>

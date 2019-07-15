@@ -8,7 +8,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Rekomendasi extends CI_Controller{
+class History_rekomendasi extends CI_Controller{
 
     public function __construct()
     {
@@ -17,8 +17,8 @@ class Rekomendasi extends CI_Controller{
     }
     public function index(){
         if ($this->session->userdata('kondisi') == 'Berhasil Login') {
-        $rekomendasi_pengaju_kredit['sql1'] = $this->MRekomendasi_pengajuan->read_Rekomendasi();
-        $this->load->view('ketua/body/rekomendasi',$rekomendasi_pengaju_kredit);
+            $rekomendasi_pengaju_kredit['sql1'] = $this->MRekomendasi_pengajuan->read_dataRekomendasi();
+            $this->load->view('bendahara/body/history_rekomendasi',$rekomendasi_pengaju_kredit);
         } else {
             redirect(base_url() . 'Login_pengurus/index');
         }

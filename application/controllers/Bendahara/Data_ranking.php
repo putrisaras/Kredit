@@ -21,26 +21,35 @@ class Data_ranking extends CI_Controller
 
     public function index($id_spk)
     {
+        if ($this->session->userdata('kondisi') == 'Berhasil Login') {
         $data['pengajuan_kredit'] = $this->pengajuan->getAllPengajuan($id_spk);
         $data['anggota'] = $this->anggota->read_dataAnggota();
         $this->load->view('bendahara/body/data_ranking', $data);
+        } else {
+            redirect(base_url() . 'Login_pengurus/index');
+        }
     }
 
-    public function rekomendasi()
+    public function updateRekomendasi()
     {
-        $ids = $this->input->post('ids');
-        $ids = explode(',', $ids);
+        $data = $this->input->post('ids');
+        $data = json_decode($data);
+
         $id_rekomendasi = date("YmdHis");
 
-            $data = array(
-                'id_rekomendasi' => $id_rekomendasi
-            );
+            foreach ($data as $d) {
+                $data = array(
+                    'id_rekomendasi' => $id_rekomendasi,
+                    'id_persetujuan' => "1",
+                    'ranking'        => $d->rank,
+                );
 
-            foreach ($ids as $id) {
-                $this->pengajuan->updateDataPengajuan($id, $data);
+                $this->pengajuan->updateDataPengajuan($d->id, $data);
             }
+
             $this->MRekomendasi_pengajuan->insertRekomendasi($id_rekomendasi);
-          redirect(base_url() . "Bendahara/Data_spk/index");
+
+            redirect(base_url() . "Bendahara/Data_rekomendasi/index");
 
 
     }
