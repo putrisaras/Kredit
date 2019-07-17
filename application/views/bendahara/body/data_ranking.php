@@ -36,54 +36,79 @@
                                 <div class="x_content">
                                     <p class="text-muted font-13 m-b-30">
                                     </p>
-                                    <form action="<?php echo base_url(); ?>/Bendahara/Data_ranking/updateRekomendasi" method="post">
+                                    <form action="<?php echo base_url(); ?>Bendahara/Data_ranking/updateRekomendasi"
+                                          method="post">
                                         <input type="hidden" name="ids" id="input-rekomendasi">
-                                        <button type="submit" id="btn-rekomendasi" class="btn btn-success btn-lg hidden"><i class="fa fa-plus-square">  Buat Rekomendasi</i></button>
-                                    </form>
+                                        <button type="submit" id="btn-rekomendasi"
+                                                class="btn btn-success btn-lg hidden"><i class="fa fa-plus-square"> Buat
+                                                Rekomendasi</i></button>
 
-                                    <table class="table table-striped table-bordered bulk_action">
-                                        <thead>
-                                        <tr>
-                                            <th>Pilih data rekomendasi</th>
-                                            <th>Ranking</th>
-                                            <th>Id Pengajuan</th>
-                                            <th>Tgl Pengajuan</th>
-                                            <th>Nama Anggota</th>
-                                            <th>Jumlah Kredit</th>
-                                            <th>Lama Angsuran</th>
-                                            <th>Sisa utang di tempat lain</th>
-                                            <th>Nilai Preferensi</th>
-                                            <th>Status Kelayakan</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <?php
-                                        $ranking = 1;
-                                        foreach ($pengajuan_kredit->result_array() as $data) {
-                                            ?>
+                                        <table class="table table-striped table-bordered bulk_action">
+                                            <thead>
                                             <tr>
-                                                <td>
-                                                <input type="checkbox" class="icheckbox_flat-green checkbox-rekomendasi <?php echo ($data['id_persetujuan'] != 3)? '' : 'hidden' ?>" name="rekomendasi[]" value="<?php echo $data['id_pengajuan']; ?>" data-nomor="<?= $ranking; ?>">
-                                                </td>
-                                                <td id="ranking-<?php echo $data['id_pengajuan'] ?>" data-rank="<?php echo $ranking ?>">
-                                                    <?= $ranking++; ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $data['id_pengajuan']; ?>
-                                                </td>
-                                                <td><?php echo $data['tgl_pengajuan']; ?></td>
-                                                <td><?php echo $data['nama_anggota']; ?></td>
-                                                <td><?php echo "Rp. " . number_format($data['jml_kredit'], 0, ".", "."); ?></td>
-                                                <td><?php echo $data['lama_angsuran']; ?></td>
-                                                <td><?php echo "Rp. " . number_format($data['sisa_utang_di_tempat_lain'], 0, ".", "."); ?></td>
-                                                <td><?php echo $data['nilai_preferensi']; ?></td>
-                                                <td><?php echo $data['keterangan']; ?></td>
+                                                <th>Pilih data rekomendasi</th>
+                                                <th>Ranking</th>
+                                                <th>Id Pengajuan</th>
+                                                <th>Tgl Pengajuan</th>
+                                                <th>Nama Anggota</th>
+                                                <th>Jumlah Kredit</th>
+                                                <th>Lama Angsuran</th>
+                                                <th>Sisa utang di tempat lain</th>
+                                                <th>Nilai Preferensi</th>
+                                                <th>Status Kelayakan</th>
                                             </tr>
+                                            </thead>
+                                            <tbody>
                                             <?php
-                                        }
-                                        ?>
-                                        </tbody>
-                                    </table>
+                                            $ranking = 1;
+                                            foreach ($pengajuan_kredit->result_array() as $data) {
+                                                ?>
+                                                <tr>
+                                                    <td>
+                                                        <input type="checkbox"
+                                                               class="icheckbox_flat-green checkbox-rekomendasi <?php echo ($data['id_persetujuan'] != 3) ? '' : 'hidden' ?>"
+                                                               name="rekomendasi[]"
+                                                               value="<?php echo $data['id_pengajuan']; ?>"
+                                                               data-rank="<?= $ranking; ?>">
+                                                    </td>
+                                                    <td id="ranking-<?php echo $data['id_pengajuan'] ?>"
+                                                        data-rank="<?php echo $ranking ?>">
+                                                        <?= $ranking++; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo $data['id_pengajuan']; ?> <input name="id_pengajuan"
+                                                                                                    value="<?php echo $data['id_pengajuan']; ?>">
+                                                    </td>
+                                                    <td><?php echo $data['tgl_pengajuan']; ?> <input
+                                                                name="tgl_pengajuan"
+                                                                value="<?php echo $data['tgl_pengajuan']; ?>"></td>
+                                                    <td><?php echo $data['nama_anggota']; ?><input name="nama_anggota"
+                                                                                                   value="<?php echo $data['nama_anggota']; ?>">
+                                                    </td>
+                                                    <td><?php echo "Rp. " . number_format($data['jml_kredit'], 0, ".", "."); ?>
+                                                        <input name="jml_kredit"
+                                                               value="<?php echo $data['jml_kredit']; ?>"></td>
+                                                    <td><?php echo $data['lama_angsuran']; ?><input name="lama_angsuran"
+                                                                                                    value="<?php echo $data['lama_angsuran']; ?>">
+                                                    </td>
+                                                    <td><?php echo "Rp. " . number_format($data['sisa_utang_di_tempat_lain'], 0, ".", "."); ?>
+                                                        <input name="sisa_utang_di_tempat_lain"
+                                                               value="<?php echo $data['sisa_utang_di_tempat_lain']; ?>">
+                                                    </td>
+                                                    </td>
+                                                    <td><?php echo $data['nilai_preferensi']; ?><input
+                                                                name="nilai_preferensi"
+                                                                value="<?php echo $data['nilai_preferensi']; ?>"></td>
+                                                    <td><?php echo $data['keterangan']; ?><input name="keterangan"
+                                                                                                 value="<?php echo $data['keterangan']; ?>">
+                                                    </td>
+                                                </tr>
+                                                <?php
+                                            }
+                                            ?>
+                                            </tbody>
+                                        </table>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -100,30 +125,28 @@
         <script>
             var btnRekomendasi = $('#btn-rekomendasi');
 
-            $('input[type=checkbox]').change(function (e){
+            $('input[type=checkbox]').change(function () {
+                getData();
+            });
 
-                var checkboxes = document.querySelectorAll('input[name="rekomendasi[]"]:checked');
-                var length     = checkboxes.length;
-                var checked    = [];
+            window.onload = function () { getData() }
+
+            function getData() {
+                var checkboxes = $('input[type=checkbox]');
+                var length = checkboxes.length;
+                var data   = [];
 
                 for (var i = 0; i < length; i++) {
-                    checked[i] = {
+                    data[i] = {
                         id: checkboxes[i].value,
-                        rank: $('#ranking-' + checkboxes[i].value).data('rank')
+                        rank: $('#ranking-' + checkboxes[i].value).data('rank'),
+                        status: checkboxes[i].checked,
                     };
                 }
-                console.log(JSON.stringify(checked));
 
-                $('#input-rekomendasi').val(JSON.stringify(checked));
-
-                if (checked.length > 0) {
-                    $('#btn-rekomendasi').removeClass('hidden');
-                } else  {
-                    $('#btn-rekomendasi').addClass('hidden')
-                }
-
-                // console.log(checked);
-            });
+                $('#input-rekomendasi').val(JSON.stringify(data));
+                btnRekomendasi.removeClass('hidden');
+            }
 
         </script>
 

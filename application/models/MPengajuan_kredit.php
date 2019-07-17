@@ -43,6 +43,19 @@ class MPengajuan_kredit extends CI_Model
         }
         return $this->db->get();
     }
+    public function getPengajuanById($id_anggota)
+    {
+        $this->db->select('pengajuan_kredit.*, anggota.*');
+        $this->db->from('pengajuan_kredit');
+        $this->db->join('anggota', 'anggota.Id_anggota = pengajuan_kredit.id_anggota');
+        if ($id_anggota != null){
+            $this->db->order_by('id_pengajuan', 'DESC');
+            $this->db->where('pengajuan_kredit.id_anggota', $id_anggota);
+        }
+
+        return $this->db->get();
+    }
+
     //BENDAHARA
     public function getAllRekomendasi($id_rekomendasi)
     {
@@ -88,11 +101,7 @@ class MPengajuan_kredit extends CI_Model
         $this->db->join('anggota', 'pengajuan_kredit.id_anggota = anggota.id_anggota');
         return $this->db->get();
     }
-    //View pengajuan anggota
-    public function getPengajuanById($id_anggota)
-    {
-        return $this->db->get_where('pengajuan_kredit', array('id_anggota' => $id_anggota));
-    }
+
     //Add pengajuan bendahara
     public function tambah_dataPengajuan($data)
     {

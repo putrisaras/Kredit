@@ -30,8 +30,6 @@
                                 <div class="x_title">
                                     <h2 style="height: 25px;">Data Pengajuan Kredit</h2>
                                     <ul class="nav navbar-right panel_toolbox">
-
-
                                     </ul>
                                     <div class="clearfix"></div>
                                 </div>

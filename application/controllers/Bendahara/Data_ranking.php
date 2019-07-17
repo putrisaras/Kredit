@@ -39,10 +39,17 @@ class Data_ranking extends CI_Controller
 
             foreach ($data as $d) {
                 $data = array(
-                    'id_rekomendasi' => $id_rekomendasi,
+//                    'id_rekomendasi' => $id_rekomendasi,
                     'id_persetujuan' => "1",
                     'ranking'        => $d->rank,
                 );
+
+                if ($d->status) {
+//                    $id_rekomendasi
+                    $data['id_rekomendasi'] = $id_rekomendasi;
+                } else {
+                    $data['id_rekomendasi'] = 1;
+                }
 
                 $this->pengajuan->updateDataPengajuan($d->id, $data);
             }
@@ -51,6 +58,24 @@ class Data_ranking extends CI_Controller
 
             redirect(base_url() . "Bendahara/Data_rekomendasi/index");
 
+
+    }
+
+    public function tampildata()
+    {
+        $id_pengajuan = $this->input->post('id_pengajuan');
+        $rekomendasi = $this->input->post('rekomendasi');
+        $coba = 0;
+        foreach($rekomendasi as $key => $val ) {
+            if (isset($val)){
+                echo $val;
+            } else {
+                echo "0 ";
+            }
+
+            echo "<br>";
+
+        }
 
     }
 }

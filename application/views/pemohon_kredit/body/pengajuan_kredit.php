@@ -49,7 +49,7 @@
                                         <th>Jumlah Kredit</th>
                                         <th>Lama Angsuran</th>
                                         <th>Sisa utang di tempat lain</th>
-                                        <th>Action</th>
+                                        <th >Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -62,7 +62,7 @@
                                             <td><?php echo "Rp. " . number_format($data['jml_kredit'], 0, ".", "."); ?></td>
                                             <td><?php echo $data['lama_angsuran']; ?></td>
                                             <td><?php echo "Rp. " . number_format($data['sisa_utang_di_tempat_lain'], 0, ".", "."); ?></td>
-                                            <td>
+                                            <td <?php echo ($data['id_spk'] == 0)? '' : 'hidden' ?>>
                                                 <button type="submit" class="btn btn-info btn-xs" data-toggle="modal"
                                                         data-target="#editPengajuan<?php echo $data['id_pengajuan']; ?>">
                                                     <i class="fa fa-pencil"> </i> Edit
