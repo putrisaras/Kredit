@@ -157,7 +157,6 @@
             <!-- /FORM EDIT ANGGOTA-->
             <?php
             foreach ($pengajuan_kredit->result_array() as $item):
-
                 $nama_anggota = $item['nama_anggota'];
                 $id_pengajuan = $item['id_pengajuan'];
                 $jml_kredit = $item['jml_kredit'];

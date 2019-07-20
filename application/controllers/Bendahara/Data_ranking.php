@@ -34,21 +34,23 @@ class Data_ranking extends CI_Controller
     {
         $data = $this->input->post('ids');
         $data = json_decode($data);
-
+        $id_persetujuan = 0 ;
         $id_rekomendasi = date("YmdHis");
 
             foreach ($data as $d) {
                 $data = array(
 //                    'id_rekomendasi' => $id_rekomendasi,
-                    'id_persetujuan' => "1",
+                    'id_persetujuan' => $id_persetujuan,
                     'ranking'        => $d->rank,
                 );
 
                 if ($d->status) {
 //                    $id_rekomendasi
                     $data['id_rekomendasi'] = $id_rekomendasi;
+                    $data['id_persetujuan'] = 1;
                 } else {
                     $data['id_rekomendasi'] = 1;
+                    $data['id_persetujuan'] = 3;
                 }
 
                 $this->pengajuan->updateDataPengajuan($d->id, $data);

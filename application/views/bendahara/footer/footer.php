@@ -92,6 +92,21 @@
 <script src="<?php echo base_url(); ?>assets/build/js/custom.min.js"></script>
 
 <script type="text/javascript">
+    function hanyaAngka(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
+
+    function showPassword() {
+        var x = document.getElementById("password");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
     var flashdata = $('.flash-data').data('flashdata');
     if (flashdata === "berhasil"){
         Swal.fire({

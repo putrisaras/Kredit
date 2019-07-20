@@ -20,6 +20,11 @@ class MAnggota extends CI_Model
         $sql = $this->db->query("SELECT * FROM anggota");
         return $sql;
     }
+    public function select_Anggota()
+    {
+        $this->db->order_by('nama_anggota', 'ASC');
+        return $this->db->get('anggota');
+    }
     //View My Profil
     public function getProfilById($id_anggota){
         return $this->db->get_where('anggota', array('id_anggota' => $id_anggota));

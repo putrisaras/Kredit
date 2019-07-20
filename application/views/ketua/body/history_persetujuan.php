@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php $this->load->view('bendahara/header/header') ?>
+    <?php $this->load->view('ketua/header/header') ?>
 </head>
 
 <body class="nav-md">
@@ -9,11 +9,11 @@
     <div class="main_container">
 
         <!-- Side Bar -->
-        <?php $this->load->view('bendahara/header/sidebar') ?>
+        <?php $this->load->view('ketua/header/sidebar') ?>
         <!-- /Side Bar -->
 
         <!-- top navigation -->
-        <?php $this->load->view('bendahara/header/navbar') ?>
+        <?php $this->load->view('ketua/header/navbar') ?>
         <!-- /top navigation -->
 
         <!-- page content -->
@@ -28,7 +28,7 @@
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2 style="height: 25px;">Data Rekomendasi</h2>
+                                    <h2 style="height: 25px;">History Persetujuan Kredit</h2>
                                     <ul class="nav navbar-right panel_toolbox">
                                     </ul>
                                     <div class="clearfix"></div>
@@ -55,8 +55,8 @@
                                                 <td><?php echo $data['id_rekomendasi']; ?></td>
                                                 <td><?php echo $data['keterangan_rekomen']; ?></td>
                                                 <td>
-                                                    <a href="<?php echo base_url(); ?>Bendahara/Detail_rekomendasi/index/<?= $data['id_rekomendasi']; ?>"><button type="button" class="btn btn-round btn-primary" data-toggle="modal"
-                                                                                                                                                     data-target="#" ><i class="fa fa-file-text-o">    Detail</i>
+                                                    <a href="<?php echo base_url(); ?>Ketua/Detail_historyPersetujuan/index/<?= $data['id_rekomendasi']; ?>"><button type="button" class="btn btn-round btn-primary" data-toggle="modal"
+                                                                                                                                                                         data-target="#" ><i class="fa fa-file-text-o">    Detail</i>
                                                         </button></a>
                                                 </td>
                                             </tr>
@@ -75,7 +75,7 @@
             <div class="row"></div>
         </div>
 
-        <?php $this->load->view('bendahara/footer/footer') ?>
+        <?php $this->load->view('ketua/footer/footer') ?>
 
 </body>
 </html>

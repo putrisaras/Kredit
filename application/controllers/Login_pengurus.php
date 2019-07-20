@@ -54,7 +54,6 @@ class Login_pengurus extends CI_Controller
                 );
             }
             $this->session->set_userdata($session_data);
-
             redirect(base_url() . "Bendahara/Dashboard/index");
         } else {
             $this->session->set_flashdata('error', 'Invalid Username or Password');
@@ -69,7 +68,7 @@ class Login_pengurus extends CI_Controller
         );
 
         $this->session->unset_userdata($session_data);
-        redirect(base_url() . 'login_pengurus/index');
+        redirect(base_url() . 'home/index');
     }
 }
 

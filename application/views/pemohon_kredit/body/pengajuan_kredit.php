@@ -37,7 +37,7 @@
                             </div>
                             <div class="x_content">
                                 <p class="text-muted font-13 m-b-30"></p>
-                                <button type="button" class="btn btn-success btn-lg" data-toggle="modal"
+                                <button type="button" class="btn btn-success btn-lg <?= ($jumlah > 0)? 'hidden' : ''; ?>" data-toggle="modal"
                                         data-target="#tambahPengajuan"><i class="fa fa-plus-square"> Tambah
                                         Pengajuan</i>
                                 </button>

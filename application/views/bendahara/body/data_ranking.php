@@ -77,30 +77,29 @@
                                                     </td>
                                                     <td>
                                                         <?php echo $data['id_pengajuan']; ?> <input name="id_pengajuan"
-                                                                                                    value="<?php echo $data['id_pengajuan']; ?>">
+                                                                                                    value="<?php echo $data['id_pengajuan']; ?>" hidden>
                                                     </td>
                                                     <td><?php echo $data['tgl_pengajuan']; ?> <input
                                                                 name="tgl_pengajuan"
-                                                                value="<?php echo $data['tgl_pengajuan']; ?>"></td>
+                                                                value="<?php echo $data['tgl_pengajuan']; ?>" hidden></td>
                                                     <td><?php echo $data['nama_anggota']; ?><input name="nama_anggota"
-                                                                                                   value="<?php echo $data['nama_anggota']; ?>">
+                                                                                                   value="<?php echo $data['nama_anggota']; ?>" hidden>
                                                     </td>
                                                     <td><?php echo "Rp. " . number_format($data['jml_kredit'], 0, ".", "."); ?>
                                                         <input name="jml_kredit"
-                                                               value="<?php echo $data['jml_kredit']; ?>"></td>
+                                                               value="<?php echo $data['jml_kredit']; ?>" hidden></td>
                                                     <td><?php echo $data['lama_angsuran']; ?><input name="lama_angsuran"
-                                                                                                    value="<?php echo $data['lama_angsuran']; ?>">
+                                                                                                    value="<?php echo $data['lama_angsuran']; ?>" hidden>
                                                     </td>
                                                     <td><?php echo "Rp. " . number_format($data['sisa_utang_di_tempat_lain'], 0, ".", "."); ?>
                                                         <input name="sisa_utang_di_tempat_lain"
-                                                               value="<?php echo $data['sisa_utang_di_tempat_lain']; ?>">
-                                                    </td>
+                                                               value="<?php echo $data['sisa_utang_di_tempat_lain']; ?>" hidden>
                                                     </td>
                                                     <td><?php echo $data['nilai_preferensi']; ?><input
                                                                 name="nilai_preferensi"
-                                                                value="<?php echo $data['nilai_preferensi']; ?>"></td>
+                                                                value="<?php echo $data['nilai_preferensi']; ?>" hidden></td>
                                                     <td><?php echo $data['keterangan']; ?><input name="keterangan"
-                                                                                                 value="<?php echo $data['keterangan']; ?>">
+                                                                                                 value="<?php echo $data['keterangan']; ?>" hidden>
                                                     </td>
                                                 </tr>
                                                 <?php
@@ -129,12 +128,14 @@
                 getData();
             });
 
-            window.onload = function () { getData() }
+            window.onload = function () {
+                getData()
+            }
 
             function getData() {
                 var checkboxes = $('input[type=checkbox]');
                 var length = checkboxes.length;
-                var data   = [];
+                var data = [];
 
                 for (var i = 0; i < length; i++) {
                     data[i] = {

@@ -33,8 +33,8 @@
                     <li><a href="http://localhost/Kredit/Bendahara/Data_piutang"><i class="fa fa-credit-card"></i>Data Piutang</a></li>
                     <li><a href="http://localhost/Kredit/Bendahara/Data_pengajuan"><i class="fa fa-sign-in"></i> Data Pengajuan Kredit </a></li>
                     <li><a href="http://localhost/Kredit/Bendahara/Data_spk"><i class="fa fa-file-text-o"></i>Data SPK</a></li>
-                    <li><a href="http://localhost/Kredit/Bendahara/Status_kelayakan"><i class="fa fa-check-square-o"></i> Data Status Kelayakan </a></li>
                     <li><a href="http://localhost/Kredit/Bendahara/Data_rekomendasi"><i class="fa fa-tags"></i> Data Rekomendasi </a></li>
+                    <li><a href="http://localhost/Kredit/Bendahara/Status_kelayakan"><i class="fa fa-check-square-o"></i> Data Status Kelayakan </a></li>
                     <li><a href="http://localhost/Kredit/Bendahara/History_spk"><i class="fa fa-history"></i> History SPK </a></li>
                     <li><a href="http://localhost/Kredit/Bendahara/History_rekomendasi"><i class="fa fa-history"></i> History Rekomendasi </a></li>
                 </ul>

@@ -21,6 +21,7 @@ class Pengajuan_kredit extends CI_Controller{
         if ($this->session->userdata('kondisi') == 'Berhasil Login') {
             $data['halaman'] = "pengajuan_kredit";
             $data['pengajuan_kredit'] = $this->pengajuan->getPengajuanById($this->session->userdata('id_anggota'));
+            $data['jumlah'] = $this->pengajuan->fetchPengajuan($this->session->userdata('id_anggota'))->num_rows();
             $this->load->view('pemohon_kredit/body/pengajuan_kredit', $data);
         } else {
             redirect(base_url() . 'pemohon_kredit/Login/index');

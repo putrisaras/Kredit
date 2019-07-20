@@ -60,7 +60,7 @@ class Login extends CI_Controller
         );
 
         $this->session->unset_userdata($session_data);
-        redirect(base_url() . 'Pemohon_kredit/login/index');
+        redirect(base_url() . 'home/index');
     }
 }
 ?>

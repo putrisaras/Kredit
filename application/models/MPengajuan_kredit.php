@@ -17,7 +17,7 @@ class MPengajuan_kredit extends CI_Model
     }
 
     //View pengajuan bendahara
-       public function getPengajuan()
+    public function getPengajuan()
     {
         $this->db->select('pengajuan_kredit.*, anggota.*, status_kelayakan.*');
         $this->db->from('pengajuan_kredit');
@@ -27,6 +27,7 @@ class MPengajuan_kredit extends CI_Model
         $this->db->order_by('pengajuan_kredit.id_anggota');
         return $this->db->get();
     }
+
     //view pengajuan bendahara
     public function getAllPengajuan($id_spk)
     {
@@ -34,7 +35,7 @@ class MPengajuan_kredit extends CI_Model
         $this->db->from('pengajuan_kredit');
         $this->db->join('anggota', 'anggota.Id_anggota = pengajuan_kredit.id_anggota');
         $this->db->join('status_kelayakan', 'status_kelayakan.Id_kelayakan = pengajuan_kredit.id_kelayakan');
-        if ($id_spk != null){
+        if ($id_spk != null) {
             $this->db->order_by('nilai_preferensi', 'DESC');
             $this->db->where('id_spk', $id_spk);
         } else {
@@ -43,12 +44,13 @@ class MPengajuan_kredit extends CI_Model
         }
         return $this->db->get();
     }
+
     public function getPengajuanById($id_anggota)
     {
         $this->db->select('pengajuan_kredit.*, anggota.*');
         $this->db->from('pengajuan_kredit');
         $this->db->join('anggota', 'anggota.Id_anggota = pengajuan_kredit.id_anggota');
-        if ($id_anggota != null){
+        if ($id_anggota != null) {
             $this->db->order_by('id_pengajuan', 'DESC');
             $this->db->where('pengajuan_kredit.id_anggota', $id_anggota);
         }
@@ -59,12 +61,13 @@ class MPengajuan_kredit extends CI_Model
     //BENDAHARA
     public function getAllRekomendasi($id_rekomendasi)
     {
-        $this->db->select('pengajuan_kredit.*,  anggota.*, status_kelayakan.*, rekomendasi_pengaju_kredit.*');
+        $this->db->select('pengajuan_kredit.*,  anggota.*, status_kelayakan.*, status_persetujuan.*, rekomendasi_pengaju_kredit.*');
         $this->db->from('pengajuan_kredit');
         $this->db->join('rekomendasi_pengaju_kredit', 'rekomendasi_pengaju_kredit.id_rekomendasi = pengajuan_kredit.id_rekomendasi');
         $this->db->join('anggota', 'anggota.Id_anggota = pengajuan_kredit.id_anggota');
+        $this->db->join('status_persetujuan', 'status_persetujuan.Id_persetujuan = pengajuan_kredit.id_persetujuan');
         $this->db->join('status_kelayakan', 'status_kelayakan.Id_kelayakan = pengajuan_kredit.id_kelayakan');
-        if ($id_rekomendasi != null){
+        if ($id_rekomendasi != null) {
             $this->db->where('pengajuan_kredit.id_rekomendasi', $id_rekomendasi);
         } else {
             $this->db->where('pengajuan_kredit.id_rekomendasi', '');
@@ -72,6 +75,7 @@ class MPengajuan_kredit extends CI_Model
         return $this->db->get();
 
     }
+
     //KETUA
     public function getAllPersetujuan($id_rekomendasi)
     {
@@ -80,7 +84,7 @@ class MPengajuan_kredit extends CI_Model
         $this->db->join('rekomendasi_pengaju_kredit', 'rekomendasi_pengaju_kredit.id_rekomendasi = pengajuan_kredit.id_rekomendasi');
         $this->db->join('anggota', 'anggota.Id_anggota = pengajuan_kredit.id_anggota');
         $this->db->join('status_kelayakan', 'status_kelayakan.Id_kelayakan = pengajuan_kredit.id_kelayakan');
-        if ($id_rekomendasi != null){
+        if ($id_rekomendasi != null) {
             $this->db->where('pengajuan_kredit.id_rekomendasi', $id_rekomendasi);
         } else {
             $this->db->where('pengajuan_kredit.id_rekomendasi', '');
@@ -88,6 +92,7 @@ class MPengajuan_kredit extends CI_Model
         return $this->db->get();
 
     }
+
     //get data pengajuan di bendahara
     public function getPengajuanKredit()
     {
@@ -108,12 +113,14 @@ class MPengajuan_kredit extends CI_Model
         $this->db->insert('pengajuan_kredit', $data);
         return $this->db->affected_rows();
     }
+
     //Add pengajuan anggota
     public function tambahPengajuan($data)
     {
         $this->db->insert('pengajuan_kredit', $data);
         return $this->db->affected_rows();
     }
+
     //edit pengajuan di bendahara
     public function update_dataPengajuan($id_pengajuan, $data)
     {
@@ -124,6 +131,7 @@ class MPengajuan_kredit extends CI_Model
         $this->db->update('pengajuan_kredit', $data);
         return $this->db->affected_rows();
     }
+
     //update data Pengajuan bendahara
     public function updateDataPengajuan($idPengajuan, $data)
     {
@@ -131,6 +139,7 @@ class MPengajuan_kredit extends CI_Model
         $this->db->update('pengajuan_kredit', $data);
         return $this->db->affected_rows();
     }
+
     //delete pengajuan di bendahara
     public function delete_dataPengajuan($id_pengajuan)
     {
@@ -138,4 +147,14 @@ class MPengajuan_kredit extends CI_Model
         return $hapus;
     }
 
+
+    public function fetchPengajuan($id_anggota)
+    {
+        $where = "id_persetujuan < 2";
+        $this->db->order_by('id_pengajuan', 'DESC');
+        $this->db->where('id_anggota',$id_anggota);
+        $this->db->where($where);
+        $this->db->limit(1);
+        return $this->db->get('pengajuan_kredit');
+    }
 }

@@ -23,9 +23,9 @@ class Data_pengajuan extends CI_Controller
     public function index()
     {
         if ($this->session->userdata('kondisi') == 'Berhasil Login') {
-        $data['pengajuan_kredit'] = $this->pengajuan->getPengajuan();
-        $data['anggota'] = $this->anggota->read_dataAnggota();
-        $this->load->view('bendahara/body/data_pengajuan', $data);
+            $data['pengajuan_kredit'] = $this->pengajuan->getPengajuan();
+            $data['anggota'] = $this->anggota->select_Anggota();
+            $this->load->view('bendahara/body/data_pengajuan', $data);
         } else {
             redirect(base_url() . 'Login_pengurus/index');
         }
@@ -122,7 +122,6 @@ class Data_pengajuan extends CI_Controller
                     if ($status_kelayakan_kredit == 1){
                         $id_persetujuan = "3";
                     }
-
                 }
                 $data = array(
                     'n_modal' => round($normalisasiModal, 2),
