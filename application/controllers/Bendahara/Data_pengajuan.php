@@ -24,7 +24,8 @@ class Data_pengajuan extends CI_Controller
     {
         if ($this->session->userdata('kondisi') == 'Berhasil Login') {
             $data['pengajuan_kredit'] = $this->pengajuan->getPengajuan();
-            $data['anggota'] = $this->anggota->select_Anggota();
+            $anngota = $this->anggota->fetchAnggota();
+            $data['anggota'] = $this->anggota->read_dataAnggota();
             $this->load->view('bendahara/body/data_pengajuan', $data);
         } else {
             redirect(base_url() . 'Login_pengurus/index');

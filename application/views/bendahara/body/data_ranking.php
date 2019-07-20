@@ -95,6 +95,7 @@
                                                         <input name="sisa_utang_di_tempat_lain"
                                                                value="<?php echo $data['sisa_utang_di_tempat_lain']; ?>" hidden>
                                                     </td>
+                                                    </td>
                                                     <td><?php echo $data['nilai_preferensi']; ?><input
                                                                 name="nilai_preferensi"
                                                                 value="<?php echo $data['nilai_preferensi']; ?>" hidden></td>

@@ -20,6 +20,17 @@ class MAnggota extends CI_Model
         $sql = $this->db->query("SELECT * FROM anggota");
         return $sql;
     }
+
+    //read seluruh data dari tabel pemohon kredit
+    public function fetchAnggota()
+    {
+        $this->db->select('anggota.*');
+        $this->db->join('pengajuan_kredit', 'pengajuan_kredit.id_anggota = anggota.id_anggota', 'left');
+        $this->db->where('pengajuan_kredit.id_persetujuan >', '1');
+        $this->db->group_by('anggota.id_anggota');
+        return $this->db->get('anggota');
+    }
+
     public function select_Anggota()
     {
         $this->db->order_by('nama_anggota', 'ASC');

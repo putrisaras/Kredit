@@ -12,8 +12,9 @@ class MSpk extends CI_Model{
     //read history spk di bendahara
     public function read_dataSpk()
     {
-        $sql = $this->db->query("SELECT * FROM spk");
-        return $sql;
+        $this->db->join('pengajuan_kredit', 'pengajuan_kredit.id_spk = spk.id_spk');
+        $this->db->group_by('pengajuan_kredit.id_spk');
+        return $this->db->get_where('spk', array('id_rekomendasi'=>''));
     }
     //insert spk pengajuan di bendahara
     public function insertDataSPK($idSpk){
