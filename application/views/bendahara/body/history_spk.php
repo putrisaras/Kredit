@@ -55,7 +55,7 @@
                                                 <td><?php echo $data['id_spk']; ?></td>
                                                 <td><?php echo $data['keterangan_spk']; ?></td>
                                                 <td>
-                                                    <a href="<?php echo base_url(); ?>/Bendahara/History_ranking/index/<?= $data['id_spk']; ?>"><button type="button" class="btn btn-round btn-primary" data-toggle="modal"
+                                                    <a href="<?php echo base_url(); ?>Bendahara/History_spk/v_historyRanking/<?= $data['id_spk']; ?>"><button type="button" class="btn btn-round btn-primary" data-toggle="modal"
                                                                                                                                                      data-target="#" ><i class="fa fa-file-text-o">    Detail</i>
                                                         </button></a>
                                                 </td>

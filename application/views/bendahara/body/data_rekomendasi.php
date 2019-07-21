@@ -47,7 +47,7 @@
                                         </thead>
                                         <tbody>
                                         <?php
-                                        $no =1;
+                                        $no = 1;
                                         foreach ($sql1->result_array() as $data) {
                                             ?>
                                             <tr>
@@ -55,9 +55,18 @@
                                                 <td><?php echo $data['id_rekomendasi']; ?></td>
                                                 <td><?php echo $data['keterangan_rekomen']; ?></td>
                                                 <td>
-                                                    <a href="<?php echo base_url(); ?>Bendahara/Detail_rekomendasi/index/<?= $data['id_rekomendasi']; ?>"><button type="button" class="btn btn-round btn-primary" data-toggle="modal"
-                                                                                                                                                     data-target="#" ><i class="fa fa-file-text-o">    Detail</i>
-                                                        </button></a>
+                                                    <a href="<?php echo base_url(); ?>Bendahara/Data_rekomendasi/v_detailRekomendasi/<?= $data['id_rekomendasi']; ?>">
+                                                        <button type="button" class="btn btn-round btn-primary"
+                                                                data-toggle="modal"
+                                                                data-target="#"><i class="fa fa-file-text-o"> Detail</i>
+                                                        </button>
+                                                    </a>
+                                                    <a href="<?= base_url(); ?>Bendahara/Data_rekomendasi/pdfGenerate/<?= $data['id_rekomendasi']; ?>">
+                                                        <button type="button" class="btn btn-round btn-warning"
+                                                                data-toggle="modal"
+                                                                data-target="#"><i class="fa fa-download"> Download Laporan</i>
+                                                        </button>
+                                                    </a>
                                                 </td>
                                             </tr>
                                             <?php

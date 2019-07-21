@@ -41,7 +41,7 @@
                                         data-target="#tambahPengajuan"><i class="fa fa-plus-square"> Tambah
                                         Pengajuan</i>
                                 </button>
-                                <table id="datatable" class="table table-striped table-bordered">
+                                <table class="table table-striped table-bordered">
                                     <thead>
                                     <tr>
                                         <th>Id Pengajuan</th>
@@ -49,6 +49,7 @@
                                         <th>Jumlah Kredit</th>
                                         <th>Lama Angsuran</th>
                                         <th>Sisa utang di tempat lain</th>
+                                        <th>Status Persetujuan</th>
                                         <th >Action</th>
                                     </tr>
                                     </thead>
@@ -62,6 +63,7 @@
                                             <td><?php echo "Rp. " . number_format($data['jml_kredit'], 0, ".", "."); ?></td>
                                             <td><?php echo $data['lama_angsuran']; ?></td>
                                             <td><?php echo "Rp. " . number_format($data['sisa_utang_di_tempat_lain'], 0, ".", "."); ?></td>
+                                            <td><?php echo $data['keterangan_persetujuan']; ?></td>
                                             <td <?php echo ($data['id_spk'] == 0)? '' : 'hidden' ?>>
                                                 <button type="submit" class="btn btn-info btn-xs" data-toggle="modal"
                                                         data-target="#editPengajuan<?php echo $data['id_pengajuan']; ?>">
@@ -104,14 +106,14 @@
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Jumlah Kredit</label>
                                     <div class="col-md-9 col-sm-9 col-xs-12">
                                         <input type="text" class="form-control" id="jml_kredit"
-                                               name="jml_kredit" placeholder="Jumlah Kredit">
+                                               name="jml_kredit" placeholder="Jumlah Kredit" onkeypress="return hanyaAngka(event);" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Lama Angsuran</label>
                                     <div class="col-md-9 col-sm-9 col-xs-12">
                                         <input type="text" class="form-control" id="lama_angsuran"
-                                               name="lama_angsuran" placeholder="Lama Angsuran">
+                                               name="lama_angsuran" placeholder="Lama Angsuran" onkeypress="return hanyaAngka(event);" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -120,7 +122,7 @@
                                     <div class="col-md-9 col-sm-9 col-xs-12">
                                         <input type="text" class="form-control" id="sisa_utang_di_tempat_lain"
                                                name="sisa_utang_di_tempat_lain"
-                                               placeholder="Sisa Utang di Tempat Lain">
+                                               placeholder="Sisa Utang di Tempat Lain" onkeypress="return hanyaAngka(event);"required>
                                     </div>
                                 </div>
                                 <div class="ln_solid"></div>

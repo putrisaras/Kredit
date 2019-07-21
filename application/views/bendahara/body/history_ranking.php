@@ -48,6 +48,7 @@
                                             <th>Sisa utang di tempat lain</th>
                                             <th>Nilai Preferensi</th>
                                             <th>Status Kelayakan</th>
+                                            <th>Status Persetujuan</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -69,6 +70,7 @@
                                                 <td><?php echo "Rp. " . number_format($data['sisa_utang_di_tempat_lain'], 0, ".", "."); ?></td>
                                                 <td><?php echo $data['nilai_preferensi']; ?></td>
                                                 <td><?php echo $data['keterangan']; ?></td>
+                                                <td><?php echo $data['keterangan_persetujuan']; ?></td>
                                             </tr>
                                             <?php
                                         }

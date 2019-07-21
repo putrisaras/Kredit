@@ -36,7 +36,7 @@
                                 <div class="x_content">
                                     <p class="text-muted font-13 m-b-30">
                                     </p>
-                                    <form action="<?php echo base_url(); ?>Ketua/Data_persetujuan/persetujuan"
+                                    <form action="<?php echo base_url(); ?>Ketua/Rekomendasi/persetujuan"
                                           method="post">
                                         <input type="hidden" name="ids" id="input-persetujuan">
                                         <button type="submit" id="btn-persetujuan"

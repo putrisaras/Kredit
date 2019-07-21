@@ -91,6 +91,24 @@
 <script src="<?php echo base_url();?>assets/build/js/custom.min.js"></script>
 
 <script type="text/javascript">
+    $("#jml_kredit").on("input", function () {
+        if (/^0/.test(this.value)) {
+            this.value = this.value.replace(/^0/, "")
+        }
+    });
+    $("#lama_angsuran").on("input", function () {
+        if (/^0/.test(this.value)) {
+            this.value = this.value.replace(/^0/, "")
+        }
+    });
+
+    function hanyaAngka(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
+
     var flashdata = $('.flash-data').data('flashdata');
     if (flashdata === "berhasil"){
         Swal.fire({

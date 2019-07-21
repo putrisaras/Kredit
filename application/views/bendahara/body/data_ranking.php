@@ -36,7 +36,7 @@
                                 <div class="x_content">
                                     <p class="text-muted font-13 m-b-30">
                                     </p>
-                                    <form action="<?php echo base_url(); ?>Bendahara/Data_ranking/updateRekomendasi"
+                                    <form action="<?php echo base_url(); ?>Bendahara/Data_spk/updateRekomendasi"
                                           method="post">
                                         <input type="hidden" name="ids" id="input-rekomendasi">
                                         <button type="submit" id="btn-rekomendasi"

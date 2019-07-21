@@ -23,6 +23,7 @@ class Data_pengajuan extends CI_Controller
     public function index()
     {
         if ($this->session->userdata('kondisi') == 'Berhasil Login') {
+            $this->pengajuan->refresh();
             $data['pengajuan_kredit'] = $this->pengajuan->getPengajuan();
             $anngota = $this->anggota->fetchAnggota();
             $data['anggota'] = $this->anggota->read_dataAnggota();
@@ -32,33 +33,33 @@ class Data_pengajuan extends CI_Controller
         }
     }
 
-    public function tambah_dataPengajuan()
-    {
-        $id_pengurus = $this->session->userdata('id_pengurus');
-        $id_anggota = $this->input->post('nama_anggota');
-        $tgl_pengajuan = $this->input->post('tgl_pengajuan');
-        $jml_kredit = $this->input->post('jml_kredit');
-        $lama_angsuran = $this->input->post('lama_angsuran');
-        $sisa_utang_di_tempat_lain = $this->input->post('sisa_utang_di_tempat_lain');
-        $data = array(
-            'tgl_pengajuan' => date('y-m-d'),
-            'jml_kredit' => $jml_kredit,
-            'id_anggota' => $id_anggota,
-            'lama_angsuran' => $lama_angsuran,
-            'sisa_utang_di_tempat_lain' => $sisa_utang_di_tempat_lain,
-            'id_kelayakan' => "1",
-            'id_pengurus' => $id_pengurus
-        );
-        $insert = $this->pengajuan->tambah_dataPengajuan($data);
-        if ($insert > 0) {
-            $this->session->set_flashdata('pesan', 'berhasil');
-            redirect(base_url() . "Bendahara/Data_pengajuan/index");
-        } else {
-            $this->session->set_flashdata('pesan', 'gagal');
-            redirect(base_url() . "Bendahara/Data_pengajuan/index");
-        }
-
-    }
+//    public function tambah_dataPengajuan()
+//    {
+//        $id_pengurus = $this->session->userdata('id_pengurus');
+//        $id_anggota = $this->input->post('nama_anggota');
+//        $tgl_pengajuan = $this->input->post('tgl_pengajuan');
+//        $jml_kredit = $this->input->post('jml_kredit');
+//        $lama_angsuran = $this->input->post('lama_angsuran');
+//        $sisa_utang_di_tempat_lain = $this->input->post('sisa_utang_di_tempat_lain');
+//        $data = array(
+//            'tgl_pengajuan' => date('y-m-d'),
+//            'jml_kredit' => $jml_kredit,
+//            'id_anggota' => $id_anggota,
+//            'lama_angsuran' => $lama_angsuran,
+//            'sisa_utang_di_tempat_lain' => $sisa_utang_di_tempat_lain,
+//            'id_kelayakan' => "1",
+//            'id_pengurus' => $id_pengurus
+//        );
+//        $insert = $this->pengajuan->tambah_dataPengajuan($data);
+//        if ($insert > 0) {
+//            $this->session->set_flashdata('pesan', 'berhasil');
+//            redirect(base_url() . "Bendahara/Data_pengajuan/index");
+//        } else {
+//            $this->session->set_flashdata('pesan', 'gagal');
+//            redirect(base_url() . "Bendahara/Data_pengajuan/index");
+//        }
+//
+//    }
 
     public function edit_dataPengajuan($id_pengajuan)
     {
@@ -149,6 +150,11 @@ class Data_pengajuan extends CI_Controller
             redirect(base_url() . "Bendahara/Data_Pengajuan/index");
         }
 
+    }
+
+    public function notif (){
+        $notif = $this->pengajuan->notif();
+        echo json_encode($notif);
     }
 }
 

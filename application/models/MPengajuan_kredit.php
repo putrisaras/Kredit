@@ -45,15 +45,33 @@ class MPengajuan_kredit extends CI_Model
         return $this->db->get();
     }
 
+    public function getHistoryPengajuan($id_spk)
+    {
+        $this->db->select('pengajuan_kredit.*, anggota.*, status_kelayakan.*, status_persetujuan.*');
+        $this->db->from('pengajuan_kredit');
+        $this->db->join('status_persetujuan', 'status_persetujuan.Id_persetujuan = pengajuan_kredit.id_persetujuan');
+        $this->db->join('anggota', 'anggota.Id_anggota = pengajuan_kredit.id_anggota');
+        $this->db->join('status_kelayakan', 'status_kelayakan.Id_kelayakan = pengajuan_kredit.id_kelayakan');
+        if ($id_spk != null) {
+            $this->db->order_by('nilai_preferensi', 'DESC');
+            $this->db->where('id_spk', $id_spk);
+        } else {
+            $this->db->order_by('nilai_preferensi', 'DESC');
+            $this->db->where('id_spk', '');
+        }
+        return $this->db->get();
+    }
     public function getPengajuanById($id_anggota)
     {
-        $this->db->select('pengajuan_kredit.*, anggota.*');
+        $this->db->select('pengajuan_kredit.*, status_persetujuan.*, anggota.*');
         $this->db->from('pengajuan_kredit');
+        $this->db->join('status_persetujuan', 'status_persetujuan.Id_persetujuan = pengajuan_kredit.id_persetujuan');
         $this->db->join('anggota', 'anggota.Id_anggota = pengajuan_kredit.id_anggota');
         if ($id_anggota != null) {
             $this->db->order_by('id_pengajuan', 'DESC');
             $this->db->where('pengajuan_kredit.id_anggota', $id_anggota);
         }
+
 
         return $this->db->get();
     }
@@ -106,13 +124,12 @@ class MPengajuan_kredit extends CI_Model
         $this->db->join('anggota', 'pengajuan_kredit.id_anggota = anggota.id_anggota');
         return $this->db->get();
     }
-
-    //Add pengajuan bendahara
-    public function tambah_dataPengajuan($data)
-    {
-        $this->db->insert('pengajuan_kredit', $data);
-        return $this->db->affected_rows();
-    }
+//    //Add pengajuan bendahara
+//    public function tambah_dataPengajuan($data)
+//    {
+//        $this->db->insert('pengajuan_kredit', $data);
+//        return $this->db->affected_rows();
+//    }
 
     //Add pengajuan anggota
     public function tambahPengajuan($data)
@@ -156,5 +173,15 @@ class MPengajuan_kredit extends CI_Model
         $this->db->where($where);
         $this->db->limit(1);
         return $this->db->get('pengajuan_kredit');
+    }
+    public function notif(){
+        $this->db->where('notif', '0');
+        return $this->db->count_all_results('pengajuan_kredit');
+    }
+
+    public function refresh(){
+        $this->db->where('notif','0');
+        $this->db->set('notif','1');
+        return $this->db->update('pengajuan_kredit');
     }
 }

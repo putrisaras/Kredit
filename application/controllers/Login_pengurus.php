@@ -42,19 +42,30 @@ class Login_pengurus extends CI_Controller
             foreach ($loginPengurus->result() as $data) {
                 if ($data->jabatan == "Ketua") {
                     $level = 1;
+                    $session_data = array(
+                        'id_pengurus' => $data->id_pengurus,
+                        'nama_pengurus' => $data->nama_pengurus,
+                        'jabatan' => $data->jabatan,
+                        'Level' => $level,
+                        'kondisi' => $status
+                    );
+                    $this->session->set_userdata($session_data);
+                    redirect(base_url() . "Ketua/Dashboard/index");
                 } else if ($data->jabatan == "Bendahara") {
                     $level = 2;
+                    $session_data = array(
+                        'id_pengurus' => $data->id_pengurus,
+                        'nama_pengurus' => $data->nama_pengurus,
+                        'jabatan' => $data->jabatan,
+                        'Level' => $level,
+                        'kondisi' => $status
+                    );
+                    $this->session->set_userdata($session_data);
+                    redirect(base_url() . "Bendahara/Dashboard/index");
                 }
-                $session_data = array(
-                    'id_pengurus' => $data->id_pengurus,
-                    'nama_pengurus' => $data->nama_pengurus,
-                    'jabatan' => $data->jabatan,
-                    'Level' => $level,
-                    'kondisi' => $status
-                );
+
             }
-            $this->session->set_userdata($session_data);
-            redirect(base_url() . "Bendahara/Dashboard/index");
+
         } else {
             $this->session->set_flashdata('error', 'Invalid Username or Password');
             redirect(base_url() . "Login_pengurus/index");

@@ -14,11 +14,24 @@ class History_spk extends CI_Controller{
     {
         parent::__construct();
         $this->load->model('MSpk');
+        $this->load->model('MAnggota', 'anggota');
+        $this->load->model('MPengajuan_kredit', 'pengajuan');
+        $this->load->model('MRekomendasi_pengajuan');
     }
     public function index(){
         if ($this->session->userdata('kondisi') == 'Berhasil Login') {
-            $spk['sql1'] = $this->MSpk->read_dataSpk();
+            $spk['sql1'] = $this->MSpk->history_dataSpk();
             $this->load->view('bendahara/body/history_spk', $spk);
+        } else {
+            redirect(base_url() . 'Login_pengurus/index');
+        }
+    }
+    public function v_historyRanking($id_spk)
+    {
+        if ($this->session->userdata('kondisi') == 'Berhasil Login') {
+            $data['pengajuan_kredit'] = $this->pengajuan->getHistoryPengajuan($id_spk);
+            $data['anggota'] = $this->anggota->read_dataAnggota();
+            $this->load->view('bendahara/body/history_ranking', $data);
         } else {
             redirect(base_url() . 'Login_pengurus/index');
         }
