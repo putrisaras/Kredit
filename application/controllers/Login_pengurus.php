@@ -45,6 +45,8 @@ class Login_pengurus extends CI_Controller
                     $session_data = array(
                         'id_pengurus' => $data->id_pengurus,
                         'nama_pengurus' => $data->nama_pengurus,
+                        'username_pengurus' => $data->username_pengurus,
+                        'password_pengurus' => $data->password_pengurus,
                         'jabatan' => $data->jabatan,
                         'Level' => $level,
                         'kondisi' => $status
@@ -56,6 +58,8 @@ class Login_pengurus extends CI_Controller
                     $session_data = array(
                         'id_pengurus' => $data->id_pengurus,
                         'nama_pengurus' => $data->nama_pengurus,
+                        'username_pengurus' => $data->username_pengurus,
+                        'password_pengurus' => $data->password_pengurus,
                         'jabatan' => $data->jabatan,
                         'Level' => $level,
                         'kondisi' => $status
@@ -71,11 +75,68 @@ class Login_pengurus extends CI_Controller
             redirect(base_url() . "Login_pengurus/index");
         }
     }
+    public function edit_Profil()
+    {
+        $id_pengurus = $this->input->post('id_pengurus');
 
+        $data = array(
+            'nama_pengurus' => $this->input->post('nama_pengurus'),
+            'jabatan' => $this->input->post('jabatan'),
+            'username_pengurus' => $this->input->post('username_pengurus'),
+            'password_pengurus'=> $this->input->post('password_pengurus')
+        );
+
+        $update = $this->pengurus->update_Profil( $id_pengurus, $data);
+        if ($update > 0){
+            $value = array(
+                'id_pengurus' => $id_pengurus,
+                'nama_pengurus' => $this->input->post('nama_pengurus'),
+                'jabatan' => $this->input->post('jabatan'),
+                'username_pengurus' => $this->input->post('username_pengurus'),
+                'password_pengurus'=> $this->input->post('password_pengurus')
+            );
+            $this->session->set_flashdata('messeage', 'updated');
+            $this->session->set_userdata($value);
+            redirect('Ketua/Dashboard');
+        }
+        else {
+            $this->session->set_flashdata('pesan', 'failure');
+            redirect('Ketua/Dashboard');
+        }
+    }
+    public function edit_Profil2()
+    {
+        $id_pengurus = $this->input->post('id_pengurus');
+
+        $data = array(
+            'nama_pengurus' => $this->input->post('nama_pengurus'),
+            'jabatan' => $this->input->post('jabatan'),
+            'username_pengurus' => $this->input->post('username_pengurus'),
+            'password_pengurus'=> $this->input->post('password_pengurus')
+        );
+
+        $update = $this->pengurus->update_Profil( $id_pengurus, $data);
+        if ($update > 0){
+            $value = array(
+                'id_pengurus' => $id_pengurus,
+                'nama_pengurus' => $this->input->post('nama_pengurus'),
+                'jabatan' => $this->input->post('jabatan'),
+                'username_pengurus' => $this->input->post('username_pengurus'),
+                'password_pengurus'=> $this->input->post('password_pengurus')
+            );
+            $this->session->set_flashdata('messeage', 'updated');
+            $this->session->set_userdata($value);
+            redirect('Bendahara/Dashboard');
+        }
+        else {
+            $this->session->set_flashdata('pesan', 'failure');
+            redirect('Bendahara/Dashboard');
+        }
+    }
     public function logout()
     {
         $session_data = array(
-            'id_pengurus', 'nama_pengurus', 'jabatan','kondisi'
+            'id_pengurus', 'nama_pengurus', 'jabatan','username_pengurus','password_pengurus','kondisi'
         );
 
         $this->session->unset_userdata($session_data);

@@ -104,12 +104,12 @@
                                     </div>
                                     <div class="item form-group">
                                         <label for="password2" class="control-label col-md-3 col-sm-3 col-xs-12">Jenis Kelamin </label>
+                                        <?php $jk = set_value('jenis_kelamin'); ?>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <select class="form-control" name="jenis_kelamin" >
-                                                <option value="Laki-laki">Laki-laki</option>
-                                                <option value="Perempuan">Perempuan</option>
+                                                <option value="laki-laki" <?= ($jk == "laki-laki") ? 'selected' : ''; ?>>Laki-laki</option>
+                                                <option value="perempuan" <?= ($jk == "perempuan") ? 'selected' : ''; ?>>Perempuan</option>
                                             </select>
-                                            <span class="text-danger"><?php echo form_error('jenis_kelamin'); ?></span>
                                         </div>
                                     </div>
                                     <div class="ln_solid"></div>

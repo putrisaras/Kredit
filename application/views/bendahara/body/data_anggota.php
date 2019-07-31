@@ -242,7 +242,7 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="custom-control customcheckbox small">
-                                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <div class="col-md-9 col-sm-9 col-xs-12" style="padding-left: 150px;">
                                             <input type="checkbox" class="custom-control-input" id="customCheck"
                                                    onclick="showPassword();">
                                             <label class="custom-control-label" for="customCheck">Show Password</label>

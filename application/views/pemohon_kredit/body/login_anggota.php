@@ -16,7 +16,7 @@
 <div id="loginbox">
     <a><img src="<?php echo base_url(); ?>assets/production/images/koperasi.png"
             style="width: 150px; padding-left: 140px"></a>
-    <div class="control-group normal_text"><h3>Koperasi Jnana Partha</h3></div>
+    <div class="control-group normal_text"><h4> LOGIN ANGGOTA</h4><h3>KOPERASI JNANA PARTHA</h3></div>
     <form id="loginform" class="form-vertical" method="post" action="<?= base_url(); ?>Pemohon_kredit/Login/login">
 
 
@@ -39,7 +39,8 @@
             </div>
         </div>
         <div>
-           <button class="btn btn-success" type="submit" style="margin-left: 160px">Log in</button>
+           <button class="btn btn-success" type="submit" style="margin-left: 160px">Login</button>
+            <button type="reset" class="btn btn-primary">Reset</button>
         </div>
         <div class="form-actions">
         </div>

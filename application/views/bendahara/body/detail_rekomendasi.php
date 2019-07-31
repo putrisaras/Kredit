@@ -36,8 +36,7 @@
                                 <div class="x_content">
                                     <p class="text-muted font-13 m-b-30">
                                     </p>
-                                    <table id="datatable-checkbox"
-                                           class="table table-striped table-bordered bulk_action">
+                                    <table id="datatable" class="table table-striped table-bordered bulk_action">
                                         <thead>
                                         <tr>
                                             <th>Ranking</th>

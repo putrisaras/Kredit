@@ -14,4 +14,13 @@ class MPengurus_koperasi extends CI_Model
     {
         return $this->db->get_where('pengurus_koperasi', array('username_pengurus' => $username_pengurus, 'password_pengurus' => $password_pengurus));
     }
+    public function getProfilById($id_pengurus){
+        return $this->db->get_where('pengurus_koperasi', array('id_pengurus' => $id_pengurus));
+    }
+    public function update_Profil($id_pengurus, $data)
+    {
+        $this->db->where('id_pengurus', $id_pengurus);
+        $this->db->update('pengurus_koperasi', $data);
+        return $this->db->affected_rows();
+    }
 }

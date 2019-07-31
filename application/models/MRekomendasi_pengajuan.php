@@ -12,8 +12,10 @@ class MRekomendasi_pengajuan extends CI_Model{
     //bendahara
     public function read_dataRekomendasi()
     {
-        $sql = $this->db->query("SELECT * FROM rekomendasi_pengaju_kredit");
-        return $sql;
+        $this->db->select('rekomendasi_pengaju_kredit.*');
+        $this->db->from('rekomendasi_pengaju_kredit');
+        $this->db->order_by('id_rekomendasi', 'DESC');
+        return $this->db->get();
     }
     //ketua
     public function read_Rekomendasi()
@@ -21,6 +23,15 @@ class MRekomendasi_pengajuan extends CI_Model{
         $this->db->join('pengajuan_kredit', 'pengajuan_kredit.id_rekomendasi = rekomendasi_pengaju_kredit.id_rekomendasi');
         $this->db->group_by('pengajuan_kredit.id_rekomendasi');
         return $this->db->get_where('rekomendasi_pengaju_kredit', array('id_persetujuan ='=>'1'));
+    }
+    public function read_historyRekomendasi()
+    {
+        {
+            $this->db->join('pengajuan_kredit', 'pengajuan_kredit.id_rekomendasi = rekomendasi_pengaju_kredit.id_rekomendasi');
+            $this->db->group_by('pengajuan_kredit.id_rekomendasi');
+            $this->db->order_by('rekomendasi_pengaju_kredit.id_rekomendasi', 'DESC');
+            return $this->db->get_where('rekomendasi_pengaju_kredit', array('id_persetujuan > '=>'1'));
+        }
     }
     public function insertRekomendasi($id_rekomendasi){
         $date = date("Y-m-d");

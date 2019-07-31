@@ -29,7 +29,7 @@
                   </li>
                   <li><a href="http://localhost/Kredit/Ketua/Rekomendasi"><i class="fa fa-tags"></i> Rekomendasi Pengaju </a>
                   </li>
-                    <li><a href="http://localhost/Kredit/Ketua/History_persetujuan"><i class="fa fa-history"></i> History Persetujuan </a>
+                    <li><a href="http://localhost/Kredit/Ketua/Rekomendasi/v_historyPersetujuan"><i class="fa fa-history"></i> History Persetujuan </a>
                     </li>
                 </ul>
               </div>

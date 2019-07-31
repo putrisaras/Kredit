@@ -60,37 +60,37 @@ class Data_pengajuan extends CI_Controller
 //        }
 //
 //    }
-
-    public function edit_dataPengajuan($id_pengajuan)
-    {
-        $jml_kredit = $this->input->post('jml_kredit');
-        $lama_angsuran = $this->input->post('lama_angsuran');
-        $sisa_utang_di_tempat_lain = $this->input->post('sisa_utang_di_tempat_lain');
-
-        $data = array(
-            'jml_kredit' => $jml_kredit,
-            'lama_angsuran' => $lama_angsuran,
-            'sisa_utang_di_tempat_lain' => $sisa_utang_di_tempat_lain
-        );
-
-        $update = $this->pengajuan->update_dataPengajuan($id_pengajuan, $data);
-        if ($update > 0) {
-            $this->session->set_flashdata('pesan', 'updated');
-            redirect('Bendahara/Data_pengajuan');
-        }
-        else {
-            $this->session->set_flashdata('pesan', 'failure');
-            redirect('Bendahara/Data_pengajuan');
-        }
-
-    }
-
-    public function hapus_dataPengajuan()
-    {
-        $id_pengajuan = $this->input->post('id_pengajuan');
-        $this->pengajuan->delete_dataPengajuan($id_pengajuan);
-        redirect('Bendahara/Data_pengajuan');
-    }
+//
+//    public function edit_dataPengajuan($id_pengajuan)
+//    {
+//        $jml_kredit = $this->input->post('jml_kredit');
+//        $lama_angsuran = $this->input->post('lama_angsuran');
+//        $sisa_utang_di_tempat_lain = $this->input->post('sisa_utang_di_tempat_lain');
+//
+//        $data = array(
+//            'jml_kredit' => $jml_kredit,
+//            'lama_angsuran' => $lama_angsuran,
+//            'sisa_utang_di_tempat_lain' => $sisa_utang_di_tempat_lain
+//        );
+//
+//        $update = $this->pengajuan->update_dataPengajuan($id_pengajuan, $data);
+//        if ($update > 0) {
+//            $this->session->set_flashdata('pesan', 'updated');
+//            redirect('Bendahara/Data_pengajuan');
+//        }
+//        else {
+//            $this->session->set_flashdata('pesan', 'failure');
+//            redirect('Bendahara/Data_pengajuan');
+//        }
+//
+//    }
+//
+//    public function hapus_dataPengajuan()
+//    {
+//        $id_pengajuan = $this->input->post('id_pengajuan');
+//        $this->pengajuan->delete_dataPengajuan($id_pengajuan);
+//        redirect('Bendahara/Data_pengajuan');
+//    }
 
     public function hitungSPK()
     {
@@ -142,7 +142,7 @@ class Data_pengajuan extends CI_Controller
 
             }
             if ($update > 0) {
-                redirect(base_url() . "Bendahara/Data_spk/index");
+                redirect(base_url() . "Bendahara/Data_ranking/index");
             } else {
 
             }

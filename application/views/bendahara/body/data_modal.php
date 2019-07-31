@@ -53,6 +53,8 @@
                   <div class="x_content">
                     <p class="text-muted font-13 m-b-30">
                     </p>
+<!--                      <a href="--><?php //echo base_url(); ?><!--Bendahara/Data_modal/export/"><button type="button" class="btn btn-success"><i class="fa fa-file-excel-o">  Excel</i>-->
+<!--                          </button></a>-->
                       <table id="datatable" class="table table-striped table-bordered">
                           <thead>
                           <tr>

@@ -117,7 +117,7 @@
                             <div class="x_content">
                                 <br/>
                                 <form class="form-horizontal form-label-left"
-                                      action="<?php echo base_url(); ?>/Pemohon_kredit/My_profil/edit_Profil/<?php echo $id_anggota; ?>"
+                                      action="<?php echo base_url(); ?>/Pemohon_kredit/Dashboard/edit_Profil/<?php echo $id_anggota; ?>"
                                       method="post">
 
                                     <div class="form-group">
@@ -137,8 +137,17 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Password</label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
-                                            <input type="password" class="form-control" name="password_anggota"
+                                            <input id="password" type="password" class="form-control" name="password_anggota"
                                                    value="<?php echo $password_anggota; ?>" placeholder="Password">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="custom-control customcheckbox small">
+                                            <div class="col-md-9 col-sm-9 col-xs-12" style="padding-left: 150px;">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck"
+                                                       onclick="showPassword();">
+                                                <label class="custom-control-label" for="customCheck">Show Password</label>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -189,7 +198,7 @@
                     </div>
                 </div>
             <?php endforeach; ?>
-            <!-- /top tiles -->
+<!--             /top tiles -->
 
             <div class="row">
 

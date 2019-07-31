@@ -28,6 +28,7 @@ class Dashboard extends CI_Controller{
             redirect(base_url() . 'Login_pengurus/index');
         }
     }
+
 }
 
 ?>

@@ -14,6 +14,7 @@ class MSpk extends CI_Model{
     {
         $this->db->join('pengajuan_kredit', 'pengajuan_kredit.id_spk = spk.id_spk');
         $this->db->group_by('pengajuan_kredit.id_spk');
+        $this->db->order_by('spk.id_spk', 'DESC');
         return $this->db->get_where('spk', array('id_rekomendasi >'=>'0'));
     }
     public function read_dataSpk()

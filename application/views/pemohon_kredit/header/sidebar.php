@@ -26,7 +26,7 @@
                 <ul class="nav side-menu">
                   <li><a href="http://localhost/Kredit/Pemohon_kredit/Dashboard"><i class="fa fa-home"></i> Home </a>
                   </li>
-                  <li><a href="http://localhost/Kredit/Pemohon_kredit/My_profil"><i class="fa fa-book"></i> My Profil </a>
+                  <li><a href="http://localhost/Kredit/Pemohon_kredit/Dashboard/v_profil"><i class="fa fa-book"></i> My Profil </a>
                   </li>
                   <li><a href="http://localhost/Kredit/Pemohon_kredit/Pengajuan_kredit"><i class="fa fa-sign-in"></i> Pengajuan Kredit </a>
                   </li>

@@ -55,7 +55,7 @@
                                                 <td><?php echo $data['id_rekomendasi']; ?></td>
                                                 <td><?php echo $data['keterangan_rekomen']; ?></td>
                                                 <td>
-                                                    <a href="<?php echo base_url(); ?>Ketua/History_persetujuan/v_detailPersetujuan/<?= $data['id_rekomendasi']; ?>"><button type="button" class="btn btn-round btn-primary" data-toggle="modal"
+                                                    <a href="<?php echo base_url(); ?>Ketua/Rekomendasi/v_detailPersetujuan/<?= $data['id_rekomendasi']; ?>"><button type="button" class="btn btn-round btn-primary" data-toggle="modal"
                                                                                                                                                                          data-target="#" ><i class="fa fa-file-text-o">    Detail</i>
                                                         </button></a>
                                                 </td>

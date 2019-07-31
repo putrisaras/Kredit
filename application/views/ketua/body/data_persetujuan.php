@@ -43,7 +43,7 @@
                                                 class="btn btn-success btn-lg hidden"><i class="fa fa-plus-square"> Buat
                                                 persetujuan</i></button>
 
-                                        <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">
+                                        <table id="checkbox" class="table table-striped table-bordered bulk_action">
                                             <thead>
                                             <tr>
                                                 <th>Pilih data yang disetujui</th>

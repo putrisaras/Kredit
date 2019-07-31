@@ -19,6 +19,7 @@ class Pengajuan_kredit extends CI_Controller{
     public function index()
     {
         if ($this->session->userdata('kondisi') == 'Berhasil Login') {
+            $this->pengajuan->refresh_anggota();
             $data['halaman'] = "pengajuan_kredit";
             $data['pengajuan_kredit'] = $this->pengajuan->getPengajuanById($this->session->userdata('id_anggota'));
             $data['jumlah'] = $this->pengajuan->fetchPengajuan($this->session->userdata('id_anggota'))->num_rows();
@@ -41,7 +42,8 @@ class Pengajuan_kredit extends CI_Controller{
             'lama_angsuran' =>$lama_angsuran,
             'sisa_utang_di_tempat_lain' =>$sisa_utang_di_tempat_lain,
             'id_kelayakan' =>"1",
-            'id_pengurus' => "2"
+            'id_pengurus' => "2",
+            'notif_persetujuan' => "1"
         );
         $insert = $this->pengajuan->tambahPengajuan($data);
         if ($insert > 0){
@@ -80,6 +82,10 @@ class Pengajuan_kredit extends CI_Controller{
         $id_pengajuan = $this->input->post('id_pengajuan');
         $this->pengajuan->delete_dataPengajuan($id_pengajuan);
         redirect('Pemohon_kredit/Pengajuan_kredit');
+    }
+    public function notif_anggota (){
+        $notif_anggota = $this->pengajuan->notif_anggota();
+        echo json_encode($notif_anggota);
     }
 }
 

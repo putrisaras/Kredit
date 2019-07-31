@@ -11,7 +11,9 @@
     </style>
 </head>
 <body>
-<center><h2>LAPORAN PERSETUJUAN PENGAJUAN KREDIT</h2></center><br><br>
+<center><h2>LAPORAN PERSETUJUAN PENGAJUAN KREDIT <br> KOPERASI JNANA PARTHA</h2></center>
+<center><h2></h2></center>
+<br><br>
 <table style="width:100%">
     <thead>
     <tr>
@@ -32,7 +34,7 @@
         <tr>
             <td><?= $no++; ?></td>
             <td align="center"><?= $item->id_pengajuan; ?></td>
-            <td ><?= $item->nama_anggota; ?></td>
+            <td><?= $item->nama_anggota; ?></td>
             <td align="center"><?= "Rp. " . number_format($item->jml_kredit, 0, ".", "."); ?></td>
             <td align="center"><?= $item->lama_angsuran; ?></td>
             <td align="center"><?= "Rp. " . number_format($item->sisa_utang_di_tempat_lain, 0, ".", "."); ?></td>
@@ -42,9 +44,9 @@
     </tbody>
 </table>
 <table>
-<label class="align-right"> <br><br><br>Drs Made Sudarta</label>
-<label> <br>Ketua,</label>
-<label> <br><br><br>Tejakula,</label>
+    <label class="align-right"> <br><br><br>Drs Made Sudarta</label>
+    <label> <br>Ketua,</label>
+    <label> <br><br><br>Tejakula,</label>
 </table>
 </body>
 </html>

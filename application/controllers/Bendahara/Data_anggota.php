@@ -32,6 +32,7 @@ class Data_anggota extends CI_Controller{
         $this->form_validation->set_rules('jml_gaji','Jumlah Gaji','trim|required');
         $this->form_validation->set_rules('alamat','Alamat','trim|required');
         $this->form_validation->set_rules('no_telp', 'No. Telp', 'trim|required');
+        $this->form_validation->set_rules('jenis_kelamin', 'Jenis kelamin', 'trim|required');
 
         if ($this->form_validation->run()){
             $data = array(
@@ -45,7 +46,7 @@ class Data_anggota extends CI_Controller{
             );
             $this->tambah_dataAnggota($data);
         } else {
-            $this->index();
+            $this->form_view();
         }
     }
     public function tambah_dataAnggota()

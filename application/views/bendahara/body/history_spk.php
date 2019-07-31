@@ -28,7 +28,7 @@
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2 style="height: 25px;">History Pengambilan Keputusan</h2>
+                                    <h2 style="height: 25px;">History Perankingan</h2>
                                     <ul class="nav navbar-right panel_toolbox">
                                     </ul>
                                     <div class="clearfix"></div>
@@ -40,8 +40,8 @@
                                         <thead>
                                         <tr>
                                             <th>No.</th>
-                                            <th>Id SPK</th>
-                                            <th>Tanggal SPK</th>
+                                            <th>Id Perankingan</th>
+                                            <th>Tanggal Perankingan</th>
                                             <th>Action</th>
                                         </tr>
                                         </thead>
@@ -55,7 +55,7 @@
                                                 <td><?php echo $data['id_spk']; ?></td>
                                                 <td><?php echo $data['keterangan_spk']; ?></td>
                                                 <td>
-                                                    <a href="<?php echo base_url(); ?>Bendahara/History_spk/v_historyRanking/<?= $data['id_spk']; ?>"><button type="button" class="btn btn-round btn-primary" data-toggle="modal"
+                                                    <a href="<?php echo base_url(); ?>Bendahara/Data_ranking/v_historyRanking/<?= $data['id_spk']; ?>"><button type="button" class="btn btn-round btn-primary" data-toggle="modal"
                                                                                                                                                      data-target="#" ><i class="fa fa-file-text-o">    Detail</i>
                                                         </button></a>
                                                 </td>

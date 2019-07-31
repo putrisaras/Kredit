@@ -55,16 +55,16 @@
                                                 <td><?php echo $data['id_rekomendasi']; ?></td>
                                                 <td><?php echo $data['keterangan_rekomen']; ?></td>
                                                 <td>
-                                                    <a href="<?php echo base_url(); ?>Bendahara/Data_rekomendasi/v_detailRekomendasi/<?= $data['id_rekomendasi']; ?>">
+                                                    <a href="<?php echo base_url(); ?>Bendahara/Data_ranking/v_detailRekomendasi/<?= $data['id_rekomendasi']; ?>">
                                                         <button type="button" class="btn btn-round btn-primary"
                                                                 data-toggle="modal"
                                                                 data-target="#"><i class="fa fa-file-text-o"> Detail</i>
                                                         </button>
                                                     </a>
-                                                    <a href="<?= base_url(); ?>Bendahara/Data_rekomendasi/pdfGenerate/<?= $data['id_rekomendasi']; ?>">
+                                                    <a href="<?= base_url(); ?>Bendahara/Data_ranking/pdfGenerate/<?= $data['id_rekomendasi']; ?>">
                                                         <button type="button" class="btn btn-round btn-warning"
                                                                 data-toggle="modal"
-                                                                data-target="#"><i class="fa fa-download"> Download Laporan</i>
+                                                                data-target="#"><i class="fa fa-print"> Cetak</i>
                                                         </button>
                                                     </a>
                                                 </td>

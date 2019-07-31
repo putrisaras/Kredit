@@ -14,6 +14,7 @@ class Rekomendasi extends CI_Controller{
     {
         parent::__construct();
         $this->load->model('MRekomendasi_pengajuan');
+        $this->load->model('MStatus_persetujuan');
         $this->load->model('MAnggota', 'anggota');
         $this->load->model('MPengajuan_kredit', 'pengajuan');
     }
@@ -46,6 +47,7 @@ class Rekomendasi extends CI_Controller{
         foreach ($data as $d) {
             $data = array(
                 'id_persetujuan' => $id_persetujuan,
+                'notif_persetujuan' => "0"
             );
 
             if ($d->status) {
@@ -58,7 +60,7 @@ class Rekomendasi extends CI_Controller{
             $this->pengajuan->updateDataPengajuan($d->id, $data);
         }
 
-        redirect(base_url() . "Ketua/History_persetujuan/index");
+        redirect(base_url() . "Ketua/Rekomendasi/v_historyPersetujuan");
     }
     public function tampildata()
     {
@@ -80,6 +82,25 @@ class Rekomendasi extends CI_Controller{
     public function notif_setuju (){
         $notif_setuju = $this->MRekomendasi_pengajuan->notif_setuju();
         echo json_encode($notif_setuju);
+    }
+
+    public function v_historyPersetujuan(){
+        if ($this->session->userdata('kondisi') == 'Berhasil Login') {
+            $rekomendasi_pengaju_kredit['sql1'] = $this->MRekomendasi_pengajuan->read_historyRekomendasi();
+            $this->load->view('ketua/body/history_persetujuan',$rekomendasi_pengaju_kredit);
+        } else {
+            redirect(base_url() . 'Login_pengurus/index');
+        }
+    }
+    public function v_detailPersetujuan($id_rekomendasi)
+    {
+        if ($this->session->userdata('kondisi') == 'Berhasil Login') {
+            $data['pengajuan_kredit'] = $this->pengajuan->getHitoryPersetujuan($id_rekomendasi);
+            $data['anggota'] = $this->anggota->read_dataAnggota();
+            $this->load->view('ketua/body/detail_persetujuan', $data);
+        } else {
+            redirect(base_url() . 'Login_pengurus/index');
+        }
     }
 }
 

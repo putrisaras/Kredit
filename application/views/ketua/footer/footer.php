@@ -1,3 +1,79 @@
+
+    <div class="modal fade" id="editKetua" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Form Edit Profil</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <button class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <br/>
+                    <form class="form-horizontal form-label-left"  method="post"
+                          action="<?php echo base_url(); ?>Login_pengurus/edit_Profil/">
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Id Pengurus</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <input type="text" class="form-control" name="id_pengurus"
+                                       value="<?= $this->session->userdata('id_pengurus'); ?>" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Nama Pengurus</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <input type="text" class="form-control" name="nama_pengurus"
+                                       value="<?= $this->session->userdata('nama_pengurus'); ?>" >
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Jabatan</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <input type="text" class="form-control" name="jabatan"
+                                       value="<?= $this->session->userdata('jabatan'); ?>" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Username</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <input type="text" class="form-control" name="username_pengurus"
+                                       value="<?= $this->session->userdata('username_pengurus'); ?>">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Password</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <input type="password" class="form-control" name="password_pengurus" id="password"
+                                       value="<?= $this->session->userdata('password_pengurus'); ?>">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="custom-control customcheckbox small">
+                                <div class="col-md-9 col-sm-9 col-xs-12" style="padding-left: 150px;">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck"
+                                           onclick="showPassword();">
+                                    <label class="custom-control-label" for="customCheck">Show Password</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ln_solid"></div>
+                        <div class="form-group">
+                            <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                <button class="btn btn-primary" data-dismiss="modal">Batal</button>
+                                <button type="submit" class="btn btn-success">Simpan</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -88,4 +164,38 @@
     <script src="<?php echo base_url();?>assets/vendors/starrr/dist/starrr.js"></script>
     <!-- Custom Theme Scripts -->
     <script src="<?php echo base_url();?>assets/build/js/custom.min.js"></script>
-	
+    <script type="text/javascript">
+
+        function showPassword() {
+            var x = document.getElementById("password");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+
+        var flashdata = $('.flash').data('flashdata');
+        if (flashdata === "berhasil") {
+            Swal.fire({
+                title: 'Success',
+                text: 'Data Berhasil Di Tambahkan',
+                fontSize: '5000px',
+                type: 'success'
+            });
+        } else if (flashdata === "updated") {
+            Swal.fire({
+                title: 'Success',
+                text: 'Data Berhasil Di Update',
+                fontSize: '5000px',
+                type: 'success'
+            });
+        } else if (flashdata === "failure") {
+            Swal.fire({
+                title: 'Failure',
+                text: 'Data Gagal Di Update',
+                fontSize: '5000px',
+                type: 'error'
+            });
+        }
+    </script>
