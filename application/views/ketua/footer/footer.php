@@ -39,6 +39,13 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Email</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <input type="email" class="form-control" name="email_pengurus"
+                                       value="<?= $this->session->userdata('email_pengurus'); ?>" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Username</label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
                                 <input type="text" class="form-control" name="username_pengurus"
@@ -65,7 +72,7 @@
                         <div class="form-group">
                             <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
                                 <button class="btn btn-primary" data-dismiss="modal">Batal</button>
-                                <button type="submit" class="btn btn-success">Simpan</button>
+                                <button type="submit" class="btn btn-success">Simpan perubahan</button>
                             </div>
                         </div>
                     </form>
@@ -78,10 +85,10 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Anda yakin keluar?</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
+                <h5 class="modal-title" id="exampleModalLabel">Anda yakin keluar?</h5>
             </div>
             <div class="modal-body">Tekan "logout" jika anda ingin keluar dari halaman ini</div>
             <div class="modal-footer">

@@ -2,15 +2,15 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Anda yakin keluar?</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
+                <h5 class="modal-title" id="exampleModalLabel">Anda yakin keluar?</h5>
             </div>
             <div class="modal-body">Tekan "logout" jika anda ingin keluar dari halaman ini</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="<?= base_url();?>pemohon_kredit/Login/logout">Logout</a>
+                <a class="btn btn-primary" href="<?= base_url();?>pemohon_kredit/Login/logout_anggota">Logout</a>
             </div>
         </div>
     </div>
@@ -150,7 +150,7 @@
         var id_pengajuan = $(this).data('id');
         console.log(id_pengajuan);
         Swal.fire({
-            title: 'Are Anda yakin?',
+            title: 'Apa Anda yakin?',
             text: "Apakah anda ingin menghapus data ini?",
             type: 'warning',
             showCancelButton: true,

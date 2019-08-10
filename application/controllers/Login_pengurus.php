@@ -19,8 +19,10 @@ class Login_pengurus extends CI_Controller
 
     public function index()
     {
-        if ($this->session->userdata('kondisi') == "Berhasil Login") {
+        if ($this->session->userdata('level') == '2') {
             redirect(base_url() . "bendahara/dashboard/index");
+        } else if ($this->session->userdata('level') == '1') {
+            redirect(base_url(). "ketua/dashboard/index");
         } else {
             $data['halaman'] = "login";
             $this->load->view('login_pengurus', $data);
@@ -48,6 +50,7 @@ class Login_pengurus extends CI_Controller
                         'username_pengurus' => $data->username_pengurus,
                         'password_pengurus' => $data->password_pengurus,
                         'jabatan' => $data->jabatan,
+                        'email_pengurus' => $data->email_pengurus,
                         'Level' => $level,
                         'kondisi' => $status
                     );
@@ -61,6 +64,7 @@ class Login_pengurus extends CI_Controller
                         'username_pengurus' => $data->username_pengurus,
                         'password_pengurus' => $data->password_pengurus,
                         'jabatan' => $data->jabatan,
+                        'email_pengurus' => $data->email_pengurus,
                         'Level' => $level,
                         'kondisi' => $status
                     );
@@ -82,6 +86,7 @@ class Login_pengurus extends CI_Controller
         $data = array(
             'nama_pengurus' => $this->input->post('nama_pengurus'),
             'jabatan' => $this->input->post('jabatan'),
+            'email_pengurus' => $this->input->post('email_pengurus'),
             'username_pengurus' => $this->input->post('username_pengurus'),
             'password_pengurus'=> $this->input->post('password_pengurus')
         );
@@ -92,6 +97,7 @@ class Login_pengurus extends CI_Controller
                 'id_pengurus' => $id_pengurus,
                 'nama_pengurus' => $this->input->post('nama_pengurus'),
                 'jabatan' => $this->input->post('jabatan'),
+                'email_pengurus' => $this->input->post('email_pengurus'),
                 'username_pengurus' => $this->input->post('username_pengurus'),
                 'password_pengurus'=> $this->input->post('password_pengurus')
             );
@@ -111,6 +117,7 @@ class Login_pengurus extends CI_Controller
         $data = array(
             'nama_pengurus' => $this->input->post('nama_pengurus'),
             'jabatan' => $this->input->post('jabatan'),
+            'email_pengurus' => $this->input->post('email_pengurus'),
             'username_pengurus' => $this->input->post('username_pengurus'),
             'password_pengurus'=> $this->input->post('password_pengurus')
         );
@@ -121,6 +128,7 @@ class Login_pengurus extends CI_Controller
                 'id_pengurus' => $id_pengurus,
                 'nama_pengurus' => $this->input->post('nama_pengurus'),
                 'jabatan' => $this->input->post('jabatan'),
+                'email_pengurus' => $this->input->post('email_pengurus'),
                 'username_pengurus' => $this->input->post('username_pengurus'),
                 'password_pengurus'=> $this->input->post('password_pengurus')
             );
@@ -136,7 +144,7 @@ class Login_pengurus extends CI_Controller
     public function logout()
     {
         $session_data = array(
-            'id_pengurus', 'nama_pengurus', 'jabatan','username_pengurus','password_pengurus','kondisi'
+            'id_pengurus', 'nama_pengurus', 'jabatan','email_pengurus','username_pengurus','password_pengurus','kondisi'
         );
 
         $this->session->unset_userdata($session_data);

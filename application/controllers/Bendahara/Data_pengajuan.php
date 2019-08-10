@@ -22,7 +22,7 @@ class Data_pengajuan extends CI_Controller
 
     public function index()
     {
-        if ($this->session->userdata('kondisi') == 'Berhasil Login') {
+        if ($this->session->userdata('kondisi') == 'Berhasil Login' && $this->session->userdata('Level') == 2) {
             $this->pengajuan->refresh();
             $data['pengajuan_kredit'] = $this->pengajuan->getPengajuan();
             $anngota = $this->anggota->fetchAnggota();
@@ -94,11 +94,14 @@ class Data_pengajuan extends CI_Controller
 
     public function hitungSPK()
     {
-        $pengajuanKredit = $this->pengajuan->getAllPengajuan();
-        $nilaiMaxMin = $this->pengajuan->getPengajuanKredit();
+
         $insertId =date("YmdHis");
         $insert = $this->MSpk->insertDataSPK($insertId);
         if ($insert > 0) {
+            $nilaiMaxMin = $this->pengajuan->getPengajuanKredit($insertId);
+            var_dump($nilaiMaxMin->result());
+            $pengajuanKredit = $this->pengajuan->getAllPengajuan();
+
             foreach ($pengajuanKredit->result() as $item) {
                 foreach ($nilaiMaxMin->result() as $data) {
                     $jml_modal = $data->jml_modal;
@@ -146,6 +149,7 @@ class Data_pengajuan extends CI_Controller
             } else {
 
             }
+
         } else {
             redirect(base_url() . "Bendahara/Data_Pengajuan/index");
         }

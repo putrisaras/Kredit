@@ -18,8 +18,8 @@ class Pengajuan_kredit extends CI_Controller{
     }
     public function index()
     {
-        if ($this->session->userdata('kondisi') == 'Berhasil Login') {
-            $this->pengajuan->refresh_anggota();
+        if ($this->session->userdata('kondisi') == 'Berhasil Login Anggota') {
+            $this->pengajuan->refresh_anggota($this->session->userdata('id_anggota'));
             $data['halaman'] = "pengajuan_kredit";
             $data['pengajuan_kredit'] = $this->pengajuan->getPengajuanById($this->session->userdata('id_anggota'));
             $data['jumlah'] = $this->pengajuan->fetchPengajuan($this->session->userdata('id_anggota'))->num_rows();
@@ -30,6 +30,10 @@ class Pengajuan_kredit extends CI_Controller{
     }
     public function tambah_Pengajuan()
     {
+        $data   = $this->pengajuan->cariPengurus($this->session->userdata('id_pengurus'));
+        $result = $data->result();
+        $email_pengurus = $result[0]->email_pengurus;
+
         $id_anggota = $this->session->userdata('id_anggota');
         $tgl_pengajuan= $this->input->post('tgl_pengajuan');
         $jml_kredit= $this->input->post('jml_kredit');
@@ -46,6 +50,20 @@ class Pengajuan_kredit extends CI_Controller{
             'notif_persetujuan' => "1"
         );
         $insert = $this->pengajuan->tambahPengajuan($data);
+        $this->load->library('email');
+        $config = array();
+        $config['protocol'] = 'smtp';
+        $config['smtp_host'] = 'smtp.hostinger.co.id';
+        $config['smtp_user'] = 'tugasakhir.mi@rishamitha.com';
+        $config['smtp_pass'] = 'Jsli6iiZTXk3';
+        $config['smtp_port'] = 587;
+        $this->email->initialize($config);
+
+        $this->email->from('tugasakhir.mi@rishamitha.com', 'Koperasi Jnana Partha');
+        $this->email->to($email_pengurus);
+        $this->email->subject('Halo ada pengajuan kredit baru');
+        $this->email->message('Silahkan cek website Koperasi Jnana Partha untuk melihat pengajuan kredit baru');
+        $this->email->send(FALSE);
         if ($insert > 0){
             $this->session->set_flashdata('pesan', 'berhasil');
             redirect(base_url() . "Pemohon_kredit/Pengajuan_kredit/index");
@@ -84,7 +102,8 @@ class Pengajuan_kredit extends CI_Controller{
         redirect('Pemohon_kredit/Pengajuan_kredit');
     }
     public function notif_anggota (){
-        $notif_anggota = $this->pengajuan->notif_anggota();
+        $id_anggota = $this->session->userdata('id_anggota');
+        $notif_anggota = $this->pengajuan->notif_anggota($id_anggota);
         echo json_encode($notif_anggota);
     }
 }

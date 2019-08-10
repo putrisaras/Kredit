@@ -17,9 +17,9 @@ class Data_anggota extends CI_Controller{
     }
 
     public function index(){
-        if ($this->session->userdata('kondisi') == 'Berhasil Login') {
-        $anggota['sql1'] = $this->MAnggota->read_dataAnggota();
-        $this->load->view('bendahara/body/data_anggota', $anggota);
+        if ($this->session->userdata('kondisi') == 'Berhasil Login' && $this->session->userdata('Level') == 2) {
+            $anggota['sql1'] = $this->MAnggota->read_dataAnggota();
+            $this->load->view('bendahara/body/data_anggota', $anggota);
         } else {
             redirect(base_url() . 'Login_pengurus/index');
         }
@@ -60,7 +60,8 @@ class Data_anggota extends CI_Controller{
             'alamat'  => $this->input->post('alamat'),
             'no_telp'=> $this->input->post('no_telp'),
             'jml_modal' => '150000',
-            'jenis_kelamin'  => $this->input->post('jenis_kelamin')
+            'jenis_kelamin'  => $this->input->post('jenis_kelamin'),
+             'email_anggota'  => $this->input->post('email_anggota')
         );
 
         $insert = $this->MAnggota->create_dataAnggota($data);
@@ -81,6 +82,7 @@ class Data_anggota extends CI_Controller{
         $alamat = $this->input->post('alamat');
         $no_telp = $this->input->post('no_telp');
         $jenis_kelamin = $this->input->post('jenis_kelamin');
+        $email_anggota = $this->input->post('email_anggota');
 
         $data = array(
             'nama_anggota'=> $nama_anggota,
@@ -88,7 +90,8 @@ class Data_anggota extends CI_Controller{
             'password_anggota'=> $password_anggota,
             'alamat'  => $alamat,
             'no_telp'=> $no_telp,
-            'jenis_kelamin'  => $jenis_kelamin
+            'jenis_kelamin'  => $jenis_kelamin,
+            'email_anggota'=> $email_anggota
         );
 
         $update = $this->MAnggota->update_dataAnggota( $id_anggota, $data);
@@ -111,7 +114,7 @@ class Data_anggota extends CI_Controller{
 
 
     public function form_view(){
-        if ($this->session->userdata('kondisi') == 'Berhasil Login') {
+        if ($this->session->userdata('kondisi') == 'Berhasil Login' && $this->session->userdata('Level') == 2) {
             $this->load->view('bendahara/body/daftar_anggota');
         } else {
             redirect(base_url() . 'Login_pengurus/index');

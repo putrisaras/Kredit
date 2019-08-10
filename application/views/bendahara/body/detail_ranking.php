@@ -36,12 +36,8 @@
                                 <div class="x_content">
                                     <p class="text-muted font-13 m-b-30">
                                     </p>
-                                    <form action="<?php echo base_url(); ?>Bendahara/Data_ranking/updateRekomendasi"
-                                          method="post">
-                                        <input type="hidden" name="ids" id="input-rekomendasi">
-                                        <button type="submit" id="btn-rekomendasi"
-                                                class="btn btn-success btn-lg hidden"><i class="fa fa-plus-square"> Buat
-                                                Rekomendasi</i></button>
+                                    <button type="button" data-toggle="modal" data-target="#modal-ranking" id="btn-rekomendasi" class="btn btn-success btn-lg hidden"><i class="fa fa-plus-square"> Buat
+                                        Rekomendasi</i></button>
 
                                         <table class="table table-striped table-bordered bulk_action">
                                             <thead>
@@ -70,6 +66,8 @@
                                                                name="rekomendasi[]"
                                                                value="<?php echo $data['id_pengajuan']; ?>"
                                                                data-rank="<?= $ranking; ?>">
+
+                                                        <input type="hidden" id="id-anggota-<?php echo $data['id_pengajuan'] ?>" value="<?php echo $data['id_anggota'] ?>">
                                                     </td>
                                                     <td id="ranking-<?php echo $data['id_pengajuan'] ?>"
                                                         data-rank="<?php echo $ranking ?>">
@@ -108,7 +106,6 @@
                                             ?>
                                             </tbody>
                                         </table>
-                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -118,6 +115,28 @@
 
             <!-- /top tiles -->
             <div class="row"></div>
+        </div>
+        <div class="modal fade" id="modal-ranking" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <h5 class="modal-title" id="exampleModalLabel">Buat Rekomendasi?</h5>
+                    </div>
+                    <div class="modal-body">Apakah anda yakin membuat rekomendasi?</div>
+                    <div class="modal-footer">
+                        <form action="<?php echo base_url(); ?>Bendahara/Data_ranking/updateRekomendasi"
+                              method="post">
+                            <input type="text" name="ids" id="input-rekomendasi" hidden>
+                            <button type="submit" class="btn btn-primary">Ya, buat rekomendasi</button>
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <?php $this->load->view('bendahara/footer/footer') ?>
@@ -142,6 +161,7 @@
                     data[i] = {
                         id: checkboxes[i].value,
                         rank: $('#ranking-' + checkboxes[i].value).data('rank'),
+                        anggota: $('#id-anggota-' + checkboxes[i].value).val(),
                         status: checkboxes[i].checked,
                     };
                 }

@@ -61,6 +61,7 @@ class MPengajuan_kredit extends CI_Model
         }
         return $this->db->get();
     }
+
     public function getPengajuanById($id_anggota)
     {
         $this->db->select('pengajuan_kredit.*, status_persetujuan.*, anggota.*');
@@ -76,7 +77,7 @@ class MPengajuan_kredit extends CI_Model
         return $this->db->get();
     }
 
-      //BENDAHARA
+    //BENDAHARA
     public function getAllRekomendasi($id_rekomendasi)
     {
         $this->db->select('pengajuan_kredit.*,  anggota.*, status_kelayakan.*, status_persetujuan.*, rekomendasi_pengaju_kredit.*');
@@ -95,6 +96,7 @@ class MPengajuan_kredit extends CI_Model
         return $this->db->get();
 
     }
+
     //Ketua
     public function getHitoryPersetujuan($id_rekomendasi)
     {
@@ -143,9 +145,9 @@ class MPengajuan_kredit extends CI_Model
         $this->db->select_max('anggota.jml_gaji', 'jml_gaji');
         $this->db->select_min('anggota.sisa_utang_di_koperasi', 'sisa_utangKoprasi');
         $this->db->select_min('sisa_utang_di_tempat_lain', 'sisa_utang');
-        $this->db->from('pengajuan_kredit');
         $this->db->join('anggota', 'pengajuan_kredit.id_anggota = anggota.id_anggota');
-        return $this->db->get();
+        return $this->db->get_where('pengajuan_kredit', array('pengajuan_kredit.id_spk' => ""));
+
     }
 //    //Add pengajuan bendahara
 //    public function tambah_dataPengajuan($data)
@@ -192,38 +194,97 @@ class MPengajuan_kredit extends CI_Model
     {
         $where = "id_persetujuan < 2";
         $this->db->order_by('id_pengajuan', 'DESC');
-        $this->db->where('id_anggota',$id_anggota);
+        $this->db->where('id_anggota', $id_anggota);
         $this->db->where($where);
         $this->db->limit(1);
         return $this->db->get('pengajuan_kredit');
     }
-    public function notif(){
+
+    public function notif()
+    {
         $this->db->where('notif', '0');
         return $this->db->count_all_results('pengajuan_kredit');
     }
 
-    public function refresh(){
-        $this->db->where('notif','0');
-        $this->db->set('notif','1');
+    public function refresh()
+    {
+        $this->db->where('notif', '0');
+        $this->db->set('notif', '1');
         return $this->db->update('pengajuan_kredit');
     }
-    public function notif_persetujuan(){
+
+    public function notif_persetujuan()
+    {
         $this->db->where('notif_persetujuan', '0');
+        $this->db->group_by('id_rekomendasi');
         return $this->db->count_all_results('pengajuan_kredit');
     }
 
-    public function refresh_persetujuan(){
-        $this->db->where('notif_persetujuan','0');
-        $this->db->set('notif_persetujuan','1');
+    public function refresh_persetujuan()
+    {
+        $this->db->where('notif_persetujuan', '0');
+        $this->db->set('notif_persetujuan', '1');
         return $this->db->update('pengajuan_kredit');
     }
-    public function notif_anggota(){
+
+    public function notif_anggota($id_anggota)
+    {
         $this->db->where('notif_anggota', '0');
+        $this->db->where('id_anggota', $id_anggota);
         return $this->db->count_all_results('pengajuan_kredit');
     }
-    public function refresh_anggota(){
-        $this->db->where('notif_anggota','0');
-        $this->db->set('notif_anggota','1');
+
+    public function refresh_anggota($id_anggota)
+    {
+        $this->db->where('notif_anggota', '0');
+        $this->db->where('id_anggota', $id_anggota);
+        $this->db->set('notif_anggota', '1');
         return $this->db->update('pengajuan_kredit');
+    }
+
+    public function cariPengurus()
+    {
+        $this->db->select('pengurus_koperasi.*');
+        $this->db->from('pengurus_koperasi');
+        $this->db->where('id_pengurus', '2');
+        return $this->db->get();
+    }
+    public function cariKetua()
+    {
+        $this->db->select('pengurus_koperasi.*');
+        $this->db->from('pengurus_koperasi');
+        $this->db->where('id_pengurus', '1');
+        return $this->db->get();
+    }
+    public function cariAnggota($d)
+    {
+        $this->db->select('anggota.*');
+        $this->db->from('anggota');
+        $this->db->where('id_anggota',  $d);
+        return $this->db->get();
+    }
+    public function emailBendahara()
+    {
+        $this->db->select('pengurus_koperasi.*');
+        $this->db->from('pengurus_koperasi');
+        $this->db->where('id_pengurus', '2');
+        return $this->db->get();
+    }
+    public function emailAnggota($d)
+    {
+        $this->db->select('anggota.*');
+        $this->db->from('anggota');
+        $this->db->where('id_anggota',  $d);
+        return $this->db->get();
+    }
+
+    public function getPengajuanKreditByAnggota($id_anggota){
+        $this->db->select('jml_kredit, lama_angsuran');
+        return $this->db->get_where('pengajuan_kredit', array('id_anggota' => $id_anggota, 'id_persetujuan' => '1'));
+    }
+
+    public function jumlahkanTotalPinjaman($kredit, $angsuran, $id_anggota){
+        $query = "Update anggota Set sisa_utang_di_koperasi = (sisa_utang_di_koperasi + '$kredit'), total_lama_angsuran = (total_lama_angsuran + '$angsuran') where id_anggota = '$id_anggota'";
+        $this->db->query($query);
     }
 }

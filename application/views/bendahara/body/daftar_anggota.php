@@ -103,6 +103,15 @@
                                         </div>
                                     </div>
                                     <div class="item form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="email" class="form-control" id="email_anggota"
+                                                   name="email_anggota" placeholder="Email" value="<?php echo set_value('email_anggota'); ?>">
+                                            <span class="text-danger"><?php echo form_error('email_anggota'); ?></span>
+                                        </div>
+                                    </div>
+                                    <div class="item form-group">
                                         <label for="password2" class="control-label col-md-3 col-sm-3 col-xs-12">Jenis Kelamin </label>
                                         <?php $jk = set_value('jenis_kelamin'); ?>
                                         <div class="col-md-6 col-sm-6 col-xs-12">

@@ -19,14 +19,14 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Id Pengurus</label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
                             <input type="text" class="form-control" name="id_pengurus"
-                                   value="<?= $this->session->userdata('id_pengurus'); ?>">
+                                   value="<?= $this->session->userdata('id_pengurus'); ?>" readonly>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Nama Pengurus</label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
                             <input type="text" class="form-control" name="nama_pengurus"
-                                   value="<?= $this->session->userdata('nama_pengurus'); ?>" >
+                                   value="<?= $this->session->userdata('nama_pengurus'); ?>" required >
                         </div>
                     </div>
 
@@ -34,28 +34,35 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Jabatan</label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
                             <input type="text" class="form-control" name="jabatan"
-                                   value="<?= $this->session->userdata('jabatan'); ?>">
+                                   value="<?= $this->session->userdata('jabatan'); ?>" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Email</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            <input type="email" class="form-control" name="email_pengurus"
+                                   value="<?= $this->session->userdata('email_pengurus'); ?>" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Username</label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
                             <input type="text" class="form-control" name="username_pengurus"
-                                   value="<?= $this->session->userdata('username_pengurus'); ?>">
+                                   value="<?= $this->session->userdata('username_pengurus'); ?>" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Password</label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="password" class="form-control" name="password_pengurus" id="password"
-                                   value="<?= $this->session->userdata('password_pengurus'); ?>">
+                            <input type="password" class="form-control" name="password_pengurus" id="password_pengurus"
+                                   value="<?= $this->session->userdata('password_pengurus'); ?>" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="custom-control customcheckbox small">
                             <div class="col-md-9 col-sm-9 col-xs-12" style="padding-left: 150px;">
                                 <input type="checkbox" class="custom-control-input" id="customCheck"
-                                       onclick="showPassword();">
+                                       onclick="showPasswordPengurus();">
                                 <label class="custom-control-label" for="customCheck">Show Password</label>
                             </div>
                         </div>
@@ -64,7 +71,7 @@
                     <div class="form-group">
                         <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
                             <button class="btn btn-primary" data-dismiss="modal">Batal</button>
-                            <button type="submit" class="btn btn-success">Simpan</button>
+                            <button type="submit" class="btn btn-success">Simpan Perubahan</button>
                         </div>
                     </div>
                 </form>
@@ -78,10 +85,10 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Anda yakin keluar?</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
+                <h5 class="modal-title" id="exampleModalLabel">Anda yakin keluar?</h5>
             </div>
             <div class="modal-body">Tekan "logout" jika anda ingin keluar dari halaman ini</div>
             <div class="modal-footer">
@@ -173,7 +180,14 @@
             return false;
         return true;
     }
-
+    function showPasswordPengurus() {
+        var x = document.getElementById("password_pengurus");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
     function showPassword() {
         var x = document.getElementById("password");
         if (x.type === "password") {
@@ -190,7 +204,21 @@
             fontSize : '5000px',
             type: 'success'
         });
-    } else if (flashdata === "updated"){
+    } else if (flashdata === "hitung"){
+        Swal.fire({
+            title: 'Success',
+            text: 'Data Rekomendasi Berhasil Di Buat',
+            fontSize : '5000px',
+            type: 'success'
+        });
+    }  else if (flashdata === "gagalhitung"){
+        Swal.fire({
+            title: 'Failure',
+            text: 'Data Rekomendasi Gagal Di Buat',
+            fontSize : '5000px',
+            type: 'error'
+        });
+    }else if (flashdata === "updated"){
         Swal.fire({
             title: 'Success',
             text: 'Data Berhasil Di Edit',
@@ -217,7 +245,7 @@
         var id_anggota = $(this).data('id');
         console.log(id_anggota);
         Swal.fire({
-            title: 'Are Anda yakin?',
+            title: 'Apa Anda yakin?',
             text: "Apakah anda ingin menghapus data ini?",
             type: 'warning',
             showCancelButton: true,
@@ -253,7 +281,7 @@
         var id_pengajuan = $(this).data('id');
         console.log(id_pengajuan);
         Swal.fire({
-            title: 'Are Anda yakin?',
+            title: 'APe Anda yakin?',
             text: "Apakah anda ingin menghapus data ini?",
             type: 'warning',
             showCancelButton: true,
@@ -272,6 +300,41 @@
                             'success').then((willDelete) => {
                             if (willDelete) {
                                 window.location.href = '<?= base_url(); ?>Bendahara/Data_pengajuan/index';
+                            }
+                        });
+                    }
+                });
+            } else {
+                swalWithBootstrapButtons.fire(
+                    'Cancelled',
+                    'Your imaginary file is safe :)',
+                    'error'
+                )
+            }
+        });
+    });
+    $(document).on("click", "#hitungspk", function () {
+        var id_anggota = $(this).data('id');
+        console.log(id_anggota);
+        Swal.fire({
+            title: 'Ranking data Pengajuan?',
+            text: "Apakah anda ingin melakukan perankingan?",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya!'
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    type: 'POST',
+                    url: "<?php echo base_url();?>Bendahara/Data_pengajuan/hitungSPK",
+                    success: function () {
+                        Swal.fire('Berhasil',
+                            'Perankingan data pengajuan telah berhasil dilakukan',
+                            'success').then((willDelete) => {
+                            if (willDelete) {
+                                window.location.href = '<?= base_url(); ?>Bendahara/Data_ranking/index';
                             }
                         });
                     }

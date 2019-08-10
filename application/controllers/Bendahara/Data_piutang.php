@@ -17,7 +17,7 @@ class Data_piutang extends CI_Controller{
     }
 
     public function index(){
-        if ($this->session->userdata('kondisi') == 'Berhasil Login') {
+        if ($this->session->userdata('kondisi') == 'Berhasil Login' && $this->session->userdata('Level') == 2) {
         $anggota['sql1'] = $this->MAnggota->read_dataAnggota();
         $this->load->view('bendahara/body/data_piutang', $anggota);
         } else {

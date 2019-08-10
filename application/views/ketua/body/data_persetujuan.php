@@ -36,14 +36,10 @@
                                 <div class="x_content">
                                     <p class="text-muted font-13 m-b-30">
                                     </p>
-                                    <form action="<?php echo base_url(); ?>Ketua/Rekomendasi/persetujuan"
-                                          method="post">
-                                        <input type="hidden" name="ids" id="input-persetujuan">
-                                        <button type="submit" id="btn-persetujuan"
-                                                class="btn btn-success btn-lg hidden"><i class="fa fa-plus-square"> Buat
-                                                persetujuan</i></button>
+                                    <button type="button" data-toggle="modal" data-target="#modal-persetujuan" id="btn-persetujuan" class="btn btn-success btn-lg hidden"><i class="fa fa-plus-square"> Buat
+                                            Persetujuan</i></button>
 
-                                        <table id="checkbox" class="table table-striped table-bordered bulk_action">
+                                        <table class="table table-striped table-bordered bulk_action">
                                             <thead>
                                             <tr>
                                                 <th>Pilih data yang disetujui</th>
@@ -68,6 +64,9 @@
                                                                class="icheckbox_flat-green checkbox-persetujuan "
                                                                name="persetujuan[]"
                                                                value="<?php echo $data['id_pengajuan']; ?>">
+
+                                                        <input type="hidden" id="id-anggota-<?php echo $data['id_pengajuan'] ?>"
+                                                               value="<?php echo $data['id_anggota'] ?>">
                                                     </td>
                                                     <td><?php echo $data['ranking'] ?></td>
                                                     <td>
@@ -102,7 +101,6 @@
                                             ?>
                                             </tbody>
                                         </table>
-                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -112,6 +110,29 @@
 
             <!-- /top tiles -->
             <div class="row"></div>
+        </div>
+
+            <div class="modal fade" id="modal-persetujuan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <h5 class="modal-title" id="exampleModalLabel">Buat Persetujuan?</h5>
+                    </div>
+                    <div class="modal-body">Apakah anda yakin menyetujui data rekomendasi ini?</div>
+                    <div class="modal-footer">
+                        <form action="<?php echo base_url(); ?>Ketua/Rekomendasi/persetujuan"
+                              method="post">
+                            <input type="text" name="ids" id="input-persetujuan" hidden>
+                            <button type="submit" class="btn btn-primary">Ya, buat persetujuan</button>
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <?php $this->load->view('ketua/footer/footer') ?>
@@ -136,13 +157,15 @@
                 for (var i = 0; i < length; i++) {
                     data[i] = {
                         id: checkboxes[i].value,
-                        rank: $('#ranking-' + checkboxes[i].value).data('rank'),
+                        anggota: $('#id-anggota-' + checkboxes[i].value).val(),
                         status: checkboxes[i].checked,
                     };
                 }
 
                 $('#input-persetujuan').val(JSON.stringify(data));
                 btnPersetujuan.removeClass('hidden');
+
+                console.log(data);
             }
 
         </script>

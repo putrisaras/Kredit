@@ -68,6 +68,10 @@
                                 <td>:  <?php echo $data['no_telp']; ?></td>
                             </tr>
                             <tr>
+                                <th>Email</th>
+                                <td>:  <?php echo $data['email_anggota']; ?></td>
+                            </tr>
+                            <tr>
                                 <th>Jumlah Gaji</th>
                                 <td>:  <?php echo "Rp. ". number_format($data['jml_gaji'] ,0,".","."); ?></td>
                             </tr>
@@ -99,6 +103,7 @@
                 $password_anggota = $item['password_anggota'];
                 $alamat = $item['alamat'];
                 $no_telp = $item['no_telp'];
+                $email_anggota = $item['email_anggota'];
                 $jenis_kelamin = $item['jenis_kelamin'];
                 ?>
                 <div class="modal fade" id="editProfil" tabindex="-1" role="dialog"
@@ -124,21 +129,21 @@
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Nama Anggota</label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
                                             <input type="text" class="form-control" name="nama_anggota"
-                                                   value="<?php echo $nama_anggota; ?>" placeholder="Nama Anggota">
+                                                   value="<?php echo $nama_anggota; ?>" placeholder="Nama Anggota" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Username</label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
                                             <input type="text" class="form-control" name="username_anggota"
-                                                   value="<?php echo $username_anggota; ?>" placeholder="Username">
+                                                   value="<?php echo $username_anggota; ?>" placeholder="Username" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Password</label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
                                             <input id="password" type="password" class="form-control" name="password_anggota"
-                                                   value="<?php echo $password_anggota; ?>" placeholder="Password">
+                                                   value="<?php echo $password_anggota; ?>" placeholder="Password" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -154,14 +159,21 @@
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Alamat</label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
                                         <textarea class="form-control" name="alamat" value=""
-                                                  placeholder="Alamat"><?php echo $alamat; ?></textarea>
+                                                  placeholder="Alamat" required><?php echo $alamat; ?></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">No. Telephone</label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
                                             <input type="text" class="form-control" name="no_telp"
-                                                   value="<?php echo $no_telp; ?>" placeholder="No. Telephone">
+                                                   value="<?php echo $no_telp; ?>" placeholder="No. Telephone" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Email</label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <input type="email" class="form-control" name="email_anggota"
+                                                   value="<?php echo $email_anggota; ?>" placeholder="Email" required>
                                         </div>
                                     </div>
                                     <div class="form-group">

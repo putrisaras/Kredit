@@ -17,7 +17,7 @@ class Status_kelayakan extends CI_Controller{
     }
 
     public function index(){
-        if ($this->session->userdata('kondisi') == 'Berhasil Login') {
+        if ($this->session->userdata('kondisi') == 'Berhasil Login' && $this->session->userdata('Level') == 2) {
         $status_kelayakan['sql1'] = $this->MStatus_kelayakan->read_dataStatus_kelayakan();
         $this->load->view('bendahara/body/status_kelayakan', $status_kelayakan);
         } else {

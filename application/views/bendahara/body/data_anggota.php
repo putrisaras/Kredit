@@ -46,10 +46,10 @@
                                         <tr>
                                             <th>Id Anggota</th>
                                             <th>Nama</th>
-                                            <th>Username</th>
                                             <th>Alamat</th>
                                             <th>No. Telephone</th>
                                             <th>Jenis Kelamin</th>
+                                            <th>Email</th>
                                             <th>Action</th>
                                         </tr>
                                         </thead>
@@ -60,10 +60,10 @@
                                             <tr>
                                                 <td><?php echo $anggota->id_anggota; ?></td>
                                                 <td><?php echo $anggota->nama_anggota; ?></td>
-                                                <td><?php echo $anggota->username_anggota; ?></td>
                                                 <td><?php echo $anggota->alamat; ?></td>
                                                 <td><?php echo $anggota->no_telp; ?></td>
                                                 <td><?php echo $anggota->jenis_kelamin; ?></td>
+                                                <td><?php echo $anggota->email_anggota; ?></td>
                                                 <td>
                                                     <button type="submit" class="btn btn-info btn-xs"
                                                             data-toggle="modal"
@@ -199,6 +199,7 @@
                 $alamat = $item['alamat'];
                 $no_telp = $item['no_telp'];
                 $jenis_kelamin = $item['jenis_kelamin'];
+                $email_anggota = $item['email_anggota'];
                 ?>
                 <div class="modal fade" id="editAnggota<?php echo $id_anggota; ?>" tabindex="-1" role="dialog"
                      aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -223,44 +224,42 @@
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Nama Anggota</label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
                                             <input type="text" class="form-control" name="nama_anggota"
-                                                   value="<?php echo $nama_anggota; ?>" placeholder="Nama Anggota">
+                                                   value="<?php echo $nama_anggota; ?>" placeholder="Nama Anggota" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Username</label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
                                             <input type="text" class="form-control" name="username_anggota"
-                                                   value="<?php echo $username_anggota; ?>" placeholder="Username">
+                                                   value="<?php echo $username_anggota; ?>" placeholder="Username" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Password</label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
-                                            <input id="password" type="password" class="form-control" name="password_anggota"
-                                                   value="<?php echo $password_anggota; ?>" placeholder="Password" readonly>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="custom-control customcheckbox small">
-                                            <div class="col-md-9 col-sm-9 col-xs-12" style="padding-left: 150px;">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck"
-                                                   onclick="showPassword();">
-                                            <label class="custom-control-label" for="customCheck">Show Password</label>
-                                            </div>
+                                            <input type="text" class="form-control" name="password_anggota" id="password"
+                                                   value="<?php echo $password_anggota; ?>" readonly>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Alamat</label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
                                         <textarea class="form-control" name="alamat" value=""
-                                                  placeholder="Alamat"><?php echo $alamat; ?></textarea>
+                                                  placeholder="Alamat" required><?php echo $alamat; ?></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">No. Telephone</label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
                                             <input type="text" class="form-control" name="no_telp"
-                                                   value="<?php echo $no_telp; ?>" placeholder="No. Telephone">
+                                                   value="<?php echo $no_telp; ?>" placeholder="No. Telephone" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Email</label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <input type="email" class="form-control" name="email_anggota"
+                                                   value="<?php echo $email_anggota; ?>" placeholder="Email" required>
                                         </div>
                                     </div>
                                     <div class="form-group">

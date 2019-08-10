@@ -41,9 +41,9 @@
 <!--                                            data-target="#tambahPengajuan"><i class="fa fa-plus-square"> Tambah-->
 <!--                                            Pengajuan</i>-->
 <!--                                    </button>-->
-                                    <a href="<?php echo base_url(); ?>/Bendahara/Data_pengajuan/hitungSPK">
-                                        <button type="button" class="btn btn-info btn-lg <?php echo ($pengajuan_kredit->num_rows() > 0)? '' : 'hidden' ?>" data-toggle="modal"
-                                                data-target="#"><i class="fa fa-calculator"> Ranking data</i>
+                                    <a id="hitungspk">
+                                        <button type="button" class="btn btn-info btn-lg <?php echo ($pengajuan_kredit->num_rows() > 0)? '' : 'hidden' ?>"
+                                                ><i class="fa fa-calculator"> Ranking data</i>
                                         </button></a>
                                     <table id="datatable" class="table table-striped table-bordered">
                                         <thead>

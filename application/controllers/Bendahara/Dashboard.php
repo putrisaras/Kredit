@@ -18,17 +18,12 @@ class Dashboard extends CI_Controller
 
     public function index()
     {
-        if ($this->session->userdata('kondisi') == 'Berhasil Login') {
-            if ($this->session->userdata('Level') == 1) {
-                $this->load->view('ketua/body/dashboard');
-
-            } else if ($this->session->userdata('Level') == 2) {
-                $this->load->view('bendahara/body/dashboard');
-
-            }
-        } else {
-            redirect(base_url() . 'Login_pengurus/index');
+        if ($this->session->userdata('kondisi') == 'Berhasil Login' && $this->session->userdata('Level') == 2) {
+            $this->load->view('bendahara/body/dashboard');
+        } else{
+            redirect(base_url(). "Login_pengurus");
         }
+
     }
 }
 

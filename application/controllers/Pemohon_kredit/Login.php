@@ -19,7 +19,7 @@ class Login extends CI_Controller
 
     public function index()
     {
-        if ($this->session->userdata('kondisi') == "Berhasil Login") {
+        if ($this->session->userdata('kondisi') == "Berhasil Login Anggota") {
             redirect(base_url() . "pemohon_kredit/dashboard/index");
         } else {
             $data['halaman'] = "login";
@@ -36,7 +36,7 @@ class Login extends CI_Controller
         $result = $loginAnggota->num_rows();
 
         if ($result > 0) {
-            $status = "Berhasil Login";
+            $status = "Berhasil Login Anggota";
             foreach ($loginAnggota->result() as $data) {
                 $session_data = array(
                     'id_anggota' => $data->id_anggota,
@@ -53,7 +53,7 @@ class Login extends CI_Controller
         }
     }
 
-    public function logout()
+    public function logout_anggota()
     {
         $session_data = array(
             'id_anggota', 'nama_anggota', 'kondisi'

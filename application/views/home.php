@@ -74,7 +74,7 @@
                 <ul class="timeline">
                     <li>
                         <div class="timeline-image">
-                            <img class="rounded-circle img-fluid" src="<?php echo base_url();?>assets/laman/img/about/1.jpg" alt="">
+                            <img class="rounded-circle img-fluid" src="<?php echo base_url();?>assets/laman/img/about/1.png" alt="">
                         </div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
@@ -87,7 +87,7 @@
                     </li>
                     <li class="timeline-inverted">
                         <div class="timeline-image">
-                            <img class="rounded-circle img-fluid" src="<?php echo base_url();?>assets/laman/img/about/2.jpg" alt="">
+                            <img class="rounded-circle img-fluid" src="<?php echo base_url();?>assets/laman/img/about/goal.png" alt="">
                         </div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
@@ -100,7 +100,7 @@
                     </li>
                     <li>
                         <div class="timeline-image">
-                            <img class="rounded-circle img-fluid" src="<?php echo base_url();?>assets/laman/img/about/3.jpg" alt="">
+                            <img class="rounded-circle img-fluid" src="<?php echo base_url();?>assets/laman/img/about/3.png" alt="">
                         </div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
@@ -129,79 +129,43 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h2 class="section-heading text-uppercase">Our Amazing Team</h2>
-                <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                <h2 class="section-heading text-uppercase">Pengurus Koperasi</h2>
+                <h3 class="section-subheading text-muted"></h3>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-4">
                 <div class="team-member">
-                    <img class="mx-auto rounded-circle" src="<?php echo base_url();?>assets/laman/img/team/1.jpg" alt="">
-                    <h4>Kay Garland</h4>
-                    <p class="text-muted">Lead Designer</p>
+                    <img class="mx-auto rounded-circle" src="<?php echo base_url();?>assets/laman/img/team/11.jpg" alt="">
+                    <h4>Drs. Made Sudarta</h4>
+                    <p class="text-muted">Ketua</p>
                     <ul class="list-inline social-buttons">
                         <li class="list-inline-item">
-                            <a href="#">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
+                            <i class="fa fa-phone-square"><p class="text-muted">081237103347</p></i>
                         </li>
                     </ul>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="team-member">
-                    <img class="mx-auto rounded-circle" src="<?php echo base_url();?>assets/laman/img/team/2.jpg" alt="">
-                    <h4>Larry Parker</h4>
-                    <p class="text-muted">Lead Marketer</p>
+                    <img class="mx-auto rounded-circle" src="<?php echo base_url();?>assets/laman/img/team/13.jpg" alt="">
+                    <h4>Ketut Widiadnya, S.pd</h4>
+                    <p class="text-muted">Sekretaris</p>
                     <ul class="list-inline social-buttons">
                         <li class="list-inline-item">
-                            <a href="#">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
+                            <i class="fa fa-phone-square"><p class="text-muted">081236677912</p></i>
                         </li>
                     </ul>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="team-member">
-                    <img class="mx-auto rounded-circle" src="<?php echo base_url();?>assets/laman/img/team/3.jpg" alt="">
-                    <h4>Diana Pertersen</h4>
-                    <p class="text-muted">Lead Developer</p>
+                    <img class="mx-auto rounded-circle" src="<?php echo base_url();?>assets/laman/img/team/12.jpg" alt="">
+                    <h4>Nyoman Suardana, S.Pd</h4>
+                    <p class="text-muted">Bendahara</p>
                     <ul class="list-inline social-buttons">
                         <li class="list-inline-item">
-                            <a href="#">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
+                                <i class="fa fa-phone-square"><p class="text-muted">081353476804</p></i>
                         </li>
                     </ul>
                 </div>
@@ -209,7 +173,6 @@
         </div>
         <div class="row">
             <div class="col-lg-8 mx-auto text-center">
-                <p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
             </div>
         </div>
     </div>

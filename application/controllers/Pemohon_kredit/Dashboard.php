@@ -17,7 +17,7 @@ class Dashboard extends CI_Controller{
     }
 
     public function index(){
-        if ($this->session->userdata('kondisi') == 'Berhasil Login')
+        if ($this->session->userdata('kondisi') == 'Berhasil Login Anggota')
         {
             $data['halaman'] = "dashboard";
             $this->load->view('pemohon_kredit/body/dashboard');
@@ -28,7 +28,7 @@ class Dashboard extends CI_Controller{
     }
     public function v_profil()
     {
-        if ($this->session->userdata('kondisi') == 'Berhasil Login') {
+        if ($this->session->userdata('kondisi') == 'Berhasil Login Anggota') {
             $data['halaman'] = "my_profil";
             $data['anggota'] = $this->anggota->getProfilById($this->session->userdata('id_anggota'));
             $this->load->view('pemohon_kredit/body/my_profil', $data);
@@ -43,6 +43,7 @@ class Dashboard extends CI_Controller{
         $password_anggota = $this->input->post('password_anggota');
         $alamat = $this->input->post('alamat');
         $no_telp = $this->input->post('no_telp');
+        $email_anggota = $this->input->post('email_anggota');
         $jenis_kelamin = $this->input->post('jenis_kelamin');
 
         $data = array(
@@ -51,6 +52,7 @@ class Dashboard extends CI_Controller{
             'password_anggota'=> $password_anggota,
             'alamat'  => $alamat,
             'no_telp'=> $no_telp,
+            'email_anggota'  => $email_anggota,
             'jenis_kelamin'  => $jenis_kelamin
         );
 
